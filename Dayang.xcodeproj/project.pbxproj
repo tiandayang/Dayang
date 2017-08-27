@@ -10,23 +10,63 @@
 		680546A1D10E5FAB51093899 /* Pods_Dayang.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C325084A30EAD44F49FCF86B /* Pods_Dayang.framework */; };
 		7ED4B78C1F4FD0030065A94F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED4B78B1F4FD0030065A94F /* AppDelegate.swift */; };
 		7ED4B7931F4FD0030065A94F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7ED4B7921F4FD0030065A94F /* Assets.xcassets */; };
-		7ED4B7961F4FD0030065A94F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7ED4B7941F4FD0030065A94F /* LaunchScreen.storyboard */; };
-		7ED4B7A31F4FD2270065A94F /* DYBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED4B7A21F4FD2270065A94F /* DYBaseViewController.swift */; };
-		7ED4B7A51F4FD2420065A94F /* DYBaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED4B7A41F4FD2420065A94F /* DYBaseNavigationController.swift */; };
-		7ED4B7A71F4FD2610065A94F /* DYBaseTabBaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED4B7A61F4FD2610065A94F /* DYBaseTabBaController.swift */; };
-		7ED4B7AB1F4FD7AC0065A94F /* DYRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED4B7AA1F4FD7AC0065A94F /* DYRootViewController.swift */; };
+		7ED4B7B61F4FF4900065A94F /* DYBaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED4B7B11F4FF4900065A94F /* DYBaseNavigationController.swift */; };
+		7ED4B7B71F4FF4900065A94F /* DYBaseTabBaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED4B7B21F4FF4900065A94F /* DYBaseTabBaController.swift */; };
+		7ED4B7B81F4FF4900065A94F /* DYBaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED4B7B31F4FF4900065A94F /* DYBaseTableViewController.swift */; };
+		7ED4B7B91F4FF4900065A94F /* DYBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED4B7B41F4FF4900065A94F /* DYBaseViewController.swift */; };
+		7ED4B7BA1F4FF4900065A94F /* DYRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED4B7B51F4FF4900065A94F /* DYRootViewController.swift */; };
+		7ED4B7BC1F4FF4B50065A94F /* DYBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED4B7BB1F4FF4B50065A94F /* DYBaseModel.swift */; };
+		7ED4B7C31F4FF7F20065A94F /* TableViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED4B7C21F4FF7F20065A94F /* TableViewExt.swift */; };
+		7ED4B7C51F4FF8070065A94F /* UIViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED4B7C41F4FF8070065A94F /* UIViewExt.swift */; };
+		7ED4B7CB1F4FFC410065A94F /* DYHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED4B7CA1F4FFC410065A94F /* DYHomeViewController.swift */; };
+		7ED4B7CD1F4FFCE80065A94F /* DYGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED4B7CC1F4FFCE80065A94F /* DYGuideViewController.swift */; };
+		7ED4B7D01F4FFD960065A94F /* UserDefaultExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED4B7CF1F4FFD960065A94F /* UserDefaultExt.swift */; };
+		7ED4B7D71F50097B0065A94F /* DYConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED4B7D61F50097B0065A94F /* DYConstant.swift */; };
+		7ED4B7D91F500A720065A94F /* UIColorExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED4B7D81F500A720065A94F /* UIColorExt.swift */; };
+		7ED4B7DB1F500A890065A94F /* StringExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED4B7DA1F500A890065A94F /* StringExt.swift */; };
+		7ED4B7DF1F500B4E0065A94F /* UIDeviceHardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED4B7DE1F500B4E0065A94F /* UIDeviceHardware.m */; };
+		7ED4B7E61F500F1F0065A94F /* ArrayExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED4B7E51F500F1F0065A94F /* ArrayExt.swift */; };
+		7ED4B7E81F500F300065A94F /* DictionaryExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED4B7E71F500F300065A94F /* DictionaryExt.swift */; };
+		7ED4B7EA1F500F3B0065A94F /* DateExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED4B7E91F500F3B0065A94F /* DateExt.swift */; };
+		7ED4B7EC1F500F580065A94F /* UIFontExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED4B7EB1F500F580065A94F /* UIFontExt.swift */; };
+		7ED4B7EE1F5011D10065A94F /* UIButtonExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED4B7ED1F5011D10065A94F /* UIButtonExt.swift */; };
+		7ED4B7F51F5015950065A94F /* DYBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED4B7F41F5015950065A94F /* DYBannerView.swift */; };
+		7ED4B7F71F502B410065A94F /* TimerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED4B7F61F502B410065A94F /* TimerExt.swift */; };
+		7ED4B7F91F523CD90065A94F /* DYLaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED4B7F81F523CD90065A94F /* DYLaunchViewController.swift */; };
+		7ED4B7FB1F523D570065A94F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7ED4B7FA1F523D570065A94F /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		7ED4B7881F4FD0030065A94F /* Dayang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dayang.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		7ED4B78B1F4FD0030065A94F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		7ED4B78B1F4FD0030065A94F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../AppDelegate.swift; sourceTree = "<group>"; };
 		7ED4B7921F4FD0030065A94F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		7ED4B7951F4FD0030065A94F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7ED4B7971F4FD0030065A94F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7ED4B7A21F4FD2270065A94F /* DYBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYBaseViewController.swift; sourceTree = "<group>"; };
-		7ED4B7A41F4FD2420065A94F /* DYBaseNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYBaseNavigationController.swift; sourceTree = "<group>"; };
-		7ED4B7A61F4FD2610065A94F /* DYBaseTabBaController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYBaseTabBaController.swift; sourceTree = "<group>"; };
-		7ED4B7AA1F4FD7AC0065A94F /* DYRootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYRootViewController.swift; sourceTree = "<group>"; };
+		7ED4B7B11F4FF4900065A94F /* DYBaseNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYBaseNavigationController.swift; sourceTree = "<group>"; };
+		7ED4B7B21F4FF4900065A94F /* DYBaseTabBaController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYBaseTabBaController.swift; sourceTree = "<group>"; };
+		7ED4B7B31F4FF4900065A94F /* DYBaseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYBaseTableViewController.swift; sourceTree = "<group>"; };
+		7ED4B7B41F4FF4900065A94F /* DYBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYBaseViewController.swift; sourceTree = "<group>"; };
+		7ED4B7B51F4FF4900065A94F /* DYRootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYRootViewController.swift; sourceTree = "<group>"; };
+		7ED4B7BB1F4FF4B50065A94F /* DYBaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYBaseModel.swift; sourceTree = "<group>"; };
+		7ED4B7C21F4FF7F20065A94F /* TableViewExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewExt.swift; sourceTree = "<group>"; };
+		7ED4B7C41F4FF8070065A94F /* UIViewExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExt.swift; sourceTree = "<group>"; };
+		7ED4B7CA1F4FFC410065A94F /* DYHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYHomeViewController.swift; sourceTree = "<group>"; };
+		7ED4B7CC1F4FFCE80065A94F /* DYGuideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYGuideViewController.swift; sourceTree = "<group>"; };
+		7ED4B7CF1F4FFD960065A94F /* UserDefaultExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultExt.swift; sourceTree = "<group>"; };
+		7ED4B7D61F50097B0065A94F /* DYConstant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYConstant.swift; sourceTree = "<group>"; };
+		7ED4B7D81F500A720065A94F /* UIColorExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExt.swift; sourceTree = "<group>"; };
+		7ED4B7DA1F500A890065A94F /* StringExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExt.swift; sourceTree = "<group>"; };
+		7ED4B7DD1F500B4E0065A94F /* UIDeviceHardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIDeviceHardware.h; sourceTree = "<group>"; };
+		7ED4B7DE1F500B4E0065A94F /* UIDeviceHardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIDeviceHardware.m; sourceTree = "<group>"; };
+		7ED4B7E41F500BEF0065A94F /* Dayang-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Dayang-Bridging-Header.h"; sourceTree = "<group>"; };
+		7ED4B7E51F500F1F0065A94F /* ArrayExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayExt.swift; sourceTree = "<group>"; };
+		7ED4B7E71F500F300065A94F /* DictionaryExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryExt.swift; sourceTree = "<group>"; };
+		7ED4B7E91F500F3B0065A94F /* DateExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExt.swift; sourceTree = "<group>"; };
+		7ED4B7EB1F500F580065A94F /* UIFontExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIFontExt.swift; sourceTree = "<group>"; };
+		7ED4B7ED1F5011D10065A94F /* UIButtonExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButtonExt.swift; sourceTree = "<group>"; };
+		7ED4B7F41F5015950065A94F /* DYBannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYBannerView.swift; sourceTree = "<group>"; };
+		7ED4B7F61F502B410065A94F /* TimerExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerExt.swift; sourceTree = "<group>"; };
+		7ED4B7F81F523CD90065A94F /* DYLaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYLaunchViewController.swift; sourceTree = "<group>"; };
+		7ED4B7FA1F523D570065A94F /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B02EAD214491FEB24E7AE0F0 /* Pods-Dayang.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dayang.release.xcconfig"; path = "Pods/Target Support Files/Pods-Dayang/Pods-Dayang.release.xcconfig"; sourceTree = "<group>"; };
 		C18F5A411B0E7B201796DAD7 /* Pods-Dayang.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dayang.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Dayang/Pods-Dayang.debug.xcconfig"; sourceTree = "<group>"; };
 		C325084A30EAD44F49FCF86B /* Pods_Dayang.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Dayang.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -74,15 +114,14 @@
 		7ED4B78A1F4FD0030065A94F /* Dayang */ = {
 			isa = PBXGroup;
 			children = (
-				7ED4B79D1F4FD0C70065A94F /* Extention */,
 				7ED4B79E1F4FD0C70065A94F /* Base */,
+				7ED4B7D51F50095A0065A94F /* Configuration */,
 				7ED4B79F1F4FD0C70065A94F /* Class */,
 				7ED4B7A01F4FD0C70065A94F /* ThirdLib */,
 				7ED4B7A11F4FD1820065A94F /* Servers */,
-				7ED4B78B1F4FD0030065A94F /* AppDelegate.swift */,
-				7ED4B7921F4FD0030065A94F /* Assets.xcassets */,
-				7ED4B7941F4FD0030065A94F /* LaunchScreen.storyboard */,
-				7ED4B7971F4FD0030065A94F /* Info.plist */,
+				7ED4B79D1F4FD0C70065A94F /* Extention */,
+				7ED4B7EF1F5015670065A94F /* Until */,
+				7ED4B7E31F500BA10065A94F /* Supporting Files */,
 			);
 			path = Dayang;
 			sourceTree = "<group>";
@@ -90,6 +129,8 @@
 		7ED4B79D1F4FD0C70065A94F /* Extention */ = {
 			isa = PBXGroup;
 			children = (
+				7ED4B7CE1F4FFD780065A94F /* UIKitExt */,
+				7ED4B7C11F4FF7F20065A94F /* UIView */,
 			);
 			path = Extention;
 			sourceTree = "<group>";
@@ -97,10 +138,10 @@
 		7ED4B79E1F4FD0C70065A94F /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				7ED4B7A21F4FD2270065A94F /* DYBaseViewController.swift */,
-				7ED4B7A41F4FD2420065A94F /* DYBaseNavigationController.swift */,
-				7ED4B7A61F4FD2610065A94F /* DYBaseTabBaController.swift */,
-				7ED4B7AA1F4FD7AC0065A94F /* DYRootViewController.swift */,
+				7ED4B78B1F4FD0030065A94F /* AppDelegate.swift */,
+				7ED4B7AE1F4FF4900065A94F /* BaseCell */,
+				7ED4B7AF1F4FF4900065A94F /* BaseModel */,
+				7ED4B7B01F4FF4900065A94F /* BaseController */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -108,6 +149,7 @@
 		7ED4B79F1F4FD0C70065A94F /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				7ED4B7C61F4FFC210065A94F /* Home */,
 			);
 			path = Class;
 			sourceTree = "<group>";
@@ -115,6 +157,7 @@
 		7ED4B7A01F4FD0C70065A94F /* ThirdLib */ = {
 			isa = PBXGroup;
 			children = (
+				7ED4B7DC1F500B4E0065A94F /* UIDeviceIdentifier */,
 			);
 			path = ThirdLib;
 			sourceTree = "<group>";
@@ -124,6 +167,136 @@
 			children = (
 			);
 			path = Servers;
+			sourceTree = "<group>";
+		};
+		7ED4B7AE1F4FF4900065A94F /* BaseCell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = BaseCell;
+			sourceTree = "<group>";
+		};
+		7ED4B7AF1F4FF4900065A94F /* BaseModel */ = {
+			isa = PBXGroup;
+			children = (
+				7ED4B7BB1F4FF4B50065A94F /* DYBaseModel.swift */,
+			);
+			path = BaseModel;
+			sourceTree = "<group>";
+		};
+		7ED4B7B01F4FF4900065A94F /* BaseController */ = {
+			isa = PBXGroup;
+			children = (
+				7ED4B7B11F4FF4900065A94F /* DYBaseNavigationController.swift */,
+				7ED4B7B21F4FF4900065A94F /* DYBaseTabBaController.swift */,
+				7ED4B7B31F4FF4900065A94F /* DYBaseTableViewController.swift */,
+				7ED4B7B41F4FF4900065A94F /* DYBaseViewController.swift */,
+				7ED4B7B51F4FF4900065A94F /* DYRootViewController.swift */,
+				7ED4B7CC1F4FFCE80065A94F /* DYGuideViewController.swift */,
+				7ED4B7F81F523CD90065A94F /* DYLaunchViewController.swift */,
+			);
+			path = BaseController;
+			sourceTree = "<group>";
+		};
+		7ED4B7C11F4FF7F20065A94F /* UIView */ = {
+			isa = PBXGroup;
+			children = (
+				7ED4B7C21F4FF7F20065A94F /* TableViewExt.swift */,
+				7ED4B7C41F4FF8070065A94F /* UIViewExt.swift */,
+				7ED4B7ED1F5011D10065A94F /* UIButtonExt.swift */,
+			);
+			path = UIView;
+			sourceTree = "<group>";
+		};
+		7ED4B7C61F4FFC210065A94F /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				7ED4B7C71F4FFC210065A94F /* Controller */,
+				7ED4B7C81F4FFC210065A94F /* Model */,
+				7ED4B7C91F4FFC210065A94F /* View */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		7ED4B7C71F4FFC210065A94F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7ED4B7CA1F4FFC410065A94F /* DYHomeViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		7ED4B7C81F4FFC210065A94F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7ED4B7C91F4FFC210065A94F /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7ED4B7CE1F4FFD780065A94F /* UIKitExt */ = {
+			isa = PBXGroup;
+			children = (
+				7ED4B7CF1F4FFD960065A94F /* UserDefaultExt.swift */,
+				7ED4B7D81F500A720065A94F /* UIColorExt.swift */,
+				7ED4B7EB1F500F580065A94F /* UIFontExt.swift */,
+				7ED4B7DA1F500A890065A94F /* StringExt.swift */,
+				7ED4B7E51F500F1F0065A94F /* ArrayExt.swift */,
+				7ED4B7E71F500F300065A94F /* DictionaryExt.swift */,
+				7ED4B7E91F500F3B0065A94F /* DateExt.swift */,
+				7ED4B7F61F502B410065A94F /* TimerExt.swift */,
+			);
+			path = UIKitExt;
+			sourceTree = "<group>";
+		};
+		7ED4B7D51F50095A0065A94F /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				7ED4B7D61F50097B0065A94F /* DYConstant.swift */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+		7ED4B7DC1F500B4E0065A94F /* UIDeviceIdentifier */ = {
+			isa = PBXGroup;
+			children = (
+				7ED4B7DD1F500B4E0065A94F /* UIDeviceHardware.h */,
+				7ED4B7DE1F500B4E0065A94F /* UIDeviceHardware.m */,
+			);
+			path = UIDeviceIdentifier;
+			sourceTree = "<group>";
+		};
+		7ED4B7E31F500BA10065A94F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7ED4B7921F4FD0030065A94F /* Assets.xcassets */,
+				7ED4B7971F4FD0030065A94F /* Info.plist */,
+				7ED4B7E41F500BEF0065A94F /* Dayang-Bridging-Header.h */,
+				7ED4B7FA1F523D570065A94F /* LaunchScreen.storyboard */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7ED4B7EF1F5015670065A94F /* Until */ = {
+			isa = PBXGroup;
+			children = (
+				7ED4B7F01F5015670065A94F /* DYBannerView */,
+			);
+			path = Until;
+			sourceTree = "<group>";
+		};
+		7ED4B7F01F5015670065A94F /* DYBannerView */ = {
+			isa = PBXGroup;
+			children = (
+				7ED4B7F41F5015950065A94F /* DYBannerView.swift */,
+			);
+			path = DYBannerView;
 			sourceTree = "<group>";
 		};
 		F4800CB2793455925B9D0E82 /* Frameworks */ = {
@@ -198,8 +371,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7ED4B7961F4FD0030065A94F /* LaunchScreen.storyboard in Resources */,
 				7ED4B7931F4FD0030065A94F /* Assets.xcassets in Resources */,
+				7ED4B7FB1F523D570065A94F /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,6 +421,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Dayang/Pods-Dayang-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveCocoa/ReactiveCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveSwift/ReactiveSwift.framework",
@@ -260,6 +434,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveSwift.framework",
@@ -280,26 +455,34 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7ED4B7CB1F4FFC410065A94F /* DYHomeViewController.swift in Sources */,
+				7ED4B7C51F4FF8070065A94F /* UIViewExt.swift in Sources */,
 				7ED4B78C1F4FD0030065A94F /* AppDelegate.swift in Sources */,
-				7ED4B7A71F4FD2610065A94F /* DYBaseTabBaController.swift in Sources */,
-				7ED4B7A51F4FD2420065A94F /* DYBaseNavigationController.swift in Sources */,
-				7ED4B7A31F4FD2270065A94F /* DYBaseViewController.swift in Sources */,
-				7ED4B7AB1F4FD7AC0065A94F /* DYRootViewController.swift in Sources */,
+				7ED4B7CD1F4FFCE80065A94F /* DYGuideViewController.swift in Sources */,
+				7ED4B7EC1F500F580065A94F /* UIFontExt.swift in Sources */,
+				7ED4B7DB1F500A890065A94F /* StringExt.swift in Sources */,
+				7ED4B7D01F4FFD960065A94F /* UserDefaultExt.swift in Sources */,
+				7ED4B7C31F4FF7F20065A94F /* TableViewExt.swift in Sources */,
+				7ED4B7D71F50097B0065A94F /* DYConstant.swift in Sources */,
+				7ED4B7B61F4FF4900065A94F /* DYBaseNavigationController.swift in Sources */,
+				7ED4B7DF1F500B4E0065A94F /* UIDeviceHardware.m in Sources */,
+				7ED4B7EA1F500F3B0065A94F /* DateExt.swift in Sources */,
+				7ED4B7B71F4FF4900065A94F /* DYBaseTabBaController.swift in Sources */,
+				7ED4B7E81F500F300065A94F /* DictionaryExt.swift in Sources */,
+				7ED4B7F91F523CD90065A94F /* DYLaunchViewController.swift in Sources */,
+				7ED4B7BA1F4FF4900065A94F /* DYRootViewController.swift in Sources */,
+				7ED4B7B81F4FF4900065A94F /* DYBaseTableViewController.swift in Sources */,
+				7ED4B7E61F500F1F0065A94F /* ArrayExt.swift in Sources */,
+				7ED4B7F51F5015950065A94F /* DYBannerView.swift in Sources */,
+				7ED4B7F71F502B410065A94F /* TimerExt.swift in Sources */,
+				7ED4B7D91F500A720065A94F /* UIColorExt.swift in Sources */,
+				7ED4B7BC1F4FF4B50065A94F /* DYBaseModel.swift in Sources */,
+				7ED4B7EE1F5011D10065A94F /* UIButtonExt.swift in Sources */,
+				7ED4B7B91F4FF4900065A94F /* DYBaseViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		7ED4B7941F4FD0030065A94F /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				7ED4B7951F4FD0030065A94F /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		7ED4B7981F4FD0030065A94F /* Debug */ = {
@@ -406,6 +589,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wxx.Dayang;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Dayang/Dayang-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -421,6 +605,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wxx.Dayang;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Dayang/Dayang-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
