@@ -24,7 +24,7 @@ class DYBaseTableViewController: DYBaseViewController {
     }
     
     private func initControllerFirstData() {
-        
+        dataArray = [Array<Any>]()
     }
     //MARK: Action
   
@@ -46,11 +46,12 @@ class DYBaseTableViewController: DYBaseViewController {
         let tableView = UITableView(frame:self.view.bounds,style:.plain)
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.separatorStyle = .none
         tableView.tableFooterView = UIView()
         return tableView
     }()
     
-    var dataArray: [Array<Any>]? {
+     var dataArray: [Array<Any>]? {
         didSet{
             tableView.reloadData()
         }

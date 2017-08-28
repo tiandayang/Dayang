@@ -24,9 +24,14 @@ class DYHomeViewController: DYBaseTableViewController {
     
     private func initControllerFirstData() {
         self.title = "首页"
+        setLeftButtonItemWithImage(image: UIImage(named: "personalCenter")!)
+        
     }
     //MARK: Action
-    
+    override func didClickNavigationBarLeftButton() {
+        let personVC = DYPersonalViewController()
+        self.navigationController?.pushViewController(personVC, animated: true)
+    }
     //MARK: AddNotificatoin
     private func registNotification() {
         

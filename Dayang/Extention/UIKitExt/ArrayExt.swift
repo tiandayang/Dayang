@@ -9,6 +9,7 @@
 import Foundation
 
 extension Array {
+    
     public func toJsonString() -> String {
         
         var result:String = ""

@@ -110,4 +110,10 @@
     return platformString;
 }
 
+
++ (NSString *)appVersion
+{
+    NSString *version = [NSBundle mainBundle].infoDictionary[@"CFBundleShortVersionString"];
+    return version;
+}
 @end

@@ -33,6 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (NSString *) platformStringSimple;
 
++ (NSString *) appVersion;
 @end
 
 #ifdef NS_ASSUME_NONNULL_END

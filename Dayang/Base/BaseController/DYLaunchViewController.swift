@@ -51,6 +51,7 @@ class DYLaunchViewController: UIViewController,CAAnimationDelegate {
     }
     
     func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+        view.isHidden = true
         removeFromParentViewController()
         view.removeFromSuperview()
     }
