@@ -10,6 +10,8 @@ import UIKit
 
 class DYBaseTableViewController: DYBaseViewController {
 
+   public var cellHeight: CGFloat = 44;// 行高
+    
     //MARK: ControllerLifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,8 +79,12 @@ extension DYBaseTableViewController: UITableViewDataSource, UITableViewDelegate 
         }
         return cell!
     }
-    
+        
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0.01
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return cellHeight
     }
 }

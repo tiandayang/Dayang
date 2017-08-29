@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import ReactiveCocoa
+import ReactiveSwift
 
 extension Array {
     
@@ -32,5 +34,11 @@ extension Array {
             return self[index]
         }
         return nil
+    }
+    
+    public func dy_fitter(fitter: (()->(_ :Bool))?) ->Array<Element> {
+        if fitter!= nil {
+//            self.rea
+        }
     }
 }

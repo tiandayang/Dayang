@@ -19,40 +19,16 @@ class DYLaunchViewController: UIViewController,CAAnimationDelegate {
         // 2.在storyboard里关联本类
         // 3.coding...
         // 4.回到rootController 添加视图
-        
         addAnimation()
     }
-    
-    private func addAnimation() {
-        let groupAnimation = CAAnimationGroup()
-        groupAnimation.delegate = self
-        
-        let rotateAnimation = CABasicAnimation()
-        rotateAnimation.keyPath = "transform.rotation"
-        rotateAnimation.toValue = Double.pi * 4.0
-        
-        let scaleAnimation = CABasicAnimation()
-        scaleAnimation.keyPath = "transform.scale"
-        scaleAnimation.toValue = 0
-        
-        let opacityAnimation = CABasicAnimation()
-        opacityAnimation.keyPath = "opacity"
-        opacityAnimation.toValue = 0
 
-        
-        groupAnimation.duration = 1
-        let timingFunc = CAMediaTimingFunction.init(name: kCAMediaTimingFunctionEaseOut)
-        groupAnimation.timingFunction = timingFunc
-        groupAnimation.animations = [rotateAnimation, scaleAnimation,opacityAnimation]
-        groupAnimation.setValue("animation", forKey: "animType")
-        groupAnimation.isRemovedOnCompletion = true
-        groupAnimation.fillMode = kCAFillModeBoth
-        view.layer.add(groupAnimation, forKey: "")
-    }
-    
-    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
-        view.isHidden = true
-        removeFromParentViewController()
-        view.removeFromSuperview()
+    private func addAnimation() {
+        UIView.animate(withDuration: 1, delay: 0, options: .curveLinear, animations: {
+            self.imageView.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+            self.imageView.alpha = 0
+        }) { (finish) in
+            self.removeFromParentViewController()
+            self.view.removeFromSuperview()
+        }
     }
 }
