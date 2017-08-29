@@ -66,7 +66,8 @@ class DYPersonalViewController: DYBaseTableViewController {
         case 2:
             //图片
             let photoVC = DYAlbumListViewController()
-            self.navigationController?.pushViewController(photoVC, animated: true)
+            let nav = DYBaseNavigationController(rootViewController: photoVC)
+            self.present(nav, animated: true, completion: nil)
             break
         default: break
         }

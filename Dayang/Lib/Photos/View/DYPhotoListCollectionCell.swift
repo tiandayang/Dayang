@@ -17,7 +17,7 @@ class DYPhotoListCollectionCell: DYBaseCollectionViewCell {
             if photoModel != nil {
                 videoButton.isHidden = !photoModel!.isVideo
                 selectImageView.isHidden = !photoModel!.isSelect
-               indexLabel.text = String(photoModel!.selectIndex)
+                indexLabel.text = String(photoModel!.selectIndex)
                 videoButton.setTitle(photoModel!.videoDurationShow(), for: .normal)
                 videoButton.ajustImagePosition(position: .left, offset: 5)
                 corverImage.image = photoModel?.thumImage
@@ -38,6 +38,20 @@ class DYPhotoListCollectionCell: DYBaseCollectionViewCell {
         }
     }
     
+    //MARK:- animation
+    func cellDidClickAnimation(complete:@escaping () -> ()) {
+        let duration = 0.1
+        UIView.animate(withDuration: duration, animations: {
+            self.transform = CGAffineTransform(scaleX: 1.03, y: 1.03)
+        }, completion: { (finish) in
+            UIView.animate(withDuration: duration, animations: {
+                self.transform = CGAffineTransform.identity
+            }, completion: { (finished) in
+                complete()
+            })
+        })
+    }
+    
     override func createUI() {
         contentView.addSubview(corverImage)
         contentView.addSubview(selectImageView)
@@ -53,7 +67,7 @@ class DYPhotoListCollectionCell: DYBaseCollectionViewCell {
         }
         
         indexLabel.snp.makeConstraints { (make) in
-            make.right.top.equalTo(contentView);
+            make.right.top.equalToSuperview();
             make.size.equalTo(CGSize(width: 25, height: 25));
         }
         
@@ -64,7 +78,6 @@ class DYPhotoListCollectionCell: DYBaseCollectionViewCell {
         }
         
         selectImageView.isHidden = true
-        indexLabel.isHidden = true
         videoButton.isHidden = true
     }
 
@@ -72,12 +85,13 @@ class DYPhotoListCollectionCell: DYBaseCollectionViewCell {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-        imageView.image = UIImage(named: "ch_selectbg_photo")
         return imageView
     }()
     
     lazy var selectImageView :UIImageView = {
-        return UIImageView()
+        let imageView = UIImageView();
+        imageView.image = UIImage(named: "ch_selectbg_photo")
+        return imageView
     }()
     
     lazy var indexLabel :UILabel = {
@@ -86,7 +100,7 @@ class DYPhotoListCollectionCell: DYBaseCollectionViewCell {
         label.textAlignment = .center
         label.textColor = .black
         
-        return UILabel()
+        return label
     }()
     
     lazy var videoButton: UIButton = {

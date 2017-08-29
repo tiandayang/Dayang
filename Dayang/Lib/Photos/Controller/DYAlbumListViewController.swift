@@ -10,6 +10,9 @@ import UIKit
 
 class DYAlbumListViewController: DYBaseTableViewController {
 
+    var selectComplete: ((_ selectArray: Array<DYPhotoModel>)->())? //选择完成的回调
+    var maxSelectCount: Int = 9 //做多选择的个数
+    
     //MARK: ControllerLifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +56,8 @@ class DYAlbumListViewController: DYBaseTableViewController {
             let photoListVC = DYPhotoListViewController()
             photoListVC.albumModel = model as? DYAlbumModel
             photoListVC.title = (model as? DYAlbumModel)?.albumName
+            photoListVC.selectComplete = self.selectComplete
+            photoListVC.maxSelectCount = self.maxSelectCount
             self.navigationController?.pushViewController(photoListVC, animated: true)
         }
     }

@@ -14,7 +14,12 @@ private let  ITEMWIDTH = 2.0 * (WINDOW_WIDTH - 4*4)/3.0
 
 class DYPhotoListViewController: DYBaseViewController {
 
-    var dataArray = [DYPhotoModel]()
+    public var selectComplete: ((_ selectArray: Array<DYPhotoModel>)->())? //选择完成的回调
+    public var maxSelectCount: Int = 9 //做多选择的个数
+    
+    fileprivate var dataArray = [DYPhotoModel]()   // 数据源
+    fileprivate var selectArray = [DYPhotoModel]() // 已选择的数组
+    
     weak var albumModel: DYAlbumModel?
     
     //MARK: ControllerLifeCycle
@@ -34,10 +39,26 @@ class DYPhotoListViewController: DYBaseViewController {
     }
     
     private func initControllerFirstData() {
+        self.setRightButtonItemWithTitle(title: "取消")
         
     }
     //MARK: Action
     
+    override func didClickNavigationBarRightButton() {
+        if selectArray.count>0  && self.selectComplete != nil {
+            self.selectComplete!(selectArray)
+        }
+        self.dismiss(animated: true, completion: nil)
+
+    }
+    
+    fileprivate func updateNavigationRightTitle() {
+        if selectArray.count > 0 {
+            self.setRightButtonItemWithTitle(title: "确定(\(selectArray.count))")
+        }else{
+            self.setRightButtonItemWithTitle(title: "取消")
+        }
+    }
     //MARK: AddNotificatoin
     private func registNotification() {
         
@@ -78,6 +99,37 @@ extension DYPhotoListViewController: UICollectionViewDelegate, UICollectionViewD
             cell.photoModel = model
         }
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let photoModel = dataArray.dy_objectAtIndex(index: indexPath.item)
+        let cell = collectionView.cellForItem(at: indexPath) as! DYPhotoListCollectionCell
+      
+        if !(photoModel?.isSelect)! {
+            if selectArray.count >= self.maxSelectCount {
+                DYAlertViewHelper.showAlert(title: "最多只能选择\(self.maxSelectCount)张图片", controller: self, complete: nil)
+                return
+            }
+            photoModel?.isSelect = true
+            selectArray.append(photoModel!)
+            photoModel?.selectIndex = selectArray.count
+        }else{
+            photoModel?.isSelect = false
+            if let index = selectArray.index(of: photoModel!) {
+                selectArray.remove(at: index)
+            }
+        }
+        cell.photoModel = photoModel!
+        
+        for (index,model) in selectArray.enumerated() {
+            model.selectIndex = index + 1
+        }
+        updateNavigationRightTitle()
+        cell.cellDidClickAnimation {
+            collectionView.reloadData()
+        }
+        
     }
 
 }

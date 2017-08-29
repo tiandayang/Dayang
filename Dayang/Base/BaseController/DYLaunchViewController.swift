@@ -23,7 +23,7 @@ class DYLaunchViewController: UIViewController,CAAnimationDelegate {
     }
 
     private func addAnimation() {
-        UIView.animate(withDuration: 1, delay: 0, options: .curveLinear, animations: {
+        UIView.animate(withDuration: 0.8, delay: 0.5, options: .curveEaseInOut, animations: {
             self.imageView.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
             self.imageView.alpha = 0
         }) { (finish) in

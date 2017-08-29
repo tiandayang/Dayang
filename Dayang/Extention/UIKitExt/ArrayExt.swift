@@ -36,9 +36,4 @@ extension Array {
         return nil
     }
     
-//    public func dy_fitter(fitter: (()->(_ :Bool))?) ->Array<Element> {
-//        if fitter != nil {
-//
-//        }
-//    }
 }

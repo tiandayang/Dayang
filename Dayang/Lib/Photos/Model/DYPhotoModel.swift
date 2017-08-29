@@ -9,7 +9,7 @@
 import UIKit
 import Photos
 
-class DYPhotoModel {
+class DYPhotoModel: NSObject {
 
     var isSelect: Bool = false //标记是否选中
     var thumImage: UIImage? // 缩略图，列表用
