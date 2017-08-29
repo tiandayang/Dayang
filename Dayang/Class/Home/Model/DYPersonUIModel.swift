@@ -28,12 +28,12 @@ class DYPersonUIModel: DYBaseModel {
         }
     }
     private class func nameArray() -> Array<String> {
-        let array = ["本地文件","我的视频","我的照片","其他文件"]
+        let array = ["本地文件","手机相册"]
         return array
     }
     
     private class func imgArray() -> Array<String> {
-        let array = ["file_folder","file_video","file_image","file_other"]
+        let array = ["file_folder","file_image"]
         return array
     }
 }

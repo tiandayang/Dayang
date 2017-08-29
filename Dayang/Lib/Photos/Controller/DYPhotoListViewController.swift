@@ -14,7 +14,7 @@ private let  ITEMWIDTH = 2.0 * (WINDOW_WIDTH - 4*4)/3.0
 
 class DYPhotoListViewController: DYBaseViewController {
 
-    public var selectComplete: ((_ selectArray: Array<DYPhotoModel>)->())? //选择完成的回调
+    public var selectComplete: selectComplete?
     public var maxSelectCount: Int = 9 //做多选择的个数
     
     fileprivate var dataArray = [DYPhotoModel]()   // 数据源
@@ -31,11 +31,9 @@ class DYPhotoListViewController: DYBaseViewController {
     }
     //MARK: LoadData
     private func loadData() {
-        
-        DYPhotosHelper.prepareAssetList(fetchAssets: (albumModel?.fetchAssets)!) { (listArray) in
-            self.dataArray = listArray
-            self.collectionView.reloadData()
-        }
+
+        self.dataArray = (albumModel?.assetList)!
+        collectionView.reloadData()
     }
     
     private func initControllerFirstData() {

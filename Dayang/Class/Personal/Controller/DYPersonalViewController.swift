@@ -14,7 +14,6 @@ class DYPersonalViewController: DYBaseTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initControllerFirstData()
-        createUI()
         loadData()
         registNotification()
     }
@@ -60,22 +59,14 @@ class DYPersonalViewController: DYBaseTableViewController {
             fileVC.path = DYLocalFilePathServer.userRootPath()
             self.navigationController?.pushViewController(fileVC, animated: true)
             break
-        case 1:
-            //视频
-            break
-        case 2:
+        default:
             //图片
             let photoVC = DYAlbumListViewController()
             let nav = DYBaseNavigationController(rootViewController: photoVC)
+            photoVC.mediaType = .both
             self.present(nav, animated: true, completion: nil)
             break
-        default: break
         }
-    }
-    
-    //MARK: CreateUI
-    private func createUI() {
-        
     }
     
 }

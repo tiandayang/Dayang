@@ -19,21 +19,21 @@ class DYPhotoModel: NSObject {
     
     var videoURL: URL? // 视频的url
     
-    var mediaName: String {
+    lazy var mediaName: String = {
         return self.asset?.value(forKey: "filename") as! String
-    }
+    }()
 
-    var videoDuration: Int {
+    lazy var videoDuration: Int = {
         //视频长度
         if self.isVideo {
             return (self.asset?.value(forKey: "duration") as AnyObject).intValue
         }
         return 0
-    }
+    }()
     
-    var isVideo: Bool {
+    lazy var isVideo: Bool = {
         return self.asset?.mediaType == .video
-    }
+    }()
     
     func videoDurationShow() -> String{
     

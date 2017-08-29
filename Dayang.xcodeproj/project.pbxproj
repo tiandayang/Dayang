@@ -60,6 +60,7 @@
 		7E4776BA1F553EA80017E7EE /* WXXFileListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E47768F1F553EA80017E7EE /* WXXFileListCollectionViewCell.swift */; };
 		7E4776BB1F553EA80017E7EE /* WXXFileListCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4776901F553EA80017E7EE /* WXXFileListCollectionView.swift */; };
 		7E4776BC1F553EA80017E7EE /* UIDeviceHardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4776931F553EA80017E7EE /* UIDeviceHardware.m */; };
+		7E4776BE1F5574770017E7EE /* DYPhotosHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4776BD1F5574770017E7EE /* DYPhotosHeader.swift */; };
 		7ED4B78C1F4FD0030065A94F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED4B78B1F4FD0030065A94F /* AppDelegate.swift */; };
 		7ED4B7931F4FD0030065A94F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7ED4B7921F4FD0030065A94F /* Assets.xcassets */; };
 		7ED4B7B61F4FF4900065A94F /* DYBaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED4B7B11F4FF4900065A94F /* DYBaseNavigationController.swift */; };
@@ -141,6 +142,7 @@
 		7E4776901F553EA80017E7EE /* WXXFileListCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WXXFileListCollectionView.swift; sourceTree = "<group>"; };
 		7E4776921F553EA80017E7EE /* UIDeviceHardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIDeviceHardware.h; sourceTree = "<group>"; };
 		7E4776931F553EA80017E7EE /* UIDeviceHardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIDeviceHardware.m; sourceTree = "<group>"; };
+		7E4776BD1F5574770017E7EE /* DYPhotosHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYPhotosHeader.swift; sourceTree = "<group>"; };
 		7ED4B7881F4FD0030065A94F /* Dayang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dayang.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7ED4B78B1F4FD0030065A94F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../AppDelegate.swift; sourceTree = "<group>"; };
 		7ED4B7921F4FD0030065A94F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -263,6 +265,7 @@
 			isa = PBXGroup;
 			children = (
 				7E4776641F553EA80017E7EE /* DYPhotosHelper.swift */,
+				7E4776BD1F5574770017E7EE /* DYPhotosHeader.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -801,6 +804,7 @@
 				7ED4B7BC1F4FF4B50065A94F /* DYBaseModel.swift in Sources */,
 				7E313ABB1F54071900FC426D /* DYPersonUIModel.swift in Sources */,
 				7ED4B7EE1F5011D10065A94F /* UIButtonExt.swift in Sources */,
+				7E4776BE1F5574770017E7EE /* DYPhotosHeader.swift in Sources */,
 				7ED4B7B91F4FF4900065A94F /* DYBaseViewController.swift in Sources */,
 				7E313AC11F5414FF00FC426D /* DYKeychainServer.swift in Sources */,
 			);

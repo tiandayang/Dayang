@@ -61,7 +61,7 @@ class DYAlbumListTableViewCell: DYBaseTableViewCell {
         didSet{
             if albumModel != nil {
                 titleLabel.text = albumModel!.albumName
-                detailLabel.text = String(albumModel!.numberInCollection)
+                detailLabel.text = String(albumModel!.assetList.count)
                 if albumModel?.albumCorver != nil {
                     self.corverImage.image = albumModel?.albumCorver
                 }else{

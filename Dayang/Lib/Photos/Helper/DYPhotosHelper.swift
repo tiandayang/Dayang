@@ -14,7 +14,7 @@ class DYPhotosHelper {
     /// 获取包含图片的相册列表
     ///
     /// - Parameter complete: 回调
-    public class func getAllAlbumList(complete:(( _ array: [DYAlbumModel])->())?) {
+    public class func getAllAlbumList(mediaType: DYPhotoMediaType, complete:(( _ array: [DYAlbumModel])->())?) {
 
         PHPhotoLibrary.requestAuthorization { (status) in
             if status == .authorized {
@@ -38,7 +38,7 @@ class DYPhotosHelper {
                 let albumModel = DYAlbumModel()
                 albumModel.albumName = "相机胶卷"
                 albumModel.fetchAssets = allPhotos;
-                albumModel.numberInCollection = allPhotos.count
+                albumModel.mediaType = mediaType
                 albumListArray.append(albumModel)
                 
                 for index  in 0...otherPhotos.count - 1 {
@@ -46,7 +46,7 @@ class DYPhotosHelper {
                     let collection = otherPhotos[index]
                     albumModel.albumName = collection.localizedTitle
                     let assetsFetchResult = PHAsset.fetchAssets(in: collection, options: nil)
-                    albumModel.numberInCollection = assetsFetchResult.count
+                    albumModel.mediaType = mediaType
                     albumModel.fetchAssets = assetsFetchResult
                     albumListArray.append(albumModel)
                 }

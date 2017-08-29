@@ -10,9 +10,9 @@ import UIKit
 
 class DYAlbumListViewController: DYBaseTableViewController {
 
-    var selectComplete: ((_ selectArray: Array<DYPhotoModel>)->())? //选择完成的回调
+    var selectComplete: selectComplete?
     var maxSelectCount: Int = 9 //做多选择的个数
-    
+    var mediaType: DYPhotoMediaType = .both //默认展示的资源类型
     //MARK: ControllerLifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +23,7 @@ class DYAlbumListViewController: DYBaseTableViewController {
     //MARK: LoadData
     private func loadData() {
         
-        DYPhotosHelper.getAllAlbumList { (listArray) in
+        DYPhotosHelper.getAllAlbumList(mediaType: self.mediaType) { (listArray) in
             self.dataArray?.append(listArray)
             self.tableView.reloadData()
         }
@@ -32,8 +32,13 @@ class DYAlbumListViewController: DYBaseTableViewController {
     private func initControllerFirstData() {
         self.title = "相册"
         cellHeight = 90
+        self.setLeftButtonItemWithTitle(title: "取消")
     }
 
+    override func didClickNavigationBarLeftButton() {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     //MARK: tableViewDataSource & delegate
     
    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
