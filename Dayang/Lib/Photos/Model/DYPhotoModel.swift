@@ -41,7 +41,7 @@ class DYPhotoModel: NSObject {
     /// 获取图片
     ///
     /// - Parameter complete: 图片的回调
-    public func getCachedImage(complete:dySelectImageComplete?) {
+    public func getCachedImage(complete:dyRequestImageComplete?) {
         
         if complete == nil {
             return

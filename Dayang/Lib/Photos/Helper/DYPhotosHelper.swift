@@ -42,16 +42,27 @@ class DYPhotosHelper {
                 albumModel.mediaType = mediaType
                 albumListArray.append(albumModel)
                 
-                for index  in 0...otherPhotos.count - 1 {
-                    let albumModel = DYAlbumModel()
-                    let collection = otherPhotos[index]
-                    albumModel.albumName = collection.localizedTitle
-                    let assetsFetchResult = PHAsset.fetchAssets(in: collection, options: nil)
-                    albumModel.mediaType = mediaType
-                    albumModel.fetchAssets = assetsFetchResult
-                    albumListArray.append(albumModel)
+                if otherPhotos.count > 0{
+                    if otherPhotos.count == 1 {
+                        let albumModel = DYAlbumModel()
+                        let collection = otherPhotos[0]
+                        albumModel.albumName = collection.localizedTitle
+                        let assetsFetchResult = PHAsset.fetchAssets(in: collection, options: nil)
+                        albumModel.mediaType = mediaType
+                        albumModel.fetchAssets = assetsFetchResult
+                        albumListArray.append(albumModel)
+                    }else{
+                        for index  in 0...otherPhotos.count - 1 {
+                            let albumModel = DYAlbumModel()
+                            let collection = otherPhotos[index]
+                            albumModel.albumName = collection.localizedTitle
+                            let assetsFetchResult = PHAsset.fetchAssets(in: collection, options: nil)
+                            albumModel.mediaType = mediaType
+                            albumModel.fetchAssets = assetsFetchResult
+                            albumListArray.append(albumModel)
+                        }
+                    }
                 }
-                
                 if complete != nil {
                     DispatchQueue.main.async {
                         complete!(albumListArray)
@@ -88,7 +99,7 @@ class DYPhotosHelper {
     ///   - asset: asset
     ///   - size: 大小
     ///   - complete: 回调
-    public class func requestImage(asset: PHAsset,size: CGSize ,complete:dySelectImageComplete?) {
+    public class func requestImage(asset: PHAsset,size: CGSize ,complete:dyRequestImageComplete?) {
         autoreleasepool { () in
             let imageManager = PHImageManager.default()
             imageManager.requestImage(for: asset, targetSize: size, contentMode: .aspectFill, options: nil, resultHandler: {(image, info)  in
@@ -107,7 +118,7 @@ class DYPhotosHelper {
     ///   - asset: asset
     ///   - isOrigin: 是否是原图
     ///   - complete: 回调 image对象
-    public class func requestImage(asset: PHAsset, isOrigin: Bool, complete:dySelectImageComplete?) {
+    public class func requestImage(asset: PHAsset, isOrigin: Bool, complete:dyRequestImageComplete?) {
         
         let options = PHImageRequestOptions()
         var scale = 0.8
@@ -270,14 +281,24 @@ class DYPhotosHelper {
         let promise = Promise<PHAssetCollection>{ (resolve,reject) in
             let collections = PHAssetCollection.fetchAssetCollections(with: .album, subtype: .albumRegular, options: nil)
             let appName = Bundle.main.infoDictionary?["CFBundleName"] as! String
-            
-            for index in 0...collections.count - 1 {
-                let collection = collections[index]
-                if appName == collection.localizedTitle {
-                    resolve(collection)
-                    return
+            if collections.count > 0 {
+                if collections.count == 1 {
+                    let collection = collections[0]
+                    if appName == collection.localizedTitle {
+                        resolve(collection)
+                        return
+                    }
+                }else{
+                    for index in 0...collections.count - 1 {
+                        let collection = collections[index]
+                        if appName == collection.localizedTitle {
+                            resolve(collection)
+                            return
+                        }
+                    }
                 }
             }
+            
             PHPhotoLibrary.shared().performChanges({
                 let collectionId = PHAssetCollectionChangeRequest.creationRequestForAssetCollection(withTitle: appName).placeholderForCreatedAssetCollection.localIdentifier
                 PHAssetCollection.fetchAssetCollections(withLocalIdentifiers: [collectionId], options: nil)
