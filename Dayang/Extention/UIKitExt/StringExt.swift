@@ -44,7 +44,7 @@ extension String {
             do {
                 return try JSONSerialization.jsonObject(with: data, options: [JSONSerialization.ReadingOptions.init(rawValue: 0)]) as? [String:AnyObject]
             } catch let error as NSError {
-                print(error)
+                debugPrint(error)
             }
         }
         return nil

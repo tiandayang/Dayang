@@ -24,7 +24,7 @@ class WXXFileListViewController: UIViewController {
     }
     
     deinit {
-        print("dealloc:",self)
+        debugPrint("dealloc:",self)
     }
     
     //MARK: LoadData

@@ -18,7 +18,7 @@ class DYBaseViewController: UIViewController {
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        print("init:",self)
+        debugPrint("init:",self)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -26,7 +26,7 @@ class DYBaseViewController: UIViewController {
     }
   
     deinit {
-        print("dealloc:",self)
+        debugPrint("dealloc:",self)
     }
     
     private func initControllerFirstData() {

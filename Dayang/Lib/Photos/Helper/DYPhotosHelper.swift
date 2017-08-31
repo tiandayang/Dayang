@@ -176,9 +176,8 @@ class DYPhotosHelper {
     ///   - complete: 回调 是否保存成功
     public class func saveImageToAlbum(image: UIImage, complete:dyBoolComplete?) {
         let statusPromise = getAuthorizationStatus()
-        let getCollectionPromise = getCollection()
         statusPromise.then { (status) -> Promise<PHAssetCollection> in
-            return getCollectionPromise
+            return  getCollection()
             }.then { (collection) in
                 
                 PHPhotoLibrary.shared().performChanges({
@@ -216,12 +215,16 @@ class DYPhotosHelper {
 
     }
     
+    /// 保存视频到相册
+    ///
+    /// - Parameters:
+    ///   - videoURL: 视频的本地路径
+    ///   - complete: 回调
     public class func saveVideoToAlbum(videoURL: URL, complete:dyBoolComplete?) {
         
         let statusPromise = getAuthorizationStatus()
-        let getCollectionPromise = getCollection()
         statusPromise.then { (status) -> Promise<PHAssetCollection> in
-            return getCollectionPromise
+            return getCollection()
         }.then { (collection) in
             
             PHPhotoLibrary.shared().performChanges({
@@ -283,7 +286,8 @@ class DYPhotosHelper {
                     let reslutCollections = PHAssetCollection.fetchAssetCollections(with: .album, subtype: .albumRegular, options: nil)
                     resolve(reslutCollections.lastObject!)
                 }else{
-                    reject ("error" as! Error)
+                    let kError = NSError.init(domain: "创建相册失败", code: -1, userInfo: nil)
+                    reject (error ?? kError)
                 }
             }
         }
@@ -309,8 +313,8 @@ class DYPhotosHelper {
                 if status == .authorized {
                     resolve(status.rawValue)
                 }else{
-                    let error = "error"
-                    reject(error as! Error)
+                    let error = NSError.init(domain: "未开启相册权限", code: -1, userInfo: nil)
+                    reject(error as Error)
                 }
             }
         }
