@@ -97,9 +97,11 @@ extension DYPhotoPreviewController: UICollectionViewDelegate, UICollectionViewDa
         }
         DYActionSheetHelper.showActionSheet(title: nil, items: ["保存到相册"], cancelTitle: "取消", controller: self) { (index) in
             if index == 1 {
-                DYPhotosHelper.saveImageToAlbum(image: (photoModel?.image)!, complete: { (finish) in
-                    debugPrint(finish ? "保存成功" : "保存失败")
-                })
+                if !(photoModel?.isVideo)! {
+                    DYPhotosHelper.saveImageToAlbum(image: (photoModel?.image)!, complete: { (finish) in
+                        debugPrint(finish ? "保存成功" : "保存失败")
+                    })
+                }
             }
         }
         
