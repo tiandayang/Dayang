@@ -9,6 +9,8 @@ pod 'ReactiveCocoa', '6.0'
 pod 'MJRefresh’, '3.1.12'
 pod 'Kingfisher', '3.10.4'
 pod 'Bugly', '~> 2.4'
+pod 'PKHUD', '4.2.3'
+pod 'PromiseKit/CorePromise', '4.3.1'
 
 target 'Dayang' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks

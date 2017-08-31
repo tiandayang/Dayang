@@ -10,7 +10,7 @@ import UIKit
 
 class DYAlbumListViewController: DYBaseTableViewController {
 
-    var selectComplete: selectComplete?
+    var selectComplete: dySelectImagesComplete?
     var maxSelectCount: Int = 9 //做多选择的个数
     var mediaType: DYPhotoMediaType = .both //默认展示的资源类型
     //MARK: ControllerLifeCycle
@@ -22,6 +22,18 @@ class DYAlbumListViewController: DYBaseTableViewController {
     
     //MARK: LoadData
     private func loadData() {
+        
+        if !DYPhotosHelper.isOpenAuthority() {
+            
+            DYAlertViewHelper .showAlertWithCancel(title: "温馨提示", message: "您还没有开启相册权限，是否设置", controller: self, complete: { (index) in
+                if index == 1 {
+                    DYPhotosHelper.jumpToSetting()
+                }else{
+                    self.didClickNavigationBarLeftButton()
+                }
+            })
+            return
+        }
         
         DYPhotosHelper.getAllAlbumList(mediaType: self.mediaType) { (listArray) in
             self.dataArray?.append(listArray)

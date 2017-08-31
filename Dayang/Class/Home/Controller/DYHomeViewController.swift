@@ -43,7 +43,20 @@ class DYHomeViewController: DYBaseTableViewController {
         model.icon = "https://ss0.baidu.com/73F1bjeh1BF3odCf/it/u=979572852,2610260350&fm=85&s=A73013885A64788CC09C58C10300B0B4";
         let array = [model,model,model]
         bannerView.bannerArray = array
-        self.tableView.tableHeaderView = bannerView        
+        self.tableView.tableHeaderView = bannerView
+        
+        bannerView.bannerTapBlock = { [weak self] (bannerModel) in
+           
+            let photoPreviewVC = DYPhotoPreviewController()
+            var array = [DYPhotoPreviewModel]()
+            for model in bannerView.bannerArray! {
+                let photoModel = DYPhotoPreviewModel()
+                photoModel.imageURL = model.icon
+                array.append(photoModel)
+            }
+            photoPreviewVC.dataArray = array
+            self?.present(photoPreviewVC, animated: true, completion: nil)
+        }
     }
     //MARK: Helper
 }

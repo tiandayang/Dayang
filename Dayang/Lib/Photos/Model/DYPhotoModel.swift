@@ -11,12 +11,14 @@ import Photos
 
 class DYPhotoModel: NSObject {
 
+    //MARK: 本地图片
     var isSelect: Bool = false //标记是否选中
     var thumImage: UIImage? // 缩略图，列表用
-    var cacheImage: UIImage?
     var asset: PHAsset? // 图片的资源
     var selectIndex: Int = 0// 选择的索引
-    
+    var isOriginImage: Bool = false // 是否是原图
+    var cacheImage: UIImage? //取出来的图片  跟 isOriginImage 有关
+    var resultImage: UIImage? //最终处理过要使用的图片
     var videoURL: URL? // 视频的url
     
     lazy var mediaName: String = {
@@ -35,7 +37,35 @@ class DYPhotoModel: NSObject {
         return self.asset?.mediaType == .video
     }()
     
-    func videoDurationShow() -> String{
+    
+    /// 获取图片
+    ///
+    /// - Parameter complete: 图片的回调
+    public func getCachedImage(complete:dySelectImageComplete?) {
+        
+        if complete == nil {
+            return
+        }
+        
+        if cacheImage != nil {
+            complete!(cacheImage)
+        }else{
+            
+            if asset == nil {
+                complete!(cacheImage)
+                return
+            }
+            DYPhotosHelper.requestImage(asset: self.asset!, isOrigin: self.isOriginImage, complete: { (image) in
+                complete!(image)
+                self.cacheImage = image
+            })
+        }
+    }
+    
+    /// 视频时长展示
+    ///
+    /// - Returns: string
+    public func videoDurationShow() -> String{
     
         let second = videoDuration%60
         let minute = videoDuration/60

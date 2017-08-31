@@ -19,7 +19,7 @@ class DYAlbumModel {
     var fetchAssets: PHFetchResult<PHAsset>? {
         didSet{
             var assetListArray = [DYPhotoModel]()
-            if fetchAssets != nil {
+            if fetchAssets != nil && (fetchAssets?.count)! > 0{
                 for index in 0...(fetchAssets?.count)! - 1 {
                     let asset = fetchAssets?[index]
                     let photoModel = DYPhotoModel()

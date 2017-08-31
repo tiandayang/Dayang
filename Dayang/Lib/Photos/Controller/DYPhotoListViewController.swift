@@ -14,7 +14,7 @@ private let  ITEMWIDTH = 2.0 * (WINDOW_WIDTH - 4*4)/3.0
 
 class DYPhotoListViewController: DYBaseViewController {
 
-    public var selectComplete: selectComplete?
+    public var selectComplete: dySelectImagesComplete?
     public var maxSelectCount: Int = 9 //做多选择的个数
     
     fileprivate var dataArray = [DYPhotoModel]()   // 数据源

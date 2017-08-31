@@ -4,6 +4,8 @@ PODS:
   - KeychainAccess (3.0.2)
   - Kingfisher (3.10.4)
   - MJRefresh (3.1.12)
+  - PKHUD (4.2.3)
+  - PromiseKit/CorePromise (4.3.1)
   - ReactiveCocoa (6.0.0):
     - ReactiveSwift (~> 2.0)
   - ReactiveSwift (2.0.1):
@@ -22,6 +24,8 @@ DEPENDENCIES:
   - KeychainAccess (= 3.0.2)
   - Kingfisher (= 3.10.4)
   - MJRefresh (= 3.1.12)
+  - PKHUD (= 4.2.3)
+  - PromiseKit/CorePromise (= 4.3.1)
   - ReactiveCocoa (= 6.0)
   - RealmSwift (= 2.9.1)
   - SnapKit (= 3.2.0)
@@ -32,6 +36,8 @@ SPEC CHECKSUMS:
   KeychainAccess: a986406022dfc7c634c691ad3bec670cc6a32002
   Kingfisher: dc3a4983e86d2dfa89513664983a82340c11a289
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
+  PKHUD: c7692163a09875cbf15827dc581df3c5cf7f1015
+  PromiseKit: 25a114b90b932ec8169b5736bd0881fe0efa93b5
   ReactiveCocoa: ca689e37b6a922f0273918220d735c43368de550
   ReactiveSwift: 60a29ff35988a964fd2bb759755cb6594de523fc
   Realm: f91fb43bd474c4f731a116ebf7392c75dd015920
@@ -39,6 +45,6 @@ SPEC CHECKSUMS:
   Result: 128640a6347e8d2ae48b142556739a2d13f90ce6
   SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
 
-PODFILE CHECKSUM: 219943df8a7cc94300cdc28748a9dc3c6ddd5d2a
+PODFILE CHECKSUM: 245451681113a5b8dde19864b9f4b5d9b9a8de69
 
 COCOAPODS: 1.3.1

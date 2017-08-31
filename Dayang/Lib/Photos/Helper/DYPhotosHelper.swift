@@ -8,6 +8,7 @@
 
 import UIKit
 import Photos
+import PromiseKit
 
 class DYPhotosHelper {
 
@@ -87,32 +88,207 @@ class DYPhotosHelper {
     ///   - asset: asset
     ///   - size: 大小
     ///   - complete: 回调
-    public class func requestImage(asset: PHAsset,size: CGSize ,complete:((_ image: UIImage)->())?) {
+    public class func requestImage(asset: PHAsset,size: CGSize ,complete:dySelectImageComplete?) {
         autoreleasepool { () in
             let imageManager = PHImageManager.default()
             imageManager.requestImage(for: asset, targetSize: size, contentMode: .aspectFill, options: nil, resultHandler: {(image, info)  in
-                if complete != nil && image != nil {
+                if complete != nil {
                     DispatchQueue.main.async {
-                        complete!(image!)
+                        complete!(image)
                     }
                 }
             })
         }
     }
     
+    /// 获取相册图片
+    ///
+    /// - Parameters:
+    ///   - asset: asset
+    ///   - isOrigin: 是否是原图
+    ///   - complete: 回调 image对象
+    public class func requestImage(asset: PHAsset, isOrigin: Bool, complete:dySelectImageComplete?) {
+        
+        let options = PHImageRequestOptions()
+        var scale = 0.8
+        var size = CGSize.zero
+        if isOrigin {
+            size = PHImageManagerMaximumSize
+            scale = 1
+            options.deliveryMode = .highQualityFormat
+        }else{
+            options.deliveryMode = .fastFormat
+            let imagePixel = Double(asset.pixelWidth * asset.pixelHeight)/(1024.0 * 1024.0)
+            if imagePixel > 3  {
+                size = CGSize(width: Double(asset.pixelWidth) * 0.5, height:Double(asset.pixelHeight) * 0.5)
+                scale = 0.1
+            }else if imagePixel > 2 {
+                size = CGSize(width: Double(asset.pixelWidth) * 0.6, height:Double(asset.pixelHeight) * 0.6)
+                scale = 0.2
+            }else if imagePixel > 1 {
+                size = CGSize(width: Double(asset.pixelWidth) * 0.6, height:Double(asset.pixelHeight) * 0.6)
+                scale = 0.5
+            }else{
+                size = CGSize(width:asset.pixelWidth, height:asset.pixelHeight)
+            }
+        }
+        options.isNetworkAccessAllowed = true
+        PHImageManager.default().requestImage(for: asset, targetSize: size, contentMode: .aspectFit, options: options) { (image, info) in
+            autoreleasepool{
+                var resultImage = image
+                if image != nil {
+                    let imageData = UIImageJPEGRepresentation(image!, CGFloat(scale))
+                    if imageData != nil {
+                        resultImage = UIImage(data: imageData!)
+                    }
+                }
+                DispatchQueue.main.async {
+                    if complete != nil {
+                        complete!(resultImage);
+                    }
+                }
+            }
+        }
+    }
+    
+    /// 获取视频资源的信息
+    ///
+    /// - Parameters:
+    ///   - asset: asset
+    ///   - complete: 回调
     public class func requestVideoInfo(asset: PHAsset ,complete:((_ videoURL: URL)->())?) {
         let imageManager = PHImageManager.default()
         imageManager.requestAVAsset(forVideo: asset, options: nil) { (avAsset, audioMix, info) in
             let  infoString = info?["PHImageFileSandboxExtensionTokenKey"]
             if infoString != nil && complete != nil {
                 DispatchQueue.main.async {
-                let url = URL.init(fileURLWithPath: (infoString as! NSString).components(separatedBy: ";").last!)
+                let url = URL(fileURLWithPath: (infoString as! NSString).components(separatedBy: ";").last!)
                 complete!(url)
                 }
             }
         }
     }
     
+    /// 保存图片到相册
+    ///
+    /// - Parameters:
+    ///   - image: 图片
+    ///   - complete: 回调 是否保存成功
+    public class func saveImageToAlbum(image: UIImage, complete:dyBoolComplete?) {
+        let statusPromise = getAuthorizationStatus()
+        let getCollectionPromise = getCollection()
+        statusPromise.then { (status) -> Promise<PHAssetCollection> in
+            return getCollectionPromise
+            }.then { (collection) in
+                
+                PHPhotoLibrary.shared().performChanges({
+                    if #available(iOS 9.0, *) {
+                        let newAsset = PHAssetCreationRequest.creationRequestForAsset(from: image).placeholderForCreatedAsset
+                        if newAsset == nil {
+                            DispatchQueue.main.async {
+                                if complete != nil{
+                                    complete!(false)
+                                }
+                            }
+                            return
+                        }
+                        let array = NSMutableArray()
+                        array.add(newAsset!)
+                        let request = PHAssetCollectionChangeRequest.init(for: collection)
+                        request?.insertAssets(array, at: IndexSet.init(integer: 0))
+                    } else {}
+                }, completionHandler: { (finish, error) in
+                    DispatchQueue.main.async {
+                        if complete != nil{
+                            complete!(finish)
+                        }
+                    }
+                })
+                
+            }.catch { (error) in
+                debugPrint(error)
+                if complete != nil {
+                    DispatchQueue.main.async {
+                        complete!(false)
+                    }
+                }
+        }
+
+    }
+    
+    public class func saveVideoToAlbum(videoURL: URL, complete:dyBoolComplete?) {
+        
+        let statusPromise = getAuthorizationStatus()
+        let getCollectionPromise = getCollection()
+        statusPromise.then { (status) -> Promise<PHAssetCollection> in
+            return getCollectionPromise
+        }.then { (collection) in
+            
+            PHPhotoLibrary.shared().performChanges({
+                if #available(iOS 9.0, *) {
+                    let newAsset = PHAssetCreationRequest.creationRequestForAssetFromVideo(atFileURL: videoURL)?.placeholderForCreatedAsset
+                    if newAsset == nil {
+                        DispatchQueue.main.async {
+                            if complete != nil{
+                                complete!(false)
+                            }
+                        }
+                        return
+                    }
+                    
+                    let array = NSMutableArray()
+                    array.add(newAsset!)
+                    let request = PHAssetCollectionChangeRequest.init(for: collection)
+                    request?.insertAssets(array, at: IndexSet.init(integer: 0))
+                } else {}
+            }, completionHandler: { (finish, error) in
+                DispatchQueue.main.async {
+                    if complete != nil{
+                        complete!(finish)
+                    }
+                }
+            })
+            
+        }.catch { (error) in
+            debugPrint(error)
+            if complete != nil {
+                DispatchQueue.main.async {
+                    complete!(false)
+                }
+            }
+        }
+    }
+    
+    
+    /// 获取项目的相册
+    ///
+    /// - Returns: 相册对象
+    private class func getCollection() -> Promise<PHAssetCollection> {
+        let promise = Promise<PHAssetCollection>{ (resolve,reject) in
+            let collections = PHAssetCollection.fetchAssetCollections(with: .album, subtype: .albumRegular, options: nil)
+            let appName = Bundle.main.infoDictionary?["CFBundleName"] as! String
+            
+            for index in 0...collections.count - 1 {
+                let collection = collections[index]
+                if appName == collection.localizedTitle {
+                    resolve(collection)
+                    return
+                }
+            }
+            PHPhotoLibrary.shared().performChanges({
+                let collectionId = PHAssetCollectionChangeRequest.creationRequestForAssetCollection(withTitle: appName).placeholderForCreatedAssetCollection.localIdentifier
+                PHAssetCollection.fetchAssetCollections(withLocalIdentifiers: [collectionId], options: nil)
+            }) { (finish, error) in
+                if finish {
+                    let reslutCollections = PHAssetCollection.fetchAssetCollections(with: .album, subtype: .albumRegular, options: nil)
+                    resolve(reslutCollections.lastObject!)
+                }else{
+                    reject ("error" as! Error)
+                }
+            }
+        }
+        return promise
+    }
     
    ///  get authorizationStatus
    ///
@@ -121,10 +297,23 @@ class DYPhotosHelper {
         return PHPhotoLibrary.authorizationStatus() != .denied
     }
     
-    
     // jumpToSetting handle  privacyAuth
    public class func jumpToSetting(){
         UIApplication.shared.openURL(URL(string:UIApplicationOpenSettingsURLString)!)
     }
 
+   public class func getAuthorizationStatus()-> Promise<Int> {
+        
+        let promise = Promise<Int> { (resolve,reject)  in
+            PHPhotoLibrary.requestAuthorization { (status) in
+                if status == .authorized {
+                    resolve(status.rawValue)
+                }else{
+                    let error = "error"
+                    reject(error as! Error)
+                }
+            }
+        }
+        return promise
+    }
 }

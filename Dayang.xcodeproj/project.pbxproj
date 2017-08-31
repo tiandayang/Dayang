@@ -86,6 +86,12 @@
 		7ED4B7F71F502B410065A94F /* TimerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED4B7F61F502B410065A94F /* TimerExt.swift */; };
 		7ED4B7F91F523CD90065A94F /* DYLaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED4B7F81F523CD90065A94F /* DYLaunchViewController.swift */; };
 		7ED4B7FB1F523D570065A94F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7ED4B7FA1F523D570065A94F /* LaunchScreen.storyboard */; };
+		7EEEC0611F56B6C500A84B98 /* DYPhotosMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEEC0601F56B6C500A84B98 /* DYPhotosMenuView.swift */; };
+		7EEEC0631F56B8C300A84B98 /* DYPhotoPreViewImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEEC0621F56B8C300A84B98 /* DYPhotoPreViewImageCell.swift */; };
+		7EEEC0651F56B8EF00A84B98 /* DYPhotoPreviewBaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEEC0641F56B8EF00A84B98 /* DYPhotoPreviewBaseCell.swift */; };
+		7EEEC0671F56B91F00A84B98 /* DYPhotoPreviewVideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEEC0661F56B91F00A84B98 /* DYPhotoPreviewVideoCell.swift */; };
+		7EEEC0691F57B68700A84B98 /* DYPhotoPreviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEEC0681F57B68700A84B98 /* DYPhotoPreviewModel.swift */; };
+		7EEEC06B1F57E9E700A84B98 /* DYPhotoPreViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEEC06A1F57E9E700A84B98 /* DYPhotoPreViewFlowLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -171,6 +177,12 @@
 		7ED4B7F61F502B410065A94F /* TimerExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerExt.swift; sourceTree = "<group>"; };
 		7ED4B7F81F523CD90065A94F /* DYLaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYLaunchViewController.swift; sourceTree = "<group>"; };
 		7ED4B7FA1F523D570065A94F /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		7EEEC0601F56B6C500A84B98 /* DYPhotosMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYPhotosMenuView.swift; sourceTree = "<group>"; };
+		7EEEC0621F56B8C300A84B98 /* DYPhotoPreViewImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYPhotoPreViewImageCell.swift; sourceTree = "<group>"; };
+		7EEEC0641F56B8EF00A84B98 /* DYPhotoPreviewBaseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYPhotoPreviewBaseCell.swift; sourceTree = "<group>"; };
+		7EEEC0661F56B91F00A84B98 /* DYPhotoPreviewVideoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYPhotoPreviewVideoCell.swift; sourceTree = "<group>"; };
+		7EEEC0681F57B68700A84B98 /* DYPhotoPreviewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYPhotoPreviewModel.swift; sourceTree = "<group>"; };
+		7EEEC06A1F57E9E700A84B98 /* DYPhotoPreViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYPhotoPreViewFlowLayout.swift; sourceTree = "<group>"; };
 		B02EAD214491FEB24E7AE0F0 /* Pods-Dayang.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dayang.release.xcconfig"; path = "Pods/Target Support Files/Pods-Dayang/Pods-Dayang.release.xcconfig"; sourceTree = "<group>"; };
 		C18F5A411B0E7B201796DAD7 /* Pods-Dayang.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dayang.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Dayang/Pods-Dayang.debug.xcconfig"; sourceTree = "<group>"; };
 		C325084A30EAD44F49FCF86B /* Pods_Dayang.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Dayang.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -266,6 +278,7 @@
 			children = (
 				7E4776641F553EA80017E7EE /* DYPhotosHelper.swift */,
 				7E4776BD1F5574770017E7EE /* DYPhotosHeader.swift */,
+				7EEEC06A1F57E9E700A84B98 /* DYPhotoPreViewFlowLayout.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -275,6 +288,7 @@
 			children = (
 				7E4776661F553EA80017E7EE /* DYAlbumModel.swift */,
 				7E4776671F553EA80017E7EE /* DYPhotoModel.swift */,
+				7EEEC0681F57B68700A84B98 /* DYPhotoPreviewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -284,6 +298,10 @@
 			children = (
 				7E4776691F553EA80017E7EE /* DYAlbumListTableViewCell.swift */,
 				7E47766A1F553EA80017E7EE /* DYPhotoListCollectionCell.swift */,
+				7EEEC0601F56B6C500A84B98 /* DYPhotosMenuView.swift */,
+				7EEEC0641F56B8EF00A84B98 /* DYPhotoPreviewBaseCell.swift */,
+				7EEEC0621F56B8C300A84B98 /* DYPhotoPreViewImageCell.swift */,
+				7EEEC0661F56B91F00A84B98 /* DYPhotoPreviewVideoCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -724,6 +742,8 @@
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
+				"${BUILT_PRODUCTS_DIR}/PKHUD/PKHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveCocoa/ReactiveCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveSwift/ReactiveSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
@@ -737,6 +757,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PKHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
@@ -762,6 +784,7 @@
 				7ED4B7C51F4FF8070065A94F /* UIViewExt.swift in Sources */,
 				7ED4B78C1F4FD0030065A94F /* AppDelegate.swift in Sources */,
 				7ED4B7CD1F4FFCE80065A94F /* DYGuideViewController.swift in Sources */,
+				7EEEC0691F57B68700A84B98 /* DYPhotoPreviewModel.swift in Sources */,
 				7ED4B7EC1F500F580065A94F /* UIFontExt.swift in Sources */,
 				7E313ABD1F540EC700FC426D /* DYBaseTableViewCell.swift in Sources */,
 				7ED4B7DB1F500A890065A94F /* StringExt.swift in Sources */,
@@ -771,10 +794,12 @@
 				7E4776BB1F553EA80017E7EE /* WXXFileListCollectionView.swift in Sources */,
 				7ED4B7C31F4FF7F20065A94F /* TableViewExt.swift in Sources */,
 				7E313AC31F54168E00FC426D /* DYLocalFilePathServer.swift in Sources */,
+				7EEEC0611F56B6C500A84B98 /* DYPhotosMenuView.swift in Sources */,
 				7ED4B7D71F50097B0065A94F /* DYConstant.swift in Sources */,
 				7E4776991F553EA80017E7EE /* DYPhotoModel.swift in Sources */,
 				7E4776971F553EA80017E7EE /* DYPhotosHelper.swift in Sources */,
 				7E4776951F553EA80017E7EE /* DYPhotoListViewController.swift in Sources */,
+				7EEEC0671F56B91F00A84B98 /* DYPhotoPreviewVideoCell.swift in Sources */,
 				7ED4B7B61F4FF4900065A94F /* DYBaseNavigationController.swift in Sources */,
 				7E4776561F54F8860017E7EE /* DYActionSheetHelper.swift in Sources */,
 				7E4775F61F54E9900017E7EE /* UITextFieldExt.swift in Sources */,
@@ -796,16 +821,19 @@
 				7E4776941F553EA80017E7EE /* DYAlbumListViewController.swift in Sources */,
 				7E4776B91F553EA80017E7EE /* WXXFileServer.swift in Sources */,
 				7E313AAC1F53B7B800FC426D /* DYPersonalViewController.swift in Sources */,
+				7EEEC0631F56B8C300A84B98 /* DYPhotoPreViewImageCell.swift in Sources */,
 				7ED4B7D91F500A720065A94F /* UIColorExt.swift in Sources */,
 				7E4776BC1F553EA80017E7EE /* UIDeviceHardware.m in Sources */,
 				7E4776981F553EA80017E7EE /* DYAlbumModel.swift in Sources */,
 				7E4776B81F553EA80017E7EE /* WXXFileListModel.swift in Sources */,
 				7E313AB61F53CA2A00FC426D /* DYConfigThirtPlatForm.swift in Sources */,
+				7EEEC0651F56B8EF00A84B98 /* DYPhotoPreviewBaseCell.swift in Sources */,
 				7ED4B7BC1F4FF4B50065A94F /* DYBaseModel.swift in Sources */,
 				7E313ABB1F54071900FC426D /* DYPersonUIModel.swift in Sources */,
 				7ED4B7EE1F5011D10065A94F /* UIButtonExt.swift in Sources */,
 				7E4776BE1F5574770017E7EE /* DYPhotosHeader.swift in Sources */,
 				7ED4B7B91F4FF4900065A94F /* DYBaseViewController.swift in Sources */,
+				7EEEC06B1F57E9E700A84B98 /* DYPhotoPreViewFlowLayout.swift in Sources */,
 				7E313AC11F5414FF00FC426D /* DYKeychainServer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
