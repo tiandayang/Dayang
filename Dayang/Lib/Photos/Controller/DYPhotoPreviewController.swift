@@ -86,6 +86,18 @@ extension DYPhotoPreviewController: UICollectionViewDelegate, UICollectionViewDa
         }
     }
     
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if cell.isKind(of: DYPhotoPreviewVideoCell.self) {
+            (cell as! DYPhotoPreviewVideoCell).isDisplay = true
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if cell.isKind(of: DYPhotoPreviewVideoCell.self) {
+            (cell as! DYPhotoPreviewVideoCell).isDisplay = false
+        }
+    }
+    
     func dYPhotoPreviewCellSingleTap(index: Int) {
         self.dismiss(animated: true, completion: nil)
     }

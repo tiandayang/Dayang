@@ -19,7 +19,7 @@ class DYPhotoPreviewModel: NSObject {
     var videoPath: String? //视频的本地路径
     var isFileURL: Bool {  //是否是本地路径
         if self.videoURL != nil {
-            return (self.videoURL?.hasPrefix("file://"))!
+            return !self.videoURL!.isNetUrl()
         }
         return false
     }

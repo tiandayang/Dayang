@@ -53,7 +53,7 @@ class DYPhotoPreviewBaseCell: DYBaseCollectionViewCell {
     
     @objc private func longPressAction(longPress: UILongPressGestureRecognizer){
     
-        if longPress.state == .began {
+        if longPress.state == .began && photoModel?.asset == nil {
             if self.delegate != nil {
                 self.delegate?.dYPhotoPreviewCellLongPress(photoModel: self.photoModel)
             }

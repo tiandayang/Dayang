@@ -295,5 +295,12 @@ extension String {
         default:
             return false
         }
-}
+    }
+    
+    public func isNetUrl() ->Bool {
+        if self.length > 0 {
+            return self.hasPrefix("http://") || self.hasPrefix("https://")
+        }
+        return false
+    }
 }
