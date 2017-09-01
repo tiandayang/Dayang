@@ -10,6 +10,7 @@
 		680546A1D10E5FAB51093899 /* Pods_Dayang.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C325084A30EAD44F49FCF86B /* Pods_Dayang.framework */; };
 		7E010F651F58FF8B00D593FC /* DYHUDHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E010F641F58FF8B00D593FC /* DYHUDHelper.swift */; };
 		7E010F671F59164200D593FC /* DYVideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E010F661F59164200D593FC /* DYVideoPlayerView.swift */; };
+		7E010F6B1F5972FB00D593FC /* DYPhotoPreviewAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E010F6A1F5972FB00D593FC /* DYPhotoPreviewAnimation.swift */; };
 		7E313AAC1F53B7B800FC426D /* DYPersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E313AAB1F53B7B800FC426D /* DYPersonalViewController.swift */; };
 		7E313AB41F53C7A000FC426D /* DYThirdPlatformKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E313AB31F53C7A000FC426D /* DYThirdPlatformKey.swift */; };
 		7E313AB61F53CA2A00FC426D /* DYConfigThirtPlatForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E313AB51F53CA2A00FC426D /* DYConfigThirtPlatForm.swift */; };
@@ -99,6 +100,7 @@
 /* Begin PBXFileReference section */
 		7E010F641F58FF8B00D593FC /* DYHUDHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYHUDHelper.swift; sourceTree = "<group>"; };
 		7E010F661F59164200D593FC /* DYVideoPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYVideoPlayerView.swift; sourceTree = "<group>"; };
+		7E010F6A1F5972FB00D593FC /* DYPhotoPreviewAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYPhotoPreviewAnimation.swift; sourceTree = "<group>"; };
 		7E313AAB1F53B7B800FC426D /* DYPersonalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYPersonalViewController.swift; sourceTree = "<group>"; };
 		7E313AB31F53C7A000FC426D /* DYThirdPlatformKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYThirdPlatformKey.swift; sourceTree = "<group>"; };
 		7E313AB51F53CA2A00FC426D /* DYConfigThirtPlatForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYConfigThirtPlatForm.swift; sourceTree = "<group>"; };
@@ -283,6 +285,7 @@
 				7E4776641F553EA80017E7EE /* DYPhotosHelper.swift */,
 				7E4776BD1F5574770017E7EE /* DYPhotosHeader.swift */,
 				7EEEC06A1F57E9E700A84B98 /* DYPhotoPreViewFlowLayout.swift */,
+				7E010F6A1F5972FB00D593FC /* DYPhotoPreviewAnimation.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -841,6 +844,7 @@
 				7ED4B7EE1F5011D10065A94F /* UIButtonExt.swift in Sources */,
 				7E4776BE1F5574770017E7EE /* DYPhotosHeader.swift in Sources */,
 				7ED4B7B91F4FF4900065A94F /* DYBaseViewController.swift in Sources */,
+				7E010F6B1F5972FB00D593FC /* DYPhotoPreviewAnimation.swift in Sources */,
 				7EEEC06B1F57E9E700A84B98 /* DYPhotoPreViewFlowLayout.swift in Sources */,
 				7E313AC11F5414FF00FC426D /* DYKeychainServer.swift in Sources */,
 			);
