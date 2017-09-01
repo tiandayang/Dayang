@@ -99,8 +99,18 @@ extension DYPhotoPreviewController: UICollectionViewDelegate, UICollectionViewDa
             if index == 1 {
                 if !(photoModel?.isVideo)! {
                     DYPhotosHelper.saveImageToAlbum(image: (photoModel?.image)!, complete: { (finish) in
-                        debugPrint(finish ? "保存成功" : "保存失败")
+                        let title = finish ? "保存成功" : "保存失败"
+                        debugPrint(title)
+                        DYHUDHelper.showSuccessHUD(inView: self.view, title: title, isSuccess: finish)
                     })
+                }else{
+                    if photoModel?.videoPath != nil {
+                        DYPhotosHelper.saveVideoToAlbum(videoPath:(photoModel?.videoPath)!, complete: { (finish) in
+                            let title = finish ? "保存成功" : "保存失败"
+                            debugPrint(title)
+                            DYHUDHelper.showSuccessHUD(inView: self.view, title: title, isSuccess: finish)
+                        })
+                    }
                 }
             }
         }

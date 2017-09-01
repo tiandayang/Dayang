@@ -206,7 +206,12 @@ class DYPhotosHelper {
                         array.add(newAsset!)
                         let request = PHAssetCollectionChangeRequest.init(for: collection)
                         request?.insertAssets(array, at: IndexSet.init(integer: 0))
-                    } else {}
+                    } else {
+                        UIImageWriteToSavedPhotosAlbum(image, DYPhotosHelper(), nil , nil)
+                        if complete != nil{
+                            complete!(true)
+                        }
+                    }
                 }, completionHandler: { (finish, error) in
                     DispatchQueue.main.async {
                         if complete != nil{
@@ -231,13 +236,19 @@ class DYPhotosHelper {
     /// - Parameters:
     ///   - videoURL: 视频的本地路径
     ///   - complete: 回调
-    public class func saveVideoToAlbum(videoURL: URL, complete:dyBoolComplete?) {
+    public class func saveVideoToAlbum(videoPath: String, complete:dyBoolComplete?) {
         
+        if !FileManager.default.fileExists(atPath: videoPath) {
+            if complete != nil{
+                complete!(false)
+            }
+            return
+        }
+        let videoURL = URL(fileURLWithPath: videoPath)
         let statusPromise = getAuthorizationStatus()
         statusPromise.then { (status) -> Promise<PHAssetCollection> in
             return getCollection()
         }.then { (collection) in
-            
             PHPhotoLibrary.shared().performChanges({
                 if #available(iOS 9.0, *) {
                     let newAsset = PHAssetCreationRequest.creationRequestForAssetFromVideo(atFileURL: videoURL)?.placeholderForCreatedAsset
@@ -254,7 +265,14 @@ class DYPhotosHelper {
                     array.add(newAsset!)
                     let request = PHAssetCollectionChangeRequest.init(for: collection)
                     request?.insertAssets(array, at: IndexSet.init(integer: 0))
-                } else {}
+                } else {
+                    UISaveVideoAtPathToSavedPhotosAlbum(videoPath, self,nil, nil)
+                    DispatchQueue.main.async {
+                        if complete != nil{
+                            complete!(true)
+                        }
+                    }
+                }
             }, completionHandler: { (finish, error) in
                 DispatchQueue.main.async {
                     if complete != nil{
@@ -272,7 +290,6 @@ class DYPhotosHelper {
             }
         }
     }
-    
     
     /// 获取项目的相册
     ///

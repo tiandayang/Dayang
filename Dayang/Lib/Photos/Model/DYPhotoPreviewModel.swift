@@ -15,7 +15,14 @@ class DYPhotoPreviewModel: NSObject {
     var imagePath: String? //图片的路径 
     
     //MARK: 视频
-    var videoURL: URL? //视频的url
+    var videoURL: String? //视频的url
+    var videoPath: String? //视频的本地路径
+    var isFileURL: Bool {  //是否是本地路径
+        if self.videoURL != nil {
+            return (self.videoURL?.hasPrefix("file://"))!
+        }
+        return false
+    }
     //MARK: 公共
     var asset: PHAsset? // 本地相册的资源
     var image: UIImage? //图片的image 或者是视频的第一帧

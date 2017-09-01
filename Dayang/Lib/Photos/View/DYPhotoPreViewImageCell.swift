@@ -28,10 +28,6 @@ class DYPhotoPreViewImageCell: DYPhotoPreviewBaseCell {
     
     //获取图片
     public func requestImage() {
-        if (photoModel?.isVideo)! {
-            self.imageView?.image = photoModel?.image
-        }else {
-            
             if photoModel?.image != nil {
                 self.imageView?.image = photoModel?.image
             }else if (photoModel?.asset != nil) {
@@ -55,7 +51,6 @@ class DYPhotoPreViewImageCell: DYPhotoPreviewBaseCell {
                     photoModel?.image = image
                 } catch _ {}
             }
-        }
     }
     
     private func resizeImageView() {

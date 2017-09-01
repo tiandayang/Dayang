@@ -21,5 +21,5 @@ public func SCALE_WIDTH(width:CGFloat) -> CGFloat {
     return UIScreen.main.bounds.size.width / 375 * width
 }
 public func SCALE_HEIGHT(height:CGFloat) -> CGFloat {
-    return UIScreen.main.bounds.size.width / 667 * height
+    return UIScreen.main.bounds.size.height / 667 * height
 }
