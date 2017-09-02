@@ -9,13 +9,26 @@
 import UIKit
 
 class DYPhotoPreviewController: DYBaseViewController {
-
-    public var dataArray: Array<DYPhotoPreviewModel>?{
+    
+    open var thumbTapView: UIImageView?// 点击的view
+    open var tapSuperView: UIScrollView? // imageView的滚动父视图  collectionView 或者 tableView
+    
+    open var dataArray: Array<DYPhotoPreviewModel>?{
         didSet{
             loadData()
         }
     }
     
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        self.modalPresentationStyle = .custom
+        self.transitioningDelegate = self
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     //MARK: ControllerLifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -127,5 +140,17 @@ extension DYPhotoPreviewController: UICollectionViewDelegate, UICollectionViewDa
             }
         }
         
+    }
+}
+
+//动画的代理
+extension DYPhotoPreviewController: UIViewControllerTransitioningDelegate {
+    
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return DYPhotoPreviewAnimation.init(thumbTapView: self.thumbTapView)
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return DYPhotoPreviewAnimation.init(thumbTapView: self.thumbTapView)
     }
 }

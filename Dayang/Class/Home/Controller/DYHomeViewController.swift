@@ -55,6 +55,8 @@ class DYHomeViewController: DYBaseTableViewController {
                 array.append(photoModel)
             }
             photoPreviewVC.dataArray = array
+            photoPreviewVC.thumbTapView = (bannerView.collectionView.visibleCells.first as! DYBannerCollectionCell).imageView
+            photoPreviewVC.tapSuperView = bannerView.collectionView
             self?.present(photoPreviewVC, animated: true, completion: nil)
         }
     }

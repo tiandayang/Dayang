@@ -180,6 +180,38 @@ class DYPhotosHelper {
         }
     }
     
+    public class func getVideoDefaultImage(url: URL,duration: TimeInterval, complete: dyRequestImageComplete?) {
+        if complete == nil {
+            return
+        }
+        
+        let avAsset = AVURLAsset.init(url: url)
+        let assetImageGenerator = AVAssetImageGenerator.init(asset: avAsset)
+        assetImageGenerator.appliesPreferredTrackTransform = true
+        assetImageGenerator.apertureMode = AVAssetImageGeneratorApertureModeEncodedPixels
+        
+        var cmTime = CMTimeMakeWithSeconds(duration, 30)
+        if duration == 0 {
+            cmTime = CMTimeMakeWithSeconds(duration, 1);
+        }
+        do {
+             let thumbImageRef =  try assetImageGenerator.copyCGImage(at: cmTime, actualTime: nil)
+            complete!(UIImage.init(cgImage: thumbImageRef))
+        } catch _ {
+            complete!(nil)
+        }
+        
+    }
+    
+    // 根据地质类型生成URL
+    public class func getURL(url: String) -> URL {
+        if url.isNetUrl() {
+            return URL.init(string: url)!
+        }else{
+            return URL.init(fileURLWithPath:url)
+        }
+    }
+    
     /// 保存图片到相册
     ///
     /// - Parameters:

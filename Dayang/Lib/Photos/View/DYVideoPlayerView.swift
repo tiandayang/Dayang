@@ -144,18 +144,9 @@ class DYVideoPlayerView: UIImageView, DYVideoPlayerMenuViewDelegate{
                 return;
             }
             currentPlayURL = videoURL
-            setURL(url:getURL(url: currentPlayURL!))
+            setURL(url:DYPhotosHelper.getURL(url: currentPlayURL!))
         }
     }
-    // 根据地质类型生成URL
-    private func getURL(url: String) -> URL {
-        if url.isNetUrl() {
-            return URL.init(string: url)!
-        }else{
-            return URL.init(fileURLWithPath:url)
-        }
-    }
-    
     
     //MARK:LAZY
     lazy var player: AVPlayer = {
@@ -166,7 +157,7 @@ class DYVideoPlayerView: UIImageView, DYVideoPlayerMenuViewDelegate{
     lazy var playerItem: AVPlayerItem? = {
         var url = URL(string: "")
         if self.videoURL != nil {
-            url = self.getURL(url: self.videoURL!)
+            url = DYPhotosHelper.getURL(url: self.videoURL!)
         }
         if url == nil {
             return nil
