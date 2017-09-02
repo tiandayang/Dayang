@@ -168,7 +168,7 @@ class DYPhotosHelper {
     ///   - asset: asset
     ///   - complete: 回调
     public class func requestVideoInfo(asset: PHAsset ,complete:((_ videoURL: URL)->())?) {
-        let imageManager = PHImageManager.default()
+        let imageManager = PHImageManager.default()        
         imageManager.requestAVAsset(forVideo: asset, options: nil) { (avAsset, audioMix, info) in
             let  infoString = info?["PHImageFileSandboxExtensionTokenKey"]
             if infoString != nil && complete != nil {

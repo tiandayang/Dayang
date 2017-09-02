@@ -73,7 +73,7 @@ class DYPhotoPreviewController: DYBaseViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.isPagingEnabled = true
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = .black
         return collectionView
     }()
 

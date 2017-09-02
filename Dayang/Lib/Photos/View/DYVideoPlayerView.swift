@@ -26,6 +26,7 @@ class DYVideoPlayerView: UIImageView, DYVideoPlayerMenuViewDelegate{
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.isUserInteractionEnabled = true
+        self.contentMode = .scaleAspectFit
         createUI()
         addNotification()
     }
@@ -281,6 +282,9 @@ class DYVideoPlayerMenuView: UIView {
     }
     
     public func updatePlayTime(currentTime: Float64, totalTime: Float64) {
+        if totalTime.isNaN {
+            return
+        }
         currentTimeLaebl.text = timeFormat(time: Int(currentTime))
         totalTimeLabel.text = timeFormat(time: Int(totalTime))
         slider.setValue(Float(currentTime / totalTime), animated: true)

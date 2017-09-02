@@ -65,7 +65,38 @@ class DYPhotoListViewController: DYBaseViewController {
     private func createUI() {
         view.addSubview(collectionView)
         collectionView.snp.makeConstraints { (make) in
-            make.edges.equalToSuperview()
+            make.top.left.right.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-40)
+        }
+        
+        let menuView = DYPhotosMenuView()
+        view.addSubview(menuView)
+        menuView.snp.makeConstraints { (make) in
+            make.left.right.bottom.equalToSuperview()
+            make.height.equalTo(40)
+        }
+        
+        menuView.button.tappedBlock {[weak self] (button) in
+            if (self?.selectArray.count)! > 0 {
+                var preViewArray = [DYPhotoPreviewModel]()
+                for model in (self?.selectArray)! {
+                    let preViewModel = DYPhotoPreviewModel()
+                    preViewModel.isVideo = model.isVideo
+                    preViewModel.image = model.thumImage
+                    preViewModel.asset = model.asset
+                    preViewArray.append(preViewModel)
+                }
+                
+                let photoPreviewVC = DYPhotoPreviewController()
+                photoPreviewVC.tapSuperView = self?.collectionView
+                photoPreviewVC.dataArray = preViewArray
+                let model = self?.selectArray.first
+                let index = self?.dataArray.index(of: model!)
+                let indexPath = IndexPath.init(item: index!, section: 0)
+                let cell = self?.collectionView.cellForItem(at: indexPath) as! DYPhotoListCollectionCell
+                photoPreviewVC.thumbTapView = cell.corverImage
+                self?.present(photoPreviewVC, animated: true, completion: nil)
+            }
         }
     }
     lazy var collectionView: UICollectionView = {

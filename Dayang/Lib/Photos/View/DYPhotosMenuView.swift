@@ -21,7 +21,17 @@ class DYPhotosMenuView: UIView {
     
     //MARK: CreateUI
     func createUI() {
-        
+        self.addSubview(button)
+        button.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
+        }
     }
     
+    
+    lazy var button: UIButton = {
+        let button = UIButton.dyButton()
+        button.setImage(#imageLiteral(resourceName: "photo_look"), for: .normal)
+        button.imageView?.contentMode = .scaleAspectFit
+        return button
+    }()
 }

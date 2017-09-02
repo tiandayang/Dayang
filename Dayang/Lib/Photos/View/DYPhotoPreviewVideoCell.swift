@@ -9,7 +9,7 @@
 import UIKit
 
 class DYPhotoPreviewVideoCell: DYPhotoPreviewBaseCell {
-
+    
     override func createUI() {
         super.createUI()
         self.contentView.addSubview(videoView)
@@ -18,20 +18,34 @@ class DYPhotoPreviewVideoCell: DYPhotoPreviewBaseCell {
             make.edges.equalToSuperview()
         }
     }
-
+    
     override func setPhotoModel() {
-     
-        videoView.videoURL = photoModel?.videoURL
+        requestVideoInfo()
+    }
+    
+    private func requestVideoInfo() {
         if photoModel?.image != nil {
             videoView.image = photoModel?.image
         }else{
             if photoModel?.videoURL != nil {
-               DYPhotosHelper.getVideoDefaultImage(url: DYPhotosHelper.getURL(url: (photoModel?.videoURL)!), duration: 0, complete: { (image) in
-                self.videoView.image = image
-                self.photoModel?.image = image
-               })
+                DYPhotosHelper.getVideoDefaultImage(url: DYPhotosHelper.getURL(url: (photoModel?.videoURL)!), duration: 0, complete: { (image) in
+                    self.videoView.image = image
+                    self.photoModel?.image = image
+                })
             }
         }
+        
+        if photoModel?.videoURL != nil {
+            videoView.videoURL = photoModel?.videoURL
+        }else if photoModel?.videoPath != nil {
+            videoView.videoURL = photoModel?.videoPath
+        }else if photoModel?.asset != nil {
+            DYPhotosHelper.requestVideoInfo(asset: (photoModel?.asset)!, complete: { (url) in
+                self.photoModel?.videoURL = url.path
+                self.videoView.videoURL = self.photoModel?.videoURL
+            })
+        }
+        
     }
     
     var isDisplay: Bool = false { //是否正在展示
@@ -39,7 +53,7 @@ class DYPhotoPreviewVideoCell: DYPhotoPreviewBaseCell {
             videoView.isDisPlay = isDisplay
         }
     }
-
+    
     lazy var videoView: DYVideoPlayerView = {
         let videoView = DYVideoPlayerView.init(frame: CGRect.zero)
         return videoView;
