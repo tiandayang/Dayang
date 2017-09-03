@@ -14,9 +14,8 @@ private let  ITEMWIDTH = 2.0 * (WINDOW_WIDTH - 4*4)/3.0
 
 class DYPhotoListViewController: DYBaseViewController {
 
-    public var selectComplete: dySelectImagesComplete?
-    public var maxSelectCount: Int = 9 //做多选择的个数
-    
+    open var selectComplete: dySelectImagesComplete?
+    open var maxSelectCount: Int = 9 //做多选择的个数
     fileprivate var dataArray = [DYPhotoModel]()   // 数据源
     fileprivate var selectArray = [DYPhotoModel]() // 已选择的数组
     
@@ -82,7 +81,7 @@ class DYPhotoListViewController: DYBaseViewController {
                 for model in (self?.selectArray)! {
                     let preViewModel = DYPhotoPreviewModel()
                     preViewModel.isVideo = model.isVideo
-                    preViewModel.image = model.thumImage
+                    preViewModel.thumbImage = model.thumImage
                     preViewModel.asset = model.asset
                     preViewArray.append(preViewModel)
                 }
@@ -90,6 +89,7 @@ class DYPhotoListViewController: DYBaseViewController {
                 let photoPreviewVC = DYPhotoPreviewController()
                 photoPreviewVC.tapSuperView = self?.collectionView
                 photoPreviewVC.dataArray = preViewArray
+                photoPreviewVC.delegate = self
                 let model = self?.selectArray.first
                 let index = self?.dataArray.index(of: model!)
                 let indexPath = IndexPath.init(item: index!, section: 0)
@@ -117,7 +117,7 @@ class DYPhotoListViewController: DYBaseViewController {
     }()
 }
 
-extension DYPhotoListViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension DYPhotoListViewController: UICollectionViewDelegate, UICollectionViewDataSource, DYPhotoPreviewControllerDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return dataArray.count
     }
@@ -161,4 +161,10 @@ extension DYPhotoListViewController: UICollectionViewDelegate, UICollectionViewD
         
     }
 
+    func dyPhotoDismissTargetView(indexPath: IndexPath) -> UIImageView? {
+        if let cell = collectionView.cellForItem(at: indexPath) {
+            return (cell as! DYPhotoListCollectionCell).corverImage
+        }
+        return nil
+    }
 }

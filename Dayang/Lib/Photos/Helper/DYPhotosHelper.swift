@@ -128,10 +128,10 @@ class DYPhotosHelper {
             scale = 1
             options.deliveryMode = .highQualityFormat
         }else{
-            options.deliveryMode = .fastFormat
+            options.deliveryMode = .opportunistic
             let imagePixel = Double(asset.pixelWidth * asset.pixelHeight)/(1024.0 * 1024.0)
             if imagePixel > 3  {
-                size = CGSize(width: Double(asset.pixelWidth) * 0.5, height:Double(asset.pixelHeight) * 0.5)
+                size = CGSize(width: Double(asset.pixelWidth) * 0.6, height:Double(asset.pixelHeight) * 0.6)
                 scale = 0.1
             }else if imagePixel > 2 {
                 size = CGSize(width: Double(asset.pixelWidth) * 0.6, height:Double(asset.pixelHeight) * 0.6)

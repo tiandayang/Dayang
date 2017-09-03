@@ -42,8 +42,6 @@ class DYPhotoPreviewAnimation: NSObject, UIViewControllerAnimatedTransitioning {
         toVC?.view.alpha = 0
         let startFrame = self.thumbTapView?.superview?.convert((thumbTapView?.frame)!, to: (UIApplication.shared.delegate?.window)!)
         let endFrame = scaleImageFrame(image: (self.thumbTapView?.image)!)
-        self.thumbTapView?.superview?.isHidden = true
-        
         containerView.insertSubview((toVC?.view)!, aboveSubview: containerView)
         let imageView = UIImageView.init(frame: startFrame!)
         imageView.image = self.thumbTapView?.image
@@ -80,7 +78,6 @@ class DYPhotoPreviewAnimation: NSObject, UIViewControllerAnimatedTransitioning {
                     animationView.frame = endFrame!
                 }, completion: { (finish) in
                     animationView.removeFromSuperview()
-                    self.thumbTapView?.superview?.isHidden = false
                     transitionContext.completeTransition(true)
                 })
         }else{

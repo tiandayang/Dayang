@@ -8,10 +8,14 @@
 
 import UIKit
 
+protocol DYPhotoPreviewControllerDelegate: NSObjectProtocol {
+    func dyPhotoDismissTargetView(indexPath: IndexPath) -> UIImageView?
+}
 class DYPhotoPreviewController: DYBaseViewController {
     
     open var thumbTapView: UIImageView?// 点击的view
     open var tapSuperView: UIScrollView? // imageView的滚动父视图  collectionView 或者 tableView
+    weak var delegate: DYPhotoPreviewControllerDelegate?
     
     open var dataArray: Array<DYPhotoPreviewModel>?{
         didSet{
@@ -151,6 +155,11 @@ extension DYPhotoPreviewController: UIViewControllerTransitioningDelegate {
     }
     
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        if self.delegate != nil {
+            if let indexPAth = collectionView.indexPathsForVisibleItems.last {
+                self.thumbTapView = self.delegate?.dyPhotoDismissTargetView(indexPath: indexPAth)
+            }
+        }
         return DYPhotoPreviewAnimation.init(thumbTapView: self.thumbTapView)
     }
 }
