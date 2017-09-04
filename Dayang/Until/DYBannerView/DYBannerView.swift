@@ -165,7 +165,7 @@ class DYBannerCollectionCell: UICollectionViewCell {
     var model: DYBannerModel? {
         didSet{
             let url = URL(string: model?.icon ?? "")
-            imageView.kf.setImage(with: url)
+            imageView.kf.setImage(with: url, placeholder: #imageLiteral(resourceName: "photo_PlaceHolder.png"), options:nil, progressBlock: nil, completionHandler: nil)
         }
     }
     
@@ -180,6 +180,7 @@ class DYBannerCollectionCell: UICollectionViewCell {
     //MARK: lazyLoad
     lazy var imageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.image = #imageLiteral(resourceName: "photo_PlaceHolder.png")
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         return imageView

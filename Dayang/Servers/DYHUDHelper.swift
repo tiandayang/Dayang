@@ -53,4 +53,8 @@ class DYHUDHelper {
     public class func showHUD(inView: UIView,content: HUDContentType, complete: ((_ finish: Bool) -> Void)?) {
         HUD.flash(content, onView: inView, delay: 0.8, completion: complete)
     }
+    
+    public class func showProgressHUD(inView: UIView, progress: Float) {
+        
+    }
 }

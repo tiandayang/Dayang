@@ -45,7 +45,7 @@ class DYHomeViewController: DYBaseTableViewController {
     private func createUI() {
         let bannerView = DYBannerView(frame:CGRect.init(x: 0, y: 0, width: WINDOW_WIDTH, height: 200))
         let model = DYBannerModel()
-        model.icon = "https://ss0.baidu.com/73F1bjeh1BF3odCf/it/u=979572852,2610260350&fm=85&s=A73013885A64788CC09C58C10300B0B4";
+        model.icon = "http://a2.qpic.cn/psb?/V14WN2Fi0BvLd1/sNnGniEg*YFEzlF*7.Z*Qfz0FdlpPF5.U0aLP7wBL3o!/b/dAuM4nRqJgAA&bo=VgHcAFYB3AAFByQ!&rf=viewer_4";
         let array = [model,model,model]
         bannerView.bannerArray = array
         self.tableView.tableHeaderView = bannerView

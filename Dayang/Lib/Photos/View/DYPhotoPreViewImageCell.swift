@@ -13,12 +13,15 @@ class DYPhotoPreViewImageCell: DYPhotoPreviewBaseCell {
     override func createUI() {
         super.createUI()
         contentView.addSubview(scrollView)
+        contentView.addSubview(activity)
         scrollView.addSubview(zoomView)
         
         imageView = UIImageView()
         imageView?.clipsToBounds = true
         imageView?.isUserInteractionEnabled = true
         zoomView.addSubview(imageView!)
+        
+        
     }
     //MARK:Action
     override func setPhotoModel() {
@@ -38,13 +41,21 @@ class DYPhotoPreViewImageCell: DYPhotoPreviewBaseCell {
                 self.resizeImageView()
             })
         }else if (photoModel?.imageURL != nil) {
-            self.imageView?.kf.setImage(with:  URL.init(string: (photoModel?.imageURL)!), placeholder: nil, options:nil, progressBlock: { (receiveSize, totalSize) in
-                //                    let progress = Float(receiveSize/totalSize)
+            self.imageView?.kf.setImage(with:  URL.init(string: (photoModel?.imageURL)!), placeholder: #imageLiteral(resourceName: "photo_PlaceHolder.png"), options:nil, progressBlock: { [weak self] (receiveSize, totalSize) in
+                // let progress = Float(receiveSize/totalSize)
+                if !(self?.activity.isAnimating)! {
+                    self?.activity.startAnimating()
+                }
                 
-            }, completionHandler: { (image, error, cacheType, url) in
-                self.photoModel?.image = image
-                self.imageView?.image = image
-                self.resizeImageView()
+            }, completionHandler: { [weak self]  (image, error, cacheType, url) in
+                if error == nil {
+                    self?.photoModel?.image = image
+                    self?.imageView?.image = image
+                }else{
+                    self?.imageView?.image = #imageLiteral(resourceName: "photo_PlaceHolder.png")
+                }
+                self?.activity.stopAnimating()
+                self?.resizeImageView()
             })
         }else if (photoModel?.imagePath != nil ) {
             do {
@@ -104,6 +115,12 @@ class DYPhotoPreViewImageCell: DYPhotoPreviewBaseCell {
         let view = UIView()
         view.clipsToBounds = true
         return view
+    }()
+    
+   fileprivate lazy var activity: UIActivityIndicatorView = {
+        let act = UIActivityIndicatorView(frame: self.bounds)
+        act.activityIndicatorViewStyle = .white
+        return act
     }()
 }
 
