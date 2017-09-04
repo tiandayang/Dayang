@@ -75,10 +75,16 @@ class DYBaseViewController: UIViewController {
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
+        if self.presentedViewController != nil && !(self.presentedViewController?.isBeingDismissed)! {
+            return (self.presentedViewController?.preferredStatusBarStyle)!
+        }
         return .default
     }
     
     override var prefersStatusBarHidden: Bool {
+        if self.presentedViewController != nil && !(self.presentedViewController?.isBeingDismissed)! {
+            return (self.presentedViewController?.prefersStatusBarHidden)!
+        }
         return false
     }
 }

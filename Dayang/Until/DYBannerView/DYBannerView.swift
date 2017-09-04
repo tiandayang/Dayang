@@ -15,7 +15,7 @@ class DYBannerView: UIView {
 
     var bannerTapBlock:((_ bannerModel: DYBannerModel)->())? //点击事件
     var autoScroll: Bool = true // 默认自动滚动
-    var timeInterval: TimeInterval = 3 //默认自动滚动时间间隔为 3 秒
+    var timeInterval: TimeInterval = 5 //默认自动滚动时间间隔为 5 秒
     var timer: Timer?
     override init(frame: CGRect) {
         super.init(frame: frame)
