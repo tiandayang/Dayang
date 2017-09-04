@@ -42,6 +42,10 @@ class DYGuideViewController: DYBaseViewController {
     func  createUI() {
         view.addSubview(collectionView)
     }
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
 }
 
 extension DYGuideViewController : UICollectionViewDelegate,UICollectionViewDataSource {
@@ -148,4 +152,5 @@ class DOMGuideCollectionCell:UICollectionViewCell {
         button.addTarget(self, action: #selector(nextClick), for: .touchUpInside)
         return button
     }()
+    
 }

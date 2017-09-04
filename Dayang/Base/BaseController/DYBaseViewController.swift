@@ -16,6 +16,11 @@ class DYBaseViewController: UIViewController {
         self.view.backgroundColor = .white
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+//        self.setNeedsStatusBarAppearanceUpdate()
+    }
+    
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         debugPrint("init:",self)
@@ -67,5 +72,13 @@ class DYBaseViewController: UIViewController {
     /// - Parameter image: 图片
     public func setLeftButtonItemWithImage(image: UIImage) {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(image: image.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(didClickNavigationBarLeftButton))
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .default
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return false
     }
 }

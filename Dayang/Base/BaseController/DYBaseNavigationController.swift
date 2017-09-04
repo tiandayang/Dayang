@@ -15,4 +15,20 @@ class DYBaseNavigationController: UINavigationController {
         navigationBar.isTranslucent = false
         navigationBar.tintColor = .black
     }
+    
+    override var prefersStatusBarHidden: Bool {
+        return self.topViewController?.prefersStatusBarHidden ?? false
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return self.topViewController?.preferredStatusBarStyle ?? .default
+    }
+    
+    override var childViewControllerForStatusBarHidden: UIViewController? {
+        return self.topViewController
+    }
+    
+    override var childViewControllerForStatusBarStyle: UIViewController? {
+        return self.topViewController
+    }
 }

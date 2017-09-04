@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DYRootViewController: UIViewController {
+class DYRootViewController: DYBaseViewController {
     //MARK: ControllerLifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +37,6 @@ class DYRootViewController: UIViewController {
         self.addChildViewController(launchVC)
         view.addSubview(launchVC.view)
         launchVC.view.frame = view.bounds
-        
     }
     
     private func gotoHome() {
@@ -56,5 +55,29 @@ class DYRootViewController: UIViewController {
         guideVC.nextBlock = {[weak self] () in
             self?.gotoHome()
         }
+    }
+    //MARK: 统一管理 状态栏 
+    override var childViewControllerForStatusBarHidden: UIViewController? {
+        return lastChildController()
+    }
+
+    override var childViewControllerForStatusBarStyle: UIViewController? {
+        return lastChildController()
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return lastChildController()?.preferredStatusBarStyle ?? .default
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return lastChildController()?.prefersStatusBarHidden ?? false
+    }
+    
+    private func lastChildController() -> UIViewController? {
+        if self.presentedViewController != nil && !(self.presentedViewController?.isBeingDismissed)! {
+            //为了迎合 present 出来的VC 如果需要改变状态栏的话  、、 相应的被present的Controller 需要增加一个判断  isBeingDismissed 如果是正在被dismiss 则返回根视图的状态栏状态
+            return self.presentedViewController
+        }
+        return self.childViewControllers.last
     }
 }

@@ -27,12 +27,7 @@ class DYPhotoPreviewVideoCell: DYPhotoPreviewBaseCell {
         if photoModel?.image != nil {
             videoView.image = photoModel?.image
         }else{
-            if photoModel?.videoURL != nil {
-                DYPhotosHelper.getVideoDefaultImage(url: DYPhotosHelper.getURL(url: (photoModel?.videoURL)!), duration: 0, complete: { (image) in
-                    self.videoView.image = image
-                    self.photoModel?.image = image
-                })
-            }
+            self.requestVideoImage()
         }
         
         if photoModel?.videoURL != nil {
@@ -43,9 +38,18 @@ class DYPhotoPreviewVideoCell: DYPhotoPreviewBaseCell {
             DYPhotosHelper.requestVideoInfo(asset: (photoModel?.asset)!, complete: { (url) in
                 self.photoModel?.videoURL = url.path
                 self.videoView.videoURL = self.photoModel?.videoURL
+                self.requestVideoImage()
             })
         }
-        
+    }
+    
+    private func requestVideoImage() {
+        if photoModel?.videoURL != nil {
+            DYPhotosHelper.getVideoDefaultImage(url: DYPhotosHelper.getURL(url: (photoModel?.videoURL)!), duration: 0, complete: { (image) in
+                self.videoView.image = image
+                self.photoModel?.image = image
+            })
+        }
     }
     
     var isDisplay: Bool = false { //是否正在展示

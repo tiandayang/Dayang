@@ -41,13 +41,27 @@ class DYPhotoPreviewController: DYBaseViewController {
         loadData()
         registNotification()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        setNeedsStatusBarAppearanceUpdate()
+    }
+    
     //MARK: LoadData
     private func loadData() {
         collectionView.reloadData()
     }
     
     private func initControllerFirstData() {
-        
+        view.backgroundColor = .black
     }
     //MARK: Action
     
@@ -77,10 +91,17 @@ class DYPhotoPreviewController: DYBaseViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.isPagingEnabled = true
-        collectionView.backgroundColor = .black
+        collectionView.backgroundColor = .clear
         return collectionView
     }()
-
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
+    override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation{
+        return .fade
+    }
 }
 
 extension DYPhotoPreviewController: UICollectionViewDelegate, UICollectionViewDataSource, DYPhotoPreviewCellDelegate{

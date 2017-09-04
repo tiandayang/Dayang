@@ -8,11 +8,11 @@
 
 import UIKit
 
-private let animationDuration = 0.18
+private let animationDuration = 0.25
 
 class DYPhotoPreviewAnimation: NSObject, UIViewControllerAnimatedTransitioning {
     
-    private var thumbTapView: UIImageView? //点击的view
+    private var thumbTapView: UIImageView? //点击的view not null
     
     init(thumbTapView: UIImageView?) {
         super.init()
@@ -36,11 +36,12 @@ class DYPhotoPreviewAnimation: NSObject, UIViewControllerAnimatedTransitioning {
     // present Animation
     private func presentTransition(transitionContext: UIViewControllerContextTransitioning) {
         
-        let toVC = transitionContext.viewController(forKey: .to)
+        let toVC = transitionContext.viewController(forKey: .to) as? DYPhotoPreviewController
         let containerView = transitionContext.containerView;
-        
         toVC?.view.alpha = 0
-        let startFrame = self.thumbTapView?.superview?.convert((thumbTapView?.frame)!, to: (UIApplication.shared.delegate?.window)!)
+        toVC?.collectionView.isHidden = true
+        
+        let startFrame = self.thumbTapView?.superview?.convert((thumbTapView?.frame)!, to: getWindow())
         let endFrame = scaleImageFrame(image: (self.thumbTapView?.image)!)
         containerView.insertSubview((toVC?.view)!, aboveSubview: containerView)
         let imageView = UIImageView.init(frame: startFrame!)
@@ -49,10 +50,12 @@ class DYPhotoPreviewAnimation: NSObject, UIViewControllerAnimatedTransitioning {
         
         UIView.animate(withDuration: animationDuration, delay: 0, options: .curveLinear, animations: { 
             imageView.frame = endFrame
-        }) { (finish) in
             toVC?.view.alpha = 1
+        }) { (finish) in
+            toVC?.collectionView.isHidden = false
             imageView.removeFromSuperview()
             transitionContext.completeTransition(finish)
+            transitionContext.finishInteractiveTransition()
         }
     }
 //    dismiss Animation
@@ -63,36 +66,42 @@ class DYPhotoPreviewAnimation: NSObject, UIViewControllerAnimatedTransitioning {
         
         let cell = fromVC.collectionView.visibleCells.first as! DYPhotoPreviewBaseCell
         
-        let animationView = UIImageView()
-        animationView.image = cell.imageView?.image
-        animationView.frame = scaleImageFrame(image: animationView.image!)
+        let imageView = UIImageView()
+        imageView.image = cell.imageView?.image
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFill
+        imageView.frame = scaleImageFrame(image: imageView.image!)
 
-        containerView.addSubview(animationView)
+        containerView.addSubview(imageView)
         containerView.addSubview(fromVC.view)
         let rect = UIScreen.main.bounds
-        let endFrame = self.thumbTapView?.superview?.convert((thumbTapView?.frame)!, to: (UIApplication.shared.delegate?.window)!)
+        let endFrame = self.thumbTapView?.superview?.convert((thumbTapView?.frame)!, to: getWindow())
+    
         if self.thumbTapView != nil && endFrame != nil && rect.contains(endFrame!) {
             cell.isHidden = true
                 UIView.animate(withDuration: animationDuration, animations: {
                     fromVC.view.alpha = 0
-                    animationView.frame = endFrame!
+                    imageView.frame = endFrame!
                 }, completion: { (finish) in
-                    animationView.removeFromSuperview()
+                    imageView.isHidden = true
+                    imageView.removeFromSuperview()
                     transitionContext.completeTransition(true)
+                    transitionContext.finishInteractiveTransition()
                 })
         }else{
-            animationWithView(view: fromVC.view, animationView: animationView, transitionContext: transitionContext)
+            animationWithView(view: fromVC.view, animationView: imageView, transitionContext: transitionContext)
         }
     }
     
     private func animationWithView(view: UIView, animationView: UIView,transitionContext: UIViewControllerContextTransitioning) {
-        UIView.animate(withDuration: 0.3, animations: {
+        UIView.animate(withDuration: animationDuration, animations: {
             transitionContext.containerView.alpha = 0
             transitionContext.containerView.transform = CGAffineTransform.init(scaleX: 1.5, y: 1.5)
         }) { (finish) in
             animationView.removeFromSuperview()
             self.thumbTapView?.superview?.isHidden = false
             transitionContext.completeTransition(true)
+            transitionContext.finishInteractiveTransition()
         }
     }
     
@@ -119,5 +128,9 @@ class DYPhotoPreviewAnimation: NSObject, UIViewControllerAnimatedTransitioning {
             x = (screenSize.width - width) / 2
         }
         return CGRect(x: x, y: y, width: width, height: height)
+    }
+    
+    private func  getWindow() ->UIWindow {
+        return ((UIApplication.shared.delegate?.window)!)!
     }
 }

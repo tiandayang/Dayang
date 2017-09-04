@@ -17,6 +17,11 @@ class DYHomeViewController: DYBaseTableViewController {
         loadData()
         registNotification()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        setNeedsStatusBarAppearanceUpdate()
+    }
     //MARK: LoadData
     private func loadData() {
         
@@ -61,4 +66,12 @@ class DYHomeViewController: DYBaseTableViewController {
         }
     }
     //MARK: Helper
+    
+    override var prefersStatusBarHidden: Bool {
+        return false
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .default
+    }
 }

@@ -21,7 +21,7 @@ class DYLaunchViewController: UIViewController,CAAnimationDelegate {
         // 4.回到rootController 添加视图
         addAnimation()
     }
-
+    
     private func addAnimation() {
         UIView.animate(withDuration: 0.8, delay: 0.5, options: .curveEaseInOut, animations: {
             self.imageView.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
