@@ -243,6 +243,45 @@
 			path = Resource;
 			sourceTree = "<group>";
 		};
+		7E1C169B1F5E4EF800CAC4D9 /* FileDownLoad */ = {
+			isa = PBXGroup;
+			children = (
+				7E1C169C1F5E4EF800CAC4D9 /* Controller */,
+				7E1C169D1F5E4EF800CAC4D9 /* Helper */,
+				7E1C169E1F5E4EF800CAC4D9 /* Model */,
+				7E1C169F1F5E4EF800CAC4D9 /* View */,
+			);
+			path = FileDownLoad;
+			sourceTree = "<group>";
+		};
+		7E1C169C1F5E4EF800CAC4D9 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		7E1C169D1F5E4EF800CAC4D9 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		7E1C169E1F5E4EF800CAC4D9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7E1C169F1F5E4EF800CAC4D9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		7E313AA71F53B7A500FC426D /* Personal */ = {
 			isa = PBXGroup;
 			children = (
@@ -279,6 +318,7 @@
 		7E47765D1F553EA80017E7EE /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				7E1C169B1F5E4EF800CAC4D9 /* FileDownLoad */,
 				7E47765E1F553EA80017E7EE /* Photos */,
 				7E47766B1F553EA80017E7EE /* SandboxFilePreview */,
 				7E4776911F553EA80017E7EE /* UIDeviceIdentifier */,

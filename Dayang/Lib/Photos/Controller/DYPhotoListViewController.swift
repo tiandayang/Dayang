@@ -28,10 +28,20 @@ class DYPhotoListViewController: DYBaseViewController {
         createUI()
         loadData()
     }
+    
+    deinit {
+
+    }
+    
     //MARK: LoadData
     private func loadData() {
 
         self.dataArray = (albumModel?.assetList)!
+        
+       self.selectArray = self.dataArray.filter { (photoModel) -> Bool in
+            return photoModel.isSelect
+        }
+        updateNavigationRightTitle()
         collectionView.reloadData()
     }
     

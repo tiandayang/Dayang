@@ -58,13 +58,15 @@ class DYPhotoPreViewImageCell: DYPhotoPreviewBaseCell {
                 self?.resizeImageView()
             })
         }else if (photoModel?.imagePath != nil ) {
-            do {
-                let data = try Data.init(contentsOf: URL.init(fileURLWithPath: (photoModel?.imagePath)!))
-                let image = UIImage.init(data: data)
-                imageView?.image = image
-                photoModel?.image = image
-                self.resizeImageView()
-            } catch _ {}
+            autoreleasepool{
+                do {
+                    let data = try Data.init(contentsOf: URL.init(fileURLWithPath: (photoModel?.imagePath)!))
+                    let image = UIImage.init(data: data)
+                    imageView?.image = image
+                    photoModel?.image = image
+                    self.resizeImageView()
+                } catch _ {}
+            }
         }
     }
     

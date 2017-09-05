@@ -20,8 +20,18 @@ class DYAlbumListViewController: DYBaseTableViewController {
         loadData()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        registNotification()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     //MARK: LoadData
-    private func loadData() {
+    @objc private func loadData() {
         
         if !DYPhotosHelper.isOpenAuthority() {
             
@@ -36,6 +46,7 @@ class DYAlbumListViewController: DYBaseTableViewController {
         }
         
         DYPhotosHelper.getAllAlbumList(mediaType: self.mediaType) { (listArray) in
+            self.dataArray?.removeAll()
             self.dataArray?.append(listArray)
             self.tableView.reloadData()
         }
@@ -47,6 +58,11 @@ class DYAlbumListViewController: DYBaseTableViewController {
         self.setLeftButtonItemWithTitle(title: "取消")
     }
 
+    private func registNotification() {
+    
+        NotificationCenter.default.addObserver(self, selector: #selector(loadData), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
+    }
+    
     override func didClickNavigationBarLeftButton() {
         self.dismiss(animated: true, completion: nil)
     }
