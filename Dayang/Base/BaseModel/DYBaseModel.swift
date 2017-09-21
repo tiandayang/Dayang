@@ -9,6 +9,12 @@
 import UIKit
 import RealmSwift
 
-class DYBaseModel: Object {
+let DYRealm = try! Realm()
+
+class DYBaseModel: Object,NSCopying {
+    
+    func copy(with zone: NSZone? = nil) -> Any {
+       return self
+    }
     
 }

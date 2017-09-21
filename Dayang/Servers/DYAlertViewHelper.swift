@@ -75,7 +75,7 @@ class DYAlertViewHelper {
             alertController.addAction(alertAction)
         }
         if cancelTitle != nil{
-            let alertAction = UIAlertAction.init(title: confirmTitle, style: .cancel, handler: { (alertAction) in
+            let alertAction = UIAlertAction.init(title: cancelTitle, style: .cancel, handler: { (alertAction) in
                 if complete != nil {
                     complete!(0)
                 }

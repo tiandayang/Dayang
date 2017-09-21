@@ -40,14 +40,17 @@ class DYPhotoPreviewAnimation: NSObject, UIViewControllerAnimatedTransitioning {
         let containerView = transitionContext.containerView;
         toVC?.view.alpha = 0
         toVC?.collectionView.isHidden = true
-        
-        let startFrame = self.thumbTapView?.superview?.convert((thumbTapView?.frame)!, to: getWindow())
+        var endFrame = CGRect.zero
+        var startFrame = CGRect.zero
+        if self.thumbTapView != nil {
+            endFrame = scaleImageFrame(image: (self.thumbTapView?.image)!)
+            startFrame = (self.thumbTapView?.superview?.convert((thumbTapView?.frame)!, to: getWindow()))!
+        }
         if self.thumbTapView?.image == nil {
             self.thumbTapView?.image = UIImage(named: "photo_PlaceHolder")
         }
-        let endFrame = scaleImageFrame(image: (self.thumbTapView?.image)!)
         containerView.insertSubview((toVC?.view)!, aboveSubview: containerView)
-        let imageView = UIImageView.init(frame: startFrame!)
+        let imageView = UIImageView.init(frame: startFrame)
         imageView.image = self.thumbTapView?.image
         containerView.insertSubview(imageView, aboveSubview: (toVC?.view)!)
         

@@ -18,6 +18,9 @@
 		7E01D3101F5D3C1D000937E4 /* photo_videoplay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E01D3091F5D3C1D000937E4 /* photo_videoplay@2x.png */; };
 		7E01D3111F5D3C1D000937E4 /* photo_videoplay@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E01D30A1F5D3C1D000937E4 /* photo_videoplay@3x.png */; };
 		7E01D3121F5D3C1D000937E4 /* photo_videothumb@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E01D30B1F5D3C1D000937E4 /* photo_videothumb@2x.png */; };
+		7E02BF861F5F9410007BD498 /* DYCloudFileListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E02BF851F5F9410007BD498 /* DYCloudFileListViewController.swift */; };
+		7E02BF881F5F946B007BD498 /* DYCloudFileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E02BF871F5F946B007BD498 /* DYCloudFileModel.swift */; };
+		7E02BF8A1F5F9497007BD498 /* DYCloudFileListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E02BF891F5F9497007BD498 /* DYCloudFileListTableViewCell.swift */; };
 		7E313AAC1F53B7B800FC426D /* DYPersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E313AAB1F53B7B800FC426D /* DYPersonalViewController.swift */; };
 		7E313AB41F53C7A000FC426D /* DYThirdPlatformKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E313AB31F53C7A000FC426D /* DYThirdPlatformKey.swift */; };
 		7E313AB61F53CA2A00FC426D /* DYConfigThirtPlatForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E313AB51F53CA2A00FC426D /* DYConfigThirtPlatForm.swift */; };
@@ -71,6 +74,10 @@
 		7E4776BB1F553EA80017E7EE /* WXXFileListCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4776901F553EA80017E7EE /* WXXFileListCollectionView.swift */; };
 		7E4776BC1F553EA80017E7EE /* UIDeviceHardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4776931F553EA80017E7EE /* UIDeviceHardware.m */; };
 		7E4776BE1F5574770017E7EE /* DYPhotosHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4776BD1F5574770017E7EE /* DYPhotosHeader.swift */; };
+		7EB237691F5E783900CDB011 /* DYDownloadListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB237681F5E783900CDB011 /* DYDownloadListViewController.swift */; };
+		7EB2376B1F5E785400CDB011 /* DYDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB2376A1F5E785400CDB011 /* DYDownloadManager.swift */; };
+		7EB2376D1F5E786E00CDB011 /* DYDownloadFileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB2376C1F5E786E00CDB011 /* DYDownloadFileModel.swift */; };
+		7EB2376F1F5E788C00CDB011 /* DYDownloadListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB2376E1F5E788C00CDB011 /* DYDownloadListTableViewCell.swift */; };
 		7ED4B78C1F4FD0030065A94F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED4B78B1F4FD0030065A94F /* AppDelegate.swift */; };
 		7ED4B7931F4FD0030065A94F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7ED4B7921F4FD0030065A94F /* Assets.xcassets */; };
 		7ED4B7B61F4FF4900065A94F /* DYBaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED4B7B11F4FF4900065A94F /* DYBaseNavigationController.swift */; };
@@ -115,6 +122,9 @@
 		7E01D3091F5D3C1D000937E4 /* photo_videoplay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo_videoplay@2x.png"; sourceTree = "<group>"; };
 		7E01D30A1F5D3C1D000937E4 /* photo_videoplay@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo_videoplay@3x.png"; sourceTree = "<group>"; };
 		7E01D30B1F5D3C1D000937E4 /* photo_videothumb@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo_videothumb@2x.png"; sourceTree = "<group>"; };
+		7E02BF851F5F9410007BD498 /* DYCloudFileListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYCloudFileListViewController.swift; sourceTree = "<group>"; };
+		7E02BF871F5F946B007BD498 /* DYCloudFileModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYCloudFileModel.swift; sourceTree = "<group>"; };
+		7E02BF891F5F9497007BD498 /* DYCloudFileListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYCloudFileListTableViewCell.swift; sourceTree = "<group>"; };
 		7E313AAB1F53B7B800FC426D /* DYPersonalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYPersonalViewController.swift; sourceTree = "<group>"; };
 		7E313AB31F53C7A000FC426D /* DYThirdPlatformKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYThirdPlatformKey.swift; sourceTree = "<group>"; };
 		7E313AB51F53CA2A00FC426D /* DYConfigThirtPlatForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYConfigThirtPlatForm.swift; sourceTree = "<group>"; };
@@ -169,6 +179,10 @@
 		7E4776921F553EA80017E7EE /* UIDeviceHardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIDeviceHardware.h; sourceTree = "<group>"; };
 		7E4776931F553EA80017E7EE /* UIDeviceHardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIDeviceHardware.m; sourceTree = "<group>"; };
 		7E4776BD1F5574770017E7EE /* DYPhotosHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYPhotosHeader.swift; sourceTree = "<group>"; };
+		7EB237681F5E783900CDB011 /* DYDownloadListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYDownloadListViewController.swift; sourceTree = "<group>"; };
+		7EB2376A1F5E785400CDB011 /* DYDownloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYDownloadManager.swift; sourceTree = "<group>"; };
+		7EB2376C1F5E786E00CDB011 /* DYDownloadFileModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYDownloadFileModel.swift; sourceTree = "<group>"; };
+		7EB2376E1F5E788C00CDB011 /* DYDownloadListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYDownloadListTableViewCell.swift; sourceTree = "<group>"; };
 		7ED4B7881F4FD0030065A94F /* Dayang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dayang.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7ED4B78B1F4FD0030065A94F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../AppDelegate.swift; sourceTree = "<group>"; };
 		7ED4B7921F4FD0030065A94F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -257,6 +271,7 @@
 		7E1C169C1F5E4EF800CAC4D9 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				7EB237681F5E783900CDB011 /* DYDownloadListViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -264,6 +279,7 @@
 		7E1C169D1F5E4EF800CAC4D9 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				7EB2376A1F5E785400CDB011 /* DYDownloadManager.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -271,6 +287,7 @@
 		7E1C169E1F5E4EF800CAC4D9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				7EB2376C1F5E786E00CDB011 /* DYDownloadFileModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -278,6 +295,7 @@
 		7E1C169F1F5E4EF800CAC4D9 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				7EB2376E1F5E788C00CDB011 /* DYDownloadListTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -296,6 +314,7 @@
 			isa = PBXGroup;
 			children = (
 				7E313AAB1F53B7B800FC426D /* DYPersonalViewController.swift */,
+				7E02BF851F5F9410007BD498 /* DYCloudFileListViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -304,6 +323,7 @@
 			isa = PBXGroup;
 			children = (
 				7E313ABA1F54071900FC426D /* DYPersonUIModel.swift */,
+				7E02BF871F5F946B007BD498 /* DYCloudFileModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -311,6 +331,7 @@
 		7E313AAA1F53B7A500FC426D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				7E02BF891F5F9497007BD498 /* DYCloudFileListTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -869,14 +890,19 @@
 				7ED4B7C51F4FF8070065A94F /* UIViewExt.swift in Sources */,
 				7ED4B78C1F4FD0030065A94F /* AppDelegate.swift in Sources */,
 				7ED4B7CD1F4FFCE80065A94F /* DYGuideViewController.swift in Sources */,
+				7EB2376B1F5E785400CDB011 /* DYDownloadManager.swift in Sources */,
+				7EB237691F5E783900CDB011 /* DYDownloadListViewController.swift in Sources */,
 				7EEEC0691F57B68700A84B98 /* DYPhotoPreviewModel.swift in Sources */,
 				7ED4B7EC1F500F580065A94F /* UIFontExt.swift in Sources */,
+				7E02BF881F5F946B007BD498 /* DYCloudFileModel.swift in Sources */,
 				7E313ABD1F540EC700FC426D /* DYBaseTableViewCell.swift in Sources */,
 				7ED4B7DB1F500A890065A94F /* StringExt.swift in Sources */,
 				7E47769D1F553EA80017E7EE /* WXXFilePreViewViewController.swift in Sources */,
 				7ED4B7D01F4FFD960065A94F /* UserDefaultExt.swift in Sources */,
 				7E4776961F553EA80017E7EE /* DYPhotoPreviewController.swift in Sources */,
 				7E4776BB1F553EA80017E7EE /* WXXFileListCollectionView.swift in Sources */,
+				7E02BF861F5F9410007BD498 /* DYCloudFileListViewController.swift in Sources */,
+				7EB2376F1F5E788C00CDB011 /* DYDownloadListTableViewCell.swift in Sources */,
 				7ED4B7C31F4FF7F20065A94F /* TableViewExt.swift in Sources */,
 				7E313AC31F54168E00FC426D /* DYLocalFilePathServer.swift in Sources */,
 				7EEEC0611F56B6C500A84B98 /* DYPhotosMenuView.swift in Sources */,
@@ -897,6 +923,7 @@
 				7ED4B7F91F523CD90065A94F /* DYLaunchViewController.swift in Sources */,
 				7E47769B1F553EA80017E7EE /* DYPhotoListCollectionCell.swift in Sources */,
 				7E010F671F59164200D593FC /* DYVideoPlayerView.swift in Sources */,
+				7EB2376D1F5E786E00CDB011 /* DYDownloadFileModel.swift in Sources */,
 				7E47769C1F553EA80017E7EE /* WXXFileListViewController.swift in Sources */,
 				7ED4B7BA1F4FF4900065A94F /* DYRootViewController.swift in Sources */,
 				7ED4B7B81F4FF4900065A94F /* DYBaseTableViewController.swift in Sources */,
@@ -912,6 +939,7 @@
 				7ED4B7D91F500A720065A94F /* UIColorExt.swift in Sources */,
 				7E4776BC1F553EA80017E7EE /* UIDeviceHardware.m in Sources */,
 				7E4776981F553EA80017E7EE /* DYAlbumModel.swift in Sources */,
+				7E02BF8A1F5F9497007BD498 /* DYCloudFileListTableViewCell.swift in Sources */,
 				7E4776B81F553EA80017E7EE /* WXXFileListModel.swift in Sources */,
 				7E313AB61F53CA2A00FC426D /* DYConfigThirtPlatForm.swift in Sources */,
 				7EEEC0651F56B8EF00A84B98 /* DYPhotoPreviewBaseCell.swift in Sources */,

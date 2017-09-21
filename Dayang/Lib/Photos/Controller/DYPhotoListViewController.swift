@@ -103,8 +103,9 @@ class DYPhotoListViewController: DYBaseViewController {
                 let model = self?.selectArray.first
                 let index = self?.dataArray.index(of: model!)
                 let indexPath = IndexPath.init(item: index!, section: 0)
-                let cell = self?.collectionView.cellForItem(at: indexPath) as! DYPhotoListCollectionCell
-                photoPreviewVC.thumbTapView = cell.corverImage
+                if let cell = self?.collectionView.cellForItem(at: indexPath) {
+                    photoPreviewVC.thumbTapView = (cell as! DYPhotoListCollectionCell).corverImage
+                }
                 self?.present(photoPreviewVC, animated: true, completion: nil)
             }
         }

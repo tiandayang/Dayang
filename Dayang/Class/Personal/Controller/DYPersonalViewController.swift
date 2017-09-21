@@ -56,15 +56,20 @@ class DYPersonalViewController: DYBaseTableViewController {
             //全部文件
             let fileVC = WXXFileListViewController()
             fileVC.title = "我的文件"
-            fileVC.path = DYLocalFilePathServer.userRootPath()
+//            fileVC.path = DYLocalFilePathServer.userRootPath()
             self.navigationController?.pushViewController(fileVC, animated: true)
             break
-        default:
+        case 1:
             //图片
             let photoVC = DYAlbumListViewController()
             let nav = DYBaseNavigationController(rootViewController: photoVC)
             photoVC.mediaType = .both
             self.present(nav, animated: true, completion: nil)
+            break
+            
+        default:
+           let cloudVC = DYCloudFileListViewController()
+           self.navigationController?.pushViewController(cloudVC, animated: true)
             break
         }
     }
