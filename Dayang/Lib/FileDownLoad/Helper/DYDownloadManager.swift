@@ -40,7 +40,7 @@ class DYDownloadManager: NSObject {
     public func beginDownload(url: URL){
         
         let model = getFileModel(url: url)
-        if model.value(forKeyPath: "downloadState") as! Int == DYDownloadStatus.ing.rawValue {
+        if model.value(forKeyPath: "dowloadState") as! Int == DYDownloadStatus.ing.rawValue {
             return;
         }
         let session = URLSession(configuration: URLSessionConfiguration.default, delegate: self, delegateQueue: downloadQueue)

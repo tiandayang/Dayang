@@ -28,6 +28,7 @@ class DYProgressView: UIControl {
         stateLayer.contents = cgImage;
         stateLayer.opacity = 1
         progressLayer.opacity = 0;
+        progressLabel.isHidden = true
     }
     
     //MARK: CreateUI
@@ -66,7 +67,7 @@ class DYProgressView: UIControl {
     var progress: Double = 0.0 {
         didSet{
             progressLayer.strokeEnd = CGFloat(progress);
-            progressLabel.text = String(format: "%.1f%", progress * 100.0)
+            progressLabel.text = String(format: "%.1f%%", progress * 100.0)
             stateLayer.opacity = 0
             progressLayer.opacity = 1
         }
