@@ -103,6 +103,8 @@
 		7ED4B7F71F502B410065A94F /* TimerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED4B7F61F502B410065A94F /* TimerExt.swift */; };
 		7ED4B7F91F523CD90065A94F /* DYLaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED4B7F81F523CD90065A94F /* DYLaunchViewController.swift */; };
 		7ED4B7FB1F523D570065A94F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7ED4B7FA1F523D570065A94F /* LaunchScreen.storyboard */; };
+		7EEC91C51F74DFCA00CF9707 /* DYRealmDBServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEC91C41F74DFCA00CF9707 /* DYRealmDBServer.swift */; };
+		7EEC91E81F74F45200CF9707 /* DYProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEC91E71F74F45200CF9707 /* DYProgressView.swift */; };
 		7EEEC0611F56B6C500A84B98 /* DYPhotosMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEEC0601F56B6C500A84B98 /* DYPhotosMenuView.swift */; };
 		7EEEC0631F56B8C300A84B98 /* DYPhotoPreViewImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEEC0621F56B8C300A84B98 /* DYPhotoPreViewImageCell.swift */; };
 		7EEEC0651F56B8EF00A84B98 /* DYPhotoPreviewBaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEEC0641F56B8EF00A84B98 /* DYPhotoPreviewBaseCell.swift */; };
@@ -211,6 +213,8 @@
 		7ED4B7F61F502B410065A94F /* TimerExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerExt.swift; sourceTree = "<group>"; };
 		7ED4B7F81F523CD90065A94F /* DYLaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYLaunchViewController.swift; sourceTree = "<group>"; };
 		7ED4B7FA1F523D570065A94F /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		7EEC91C41F74DFCA00CF9707 /* DYRealmDBServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DYRealmDBServer.swift; sourceTree = "<group>"; };
+		7EEC91E71F74F45200CF9707 /* DYProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DYProgressView.swift; sourceTree = "<group>"; };
 		7EEEC0601F56B6C500A84B98 /* DYPhotosMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYPhotosMenuView.swift; sourceTree = "<group>"; };
 		7EEEC0621F56B8C300A84B98 /* DYPhotoPreViewImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYPhotoPreViewImageCell.swift; sourceTree = "<group>"; };
 		7EEEC0641F56B8EF00A84B98 /* DYPhotoPreviewBaseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYPhotoPreviewBaseCell.swift; sourceTree = "<group>"; };
@@ -296,6 +300,7 @@
 			isa = PBXGroup;
 			children = (
 				7EB2376E1F5E788C00CDB011 /* DYDownloadListTableViewCell.swift */,
+				7EEC91E71F74F45200CF9707 /* DYProgressView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -562,6 +567,7 @@
 				7E4776531F54F82F0017E7EE /* DYAlertViewHelper.swift */,
 				7E4776551F54F8860017E7EE /* DYActionSheetHelper.swift */,
 				7E010F641F58FF8B00D593FC /* DYHUDHelper.swift */,
+				7EEC91C41F74DFCA00CF9707 /* DYRealmDBServer.swift */,
 			);
 			path = Servers;
 			sourceTree = "<group>";
@@ -923,6 +929,7 @@
 				7ED4B7F91F523CD90065A94F /* DYLaunchViewController.swift in Sources */,
 				7E47769B1F553EA80017E7EE /* DYPhotoListCollectionCell.swift in Sources */,
 				7E010F671F59164200D593FC /* DYVideoPlayerView.swift in Sources */,
+				7EEC91C51F74DFCA00CF9707 /* DYRealmDBServer.swift in Sources */,
 				7EB2376D1F5E786E00CDB011 /* DYDownloadFileModel.swift in Sources */,
 				7E47769C1F553EA80017E7EE /* WXXFileListViewController.swift in Sources */,
 				7ED4B7BA1F4FF4900065A94F /* DYRootViewController.swift in Sources */,
@@ -935,6 +942,7 @@
 				7E4776B91F553EA80017E7EE /* WXXFileServer.swift in Sources */,
 				7E010F651F58FF8B00D593FC /* DYHUDHelper.swift in Sources */,
 				7E313AAC1F53B7B800FC426D /* DYPersonalViewController.swift in Sources */,
+				7EEC91E81F74F45200CF9707 /* DYProgressView.swift in Sources */,
 				7EEEC0631F56B8C300A84B98 /* DYPhotoPreViewImageCell.swift in Sources */,
 				7ED4B7D91F500A720065A94F /* UIColorExt.swift in Sources */,
 				7E4776BC1F553EA80017E7EE /* UIDeviceHardware.m in Sources */,

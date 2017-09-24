@@ -29,7 +29,6 @@ class WXXFileListViewController: UIViewController {
     
     //MARK: LoadData
     private func loadData() {
-        
         DispatchQueue.global().async {
             self.dataArray = WXXFileServer.getSubFolder(path: self.path)
             DispatchQueue.main.async {
@@ -39,11 +38,11 @@ class WXXFileListViewController: UIViewController {
     }
     
     private func initControllerFirstData() {
-        if (navigationController?.viewControllers.count)! <= 1 {
-            self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(title: "取消", style: .plain, target: self, action: #selector(navigationItemLeftClick))
-        }else{
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "编辑", style: .plain, target: self, action: #selector(navigationItemRightClick))
-        }
+//        if (navigationController?.viewControllers.count)! <= 1 {
+//            self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(title: "取消", style: .plain, target: self, action: #selector(navigationItemLeftClick))
+//        }else{
+//            self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "编辑", style: .plain, target: self, action: #selector(navigationItemRightClick))
+//        }
     }
     //MARK: Action
     @objc private func navigationItemLeftClick() {

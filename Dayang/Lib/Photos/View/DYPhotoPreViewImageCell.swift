@@ -74,7 +74,6 @@ class DYPhotoPreViewImageCell: DYPhotoPreviewBaseCell {
         if self.imageView?.image == nil {
             return
         }
-        scrollView.setZoomScale(1, animated: true)
         scrollView.frame = self.bounds
         zoomView.frame = scrollView.bounds
         let imageSize = self.imageView?.image?.size
@@ -83,7 +82,8 @@ class DYPhotoPreViewImageCell: DYPhotoPreviewBaseCell {
         let height = width / scale
         imageView?.frame = CGRect.init(x: 0, y: 0, width: width, height: height)
         zoomView.bounds = (imageView?.bounds)!
-        
+        scrollView.setZoomScale(1.1, animated: true)
+        scrollView.setZoomScale(1, animated: true)
     }
     
     override func doubleTapAction(doubleTap: UITapGestureRecognizer) {

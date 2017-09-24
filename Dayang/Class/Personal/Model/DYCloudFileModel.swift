@@ -24,10 +24,18 @@ class DYCloudFileModel: DYDownloadFileModel {
     
     private class func getFileURL() -> Array<String> {
         return ["http://metalk-5-cn.oss-cn-beijing.aliyuncs.com/ufile%2F280b723919a680abf16b99d70df07fdb%2F0EF8093F-C65C-4BC7-95E6-49C58EE6D15E.mp4",
-                "http://metalk-5-cn.oss-cn-beijing.aliyuncs.com/ufile/7c0b181e1d05a6240d5f9bae2fdc4b1c.png",
-                "http://metalk-5-cn.oss-cn-beijing.aliyuncs.com/ufile%2Ff452b016e3858550f3390abb2d1241e9%2F658031A3-5D73-48DF-B548-5EBAA8E457AC.png",
-                "http://metalk-5-cn.oss-cn-beijing.aliyuncs.com/chat/93fc2c8f5529d5d13c1af20402032347.jpg",
-                "https://metalk-5-development.s3-accelerate.amazonaws.com/pan/280b723919a680abf16b99d70df07fdb/5B416C59-DCB6-4EFF-AF34-C64FC5D72BA0.zip",
+                "http://lavaweb-10015286.video.myqcloud.com/%E5%B0%BD%E6%83%85LAVA.mp4",
+                "http://lavaweb-10015286.video.myqcloud.com/lava-guitar-creation-2.mp4",
+                "http://lavaweb-10015286.video.myqcloud.com/hong-song-mei-gui-mu-2.mp4",
+                "http://lavaweb-10015286.video.myqcloud.com/ideal-pick-2.mp4",
+                "http://120.25.226.186:32812/resources/videos/minion_01.mp4",
+                "http://120.25.226.186:32812/resources/videos/minion_02.mp4",
+                "http://120.25.226.186:32812/resources/videos/minion_03.mp4",
+                "http://120.25.226.186:32812/resources/videos/minion_04.mp4",
+                "http://120.25.226.186:32812/resources/videos/minion_05.mp4",
+                "http://120.25.226.186:32812/resources/videos/minion_06.mp4",
+                "http://120.25.226.186:32812/resources/videos/minion_07.mp4",
+                "http://120.25.226.186:32812/resources/videos/minion_08.mp4",
                 ]
     }
 }

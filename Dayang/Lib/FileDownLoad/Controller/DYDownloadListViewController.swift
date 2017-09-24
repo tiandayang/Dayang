@@ -8,28 +8,80 @@
 
 import UIKit
 
-class DYDownloadListViewController: DYBaseViewController {
+class DYDownloadListViewController: DYBaseTableViewController,DYDownloadManagerDelegate {
 
+    //MARK: ControllerLifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        initControllerFirstData()
+        createUI()
+        loadData()
+        registNotification()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        DYDownloadManager.shared.delegate = self
     }
-    */
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        DYDownloadManager.shared.delegate = nil
+    }
+    //MARK: LoadData
+    private func loadData() {
+        dataArray?.append(DYDownloadManager.shared.allFiles)
+    }
+    
+    private func initControllerFirstData() {
+        title = "下载管理"
+    }
+    //MARK: Action
+    
+    //MARK: AddNotificatoin
+    private func registNotification() {
+        
+    }
+    //MARK: DYDownloadManagerDelegate
+    func downloadingResponse(model: DYDownloadFileModel) {
+        if let index = DYDownloadManager.shared.allFiles.index(of: model) {
+            let indexPath = IndexPath.init(row: index, section: 0)
+            if let cell = tableView.cellForRow(at: indexPath) {
+                let fileCell = cell as! DYDownloadListTableViewCell
+                fileCell.fileModel = model;
+            }
+        }
+    }
+    
+    func downloadComplete(model: DYDownloadFileModel) {
+        tableView.reloadData()
+    }
+    
+    func downloadFaild(model: DYDownloadFileModel, error: Error?) {
+        tableView.reloadData()
+    }
+    //MARK: tableViewDataSource & delegate
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+       return DYDownloadManager.shared.allFiles.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cellIdentifier = "DYDownloadListTableViewCell"
+    var cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier)
+    if cell == nil {
+        cell = DYDownloadListTableViewCell.init(style: .default, reuseIdentifier: cellIdentifier)
+    }
+    let listCell = cell as! DYDownloadListTableViewCell
+    listCell.fileModel = DYDownloadManager.shared.allFiles[indexPath.row]
+    return cell!
+    }
+
+    
+    //MARK: CreateUI
+    private func createUI() {
+        
+    }
+    //MARK: Helper
 
 }
+

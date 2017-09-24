@@ -14,6 +14,11 @@ class DYBaseNavigationController: UINavigationController {
         super.viewDidLoad()
         navigationBar.isTranslucent = false
         navigationBar.tintColor = .black
+        if #available(iOS 11.0, *) {
+            navigationBar.prefersLargeTitles = true
+        } else {
+            // Fallback on earlier versions
+        }
     }
     
     override var prefersStatusBarHidden: Bool {

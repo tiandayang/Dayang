@@ -15,8 +15,6 @@ private let kVideos = "video"
 private let kOthers = "others"
 
 class DYLocalFilePathServer {
-
-    
     public class func checkLocalPath() {
         let fileManager = FileManager.default
         let pathArray = [imagePath(), videoPath(), otherPath()]

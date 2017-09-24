@@ -13,7 +13,7 @@ typealias DYDownloadProgressBlock = (_ progress: Float) -> Void //下载进度�
 typealias DYDownloadCompleteBlock = (_ finish: Bool, _ filePath: String) -> Void
 
 protocol DYDownloadManagerDelegate: NSObjectProtocol {
-    func downloadingResponse(model: DYDownloadFileModel)
+    func downloadingResponse(model: DYDownloadFileModel) // 异步回调
     func downloadComplete(model: DYDownloadFileModel)
     func downloadFaild(model: DYDownloadFileModel, error: Error?)
 }
@@ -24,41 +24,86 @@ class DYDownloadManager: NSObject {
     
     var downloadQueue = OperationQueue() //下载队列 
     var delegate: DYDownloadManagerDelegate?
+    
+    lazy var tasks: Dictionary<String, URLSessionDataTask> = {
+        let dictionary = Dictionary<String, URLSessionDataTask>()
+        return dictionary
+    }()
+    
+    //MARK:  download
     /// 开启下载
     ///
     /// - Parameters:
     ///   - url: 下载的url
     ///   - progress: 进度block
     ///   - completed: 下载完成的block
-    public func beginDownload(url: URL, progress: DYDownloadProgressBlock?, completed: DYDownloadCompleteBlock?){
+    public func beginDownload(url: URL){
         
         let model = getFileModel(url: url)
+        if model.value(forKeyPath: "downloadState") as! Int == DYDownloadStatus.ing.rawValue {
+            return;
+        }
         let session = URLSession(configuration: URLSessionConfiguration.default, delegate: self, delegateQueue: downloadQueue)
         var request = URLRequest(url: url)
         let headerRange = NSString.init(format: "bytes-%zd-", model.downloadSize)
         request.setValue(headerRange as String, forHTTPHeaderField: "Range")
         
         let urlTask = session.dataTask(with: request)
-        let taskIdentifier = arc4random()%1000000
-        urlTask.setValue(taskIdentifier, forKeyPath: "taskIdentifier")
+        tasks[model.fileUrlString] = urlTask;
         urlTask.resume()
     }
     
-    
-    /// 判断文件是否已经下载
+    /// 暂停某个任务
     ///
-    /// - Parameter fileURL: 文件的下载链接
-    /// - Returns: 返回bool
-    public func fileIsDowloaded(fileURL: String) -> Bool {
-        for model in allFiles {
-            if model.fileUrlString == fileURL {
-                return model.value(forKeyPath: "dowloadState") as! Int  == DYDownloadStatus.completed.rawValue && FileManager.default.fileExists(atPath:model.value(forKeyPath: "filePath") as! String)
+    /// - Parameter url: 链接
+    public func suspend(url: String) {
+        if let task = tasks[url] {
+            task.suspend()
+            DispatchQueue.main.sync {
+                let model = getFileModel(url: URL(string: url)!)
+                try! DYRealm.write {
+                    model.setValue(DYDownloadStatus.suspend.rawValue, forKey: "dowloadState")
+                }
             }
         }
-     return false
+    }
+    /// 开始某个任务
+    ///
+    /// - Parameter url: 链接
+    public func resume(url: String) {
+        if let task = tasks[url] {
+            task.resume()
+            DispatchQueue.main.sync {
+                let model = getFileModel(url: URL(string: url)!)
+                try! DYRealm.write {
+                    model.setValue(DYDownloadStatus.ing.rawValue, forKey: "dowloadState")
+                }
+            }
+        }else{
+            beginDownload(url: URL(string: url)!)
+        }
+    }
+    /// 取消
+    ///
+    /// - Parameter url: 链接
+    public func stop(url: String) {
+        if let task = tasks[url] {
+            task.cancel()
+            DispatchQueue.main.sync {
+                let model = getFileModel(url: URL(string: url)!)
+                try! DYRealm.write {
+                    model.setValue(DYDownloadStatus.failed.rawValue, forKey: "dowloadState")
+                }
+            }
+        }
     }
     
-  
+    
+    //MARK: helper
+    /// 创建或者从从数据库获取model
+    ///
+    /// - Parameter url: 下载用到的链接
+    /// - Returns: 返回 DYDownloadFileModel
     public func getFileModel(url: URL) -> DYDownloadFileModel {
      
         for model in allFiles {
@@ -74,18 +119,6 @@ class DYDownloadManager: NSObject {
         return model;
     }
     
-//    fileprivate func updateData(model: DYDownloadFileModel) {
-//        let fileModel = DYDownloadFileModel()
-//        debugPrint("model:",model)
-//        fileModel.fileUrlString = model.fileUrlString
-//        fileModel.totalLength = model.totalLength
-//        fileModel.dowloadState = model.dowloadState;
-//        debugPrint("fileModel:",fileModel)
-//        try! DYRealm.write {
-//            DYRealm.add(fileModel, update: true)
-//        }
-//    }
-    
     var allFiles: Array<DYDownloadFileModel>! {
         let files = DYRealm.objects(DYDownloadFileModel.self)
         var filesArray = [DYDownloadFileModel]()
@@ -95,11 +128,24 @@ class DYDownloadManager: NSObject {
         return filesArray
     }//所有文件
     
+    /// 判断文件是否已经下载
+    ///
+    /// - Parameter fileURL: 文件的下载链接
+    /// - Returns: 返回bool
+    public func fileIsDowloaded(fileURL: String) -> Bool {
+        for model in allFiles {
+            if model.fileUrlString == fileURL {
+                if FileManager.default.fileExists(atPath:model.value(forKeyPath: "filePath") as! String) && model.downloadSize == model.value(forKeyPath: "totalLength") as! Int64 {
+                    return true;
+                }
+            }
+        }
+        return false
+    }
 }
 
 extension DYDownloadManager: URLSessionDelegate, URLSessionTaskDelegate,URLSessionDataDelegate {
 
-    
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
         
         let url = task.currentRequest?.url
@@ -151,18 +197,18 @@ extension DYDownloadManager: URLSessionDelegate, URLSessionTaskDelegate,URLSessi
         let url = dataTask.currentRequest?.url
         DispatchQueue.main.sync {
             let model = getFileModel(url: url!)
+            var localData = NSMutableData.init(contentsOfFile:model.filePath)
+            DispatchQueue.global().sync {
+                if localData == nil {
+                    localData = data as? NSMutableData
+                }else{
+                    localData?.append(data)
+                }
+                localData?.write(toFile: model.filePath, atomically: true)
+            }
             if self.delegate != nil {
                 self.delegate?.downloadingResponse(model: model)
             }
-            var localData = NSMutableData.init(contentsOfFile:model.filePath)
-            if localData == nil {
-                localData = data as? NSMutableData
-            }else{
-                localData?.append(data)
-            }
-             localData?.write(toFile: model.filePath, atomically: true)
-            debugPrint("progress:",(Double(model.downloadSize) / Double(model.value(forKeyPath: "totalLength")as! Int)))
         }
-       
     }
 }

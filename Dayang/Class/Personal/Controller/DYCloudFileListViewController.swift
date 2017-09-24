@@ -28,9 +28,13 @@ class DYCloudFileListViewController: DYBaseTableViewController {
     private func initControllerFirstData() {
         self.title = "网盘文件"
         self.cellHeight = 50
+        setRightButtonItemWithTitle(title: "下载管理")
     }
+
     //MARK: Action
-    
+    override func didClickNavigationBarRightButton() {
+        self.navigationController?.pushViewController(DYDownloadListViewController(), animated: true)
+    }
     //MARK: AddNotificatoin
     private func registNotification() {
         
@@ -57,7 +61,7 @@ class DYCloudFileListViewController: DYBaseTableViewController {
         }else{
             DYAlertViewHelper.showAlertWithCancel(title: "是否下载？", message: "", controller: self, complete: { (index) in
                 if index == 1 {
-                    DYDownloadManager.shared.beginDownload(url: (model?.fileURL)!, progress: nil, completed: nil)
+                    DYDownloadManager.shared.beginDownload(url: (model?.fileURL)!)
                 }
             })
         }

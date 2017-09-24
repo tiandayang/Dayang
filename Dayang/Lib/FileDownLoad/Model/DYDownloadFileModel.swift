@@ -38,12 +38,13 @@ enum DYDownloadStatus: Int {
 }
 
 class DYDownloadFileModel: DYBaseModel {
-
-   dynamic var fileUrlString: String!// 文件的下载链接
-   open var dowloadState: Int = 0 //数据库用
-   open var totalSize: String = "0" //总长度
     
-   lazy var stream: OutputStream? = {
+    dynamic var fileUrlString: String!// 文件的下载链接
+    open var dowloadState: Int = 0 //数据库用
+    open var totalSize: String = "0" //总长度
+    open var icon: String? //文件的链接icon
+    
+    lazy var stream: OutputStream? = {
         if self.dowloadState != DYDownloadStatus.completed.rawValue {
             let outputStream = OutputStream(toFileAtPath: self.filePath, append: true)
             return outputStream
@@ -51,73 +52,79 @@ class DYDownloadFileModel: DYBaseModel {
         return nil
     }()//下载流
     
-   open var downloadStatus: DYDownloadStatus = .none {
+    open var downloadStatus: DYDownloadStatus = .none {
         didSet{
             self.dowloadState = downloadStatus.rawValue
         }
     }
-   open var totalLength: Int64 = 0 {
+    open var totalLength: Int64 = 0 {
         didSet{
-          self.totalSize = String(totalLength)
+            self.totalSize = String(totalLength)
         }
     } //文件总大小
+    open var progress: Double {
+        if (value(forKeyPath: "totalLength") as! Int) > 0 {
+            return Double(downloadSize)/Double(value(forKeyPath: "totalLength") as! Int)
+        }
+        return 0.0
+    }; //下载进度
 
     
-   open var fileURL: URL! { // 文件的下载链接
+    open var fileURL: URL! { // 文件的下载链接
         return URL.init(string: fileUrlString)
     }
-
-   open var downloadSize: Int64 {
+    
+    open var downloadSize: Int64 {
         let fileManager = FileManager.default
         do {
-          let att = try fileManager.attributesOfItem(atPath: filePath)
+            let att = try fileManager.attributesOfItem(atPath: filePath)
             return att [FileAttributeKey.size] as! Int64
         } catch _ {
             return 0
         }
     }
     
-   open var fileName: String {
+    lazy var fileName: String =   {
         let name = self.fileURL.lastPathComponent
         return name
-    }
+    }()
     
-   open var fileType: DYFileType {
-         let ext = fileURL.pathExtension
-            if ext == "zip" || ext == "rar" {
-                return .zip
-            }
-            if ext == "jpg" || ext == "png" || ext == "jpeg" || ext == "gif" {
-                return .image
-            }
-            if ext == "pdf" {
-                return .pdf
-            }
-            if ext == "ppt" || ext == "pptx"{
-                return .ppt
-            }
-            if ext == "doc" || ext == "docx" {
-                return .word
-            }
-            if ext == "xls" || ext == "xlsx" {
-                return .excel
-            }
-            if ext == "mp4" || ext == "mov" {
-                return .video
-            }
-            if ext == "mp3" || ext == "wav" || ext == "wma" {
-                return .audio
-            }
-            if ext == "txt" || ext == "rtf" || ext == "plist" {
-                return .txt
-            }
-            if ext == "html"{
-                return .html
-            }
+    open var fileType: DYFileType {
+        let ext = fileURL.pathExtension
+        if ext == "zip" {
+            return .zip
+        }
+        if ext == "jpg" || ext == "png" || ext == "jpeg" || ext == "gif" {
+            return .image
+        }
+        if ext == "pdf" {
+            return .pdf
+        }
+        if ext == "ppt" || ext == "pptx"{
+            return .ppt
+        }
+        if ext == "doc" || ext == "docx" {
+            return .word
+        }
+        if ext == "xls" || ext == "xlsx" {
+            return .excel
+        }
+        if ext == "mp4" || ext == "mov" {
+            return .video
+        }
+        if ext == "mp3" || ext == "wav" || ext == "wma" {
+            return .audio
+        }
+        if ext == "txt" || ext == "rtf" || ext == "plist" {
+            return .txt
+        }
+        if ext == "html"{
+            return .html
+        }
         return .none
     }
     
-   open var filePath: String {
+    open var filePath: String {
         let fileName = fileUrlString.md5().appendingFormat(".%@", fileURL.pathExtension)
         switch fileType {
         case .image:
@@ -128,12 +135,13 @@ class DYDownloadFileModel: DYBaseModel {
             return DYLocalFilePathServer.otherPath().appendingFormat("/%@", fileName)
         }
     }
-
+    
     override static func primaryKey() -> String? {
         return "fileUrlString"
     }
     
     override static func ignoredProperties() -> [String] {
-        return ["stream","downloadSize","filePath","fileName","fileType","fileURL","downloadStatus"]
+        return ["stream","progress","downloadSize","filePath","fileName","fileType","fileURL","downloadStatus"]
     }
 }
+

@@ -13,6 +13,8 @@ public class DYConfigThirtPlatForm {
     public class func configTPF() {
         configBugly()
         DYLocalFilePathServer.checkLocalPath()
+        DYRealmDBServer.configDB()
+        debugPrint(DYLocalFilePathServer.userRootPath())
     }
     
     /// 启动bugly
