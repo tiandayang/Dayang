@@ -46,8 +46,8 @@ class DYHomeViewController: DYBaseTableViewController {
         let bannerView = DYBannerView(frame:CGRect.init(x: 0, y: 0, width: WINDOW_WIDTH, height: 200))
         let model = DYBannerModel()
         model.icon = "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=4286955076,4147232194&fm=27&gp=0.jpg";
-        let array = [model,model,model]
-        bannerView.bannerArray = array
+        let bannerArray = [model,model,model]
+        bannerView.bannerArray = bannerArray
         self.tableView.tableHeaderView = bannerView
         
         bannerView.bannerTapBlock = { [weak self] (bannerModel) in
@@ -60,6 +60,7 @@ class DYHomeViewController: DYBaseTableViewController {
                 array.append(photoModel)
             }
             photoPreviewVC.dataArray = array
+            photoPreviewVC.selectIndex = 2
             photoPreviewVC.thumbTapView = (bannerView.collectionView.visibleCells.first as! DYBannerCollectionCell).imageView
             photoPreviewVC.tapSuperView = bannerView.collectionView
             self?.present(photoPreviewVC, animated: true, completion: nil)

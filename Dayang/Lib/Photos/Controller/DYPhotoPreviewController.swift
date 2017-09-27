@@ -15,6 +15,7 @@ class DYPhotoPreviewController: DYBaseViewController {
     
     open var thumbTapView: UIImageView?// 点击的view
     open var tapSuperView: UIScrollView? // imageView的滚动父视图  collectionView 或者 tableView
+    open var selectIndex: Int = 0 //当前展示的索引
     weak var delegate: DYPhotoPreviewControllerDelegate?
     
     open var dataArray: Array<DYPhotoPreviewModel>?{
@@ -58,6 +59,7 @@ class DYPhotoPreviewController: DYBaseViewController {
     //MARK: LoadData
     private func loadData() {
         collectionView.reloadData()
+        collectionView.setContentOffset(CGPoint(x: WINDOW_WIDTH * CGFloat(selectIndex), y: 0), animated: false)
     }
     
     private func initControllerFirstData() {

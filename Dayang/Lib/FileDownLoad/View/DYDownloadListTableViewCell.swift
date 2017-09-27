@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ReactiveCocoa
 
 class DYDownloadListTableViewCell: DYBaseTableViewCell {
 
@@ -37,7 +38,7 @@ class DYDownloadListTableViewCell: DYBaseTableViewCell {
     
     //MARK: CreateUI
     override func createSubUI() {
-        selectionStyle = .none
+//        selectionStyle = .none
         contentView.addSubview(progressView)
         contentView.addSubview(titleLabel)
         progressView.snp.makeConstraints { (make) in
@@ -45,7 +46,7 @@ class DYDownloadListTableViewCell: DYBaseTableViewCell {
             make.centerY.equalToSuperview()
             make.size.equalTo(CGSize.init(width: 40, height: 40))
         }
-        
+                
         titleLabel.snp.makeConstraints { (make) in
             make.centerY.equalToSuperview()
             make.left.equalTo(10)

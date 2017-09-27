@@ -14,14 +14,13 @@ class DYDownloadListViewController: DYBaseTableViewController,DYDownloadManagerD
     override func viewDidLoad() {
         super.viewDidLoad()
         initControllerFirstData()
-        createUI()
         loadData()
-        registNotification()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         DYDownloadManager.shared.delegate = self
+        tableView.reloadData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -36,19 +35,16 @@ class DYDownloadListViewController: DYBaseTableViewController,DYDownloadManagerD
     private func initControllerFirstData() {
         title = "下载管理"
     }
-    //MARK: Action
-    
-    //MARK: AddNotificatoin
-    private func registNotification() {
-        
-    }
+
     //MARK: DYDownloadManagerDelegate
     func downloadingResponse(model: DYDownloadFileModel) {
-        if let index = DYDownloadManager.shared.allFiles.index(of: model) {
-            let indexPath = IndexPath.init(row: index, section: 0)
-            if let cell = tableView.cellForRow(at: indexPath) {
-                let fileCell = cell as! DYDownloadListTableViewCell
-                fileCell.fileModel = model;
+        DispatchQueue.main.async {
+            if let index = DYDownloadManager.shared.allFiles.index(of: model) {
+                let indexPath = IndexPath.init(row: index, section: 0)
+                if let cell = self.tableView.cellForRow(at: indexPath) {
+                    let fileCell = cell as! DYDownloadListTableViewCell
+                    fileCell.fileModel = model;
+                }
             }
         }
     }
@@ -76,12 +72,46 @@ class DYDownloadListViewController: DYBaseTableViewController,DYDownloadManagerD
     return cell!
     }
 
-    
-    //MARK: CreateUI
-    private func createUI() {
-        
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true);
+        let model = DYDownloadManager.shared.allFiles[indexPath.row]
+        switch model.value(forKeyPath: "dowloadState") as! Int {
+        case DYDownloadStatus.ing.rawValue:
+            DYDownloadManager.shared.suspend(url: model.fileUrlString);
+            break;
+        case DYDownloadStatus.none.rawValue:
+            DYDownloadManager.shared.resume(url: model.fileUrlString);
+            break;
+        case DYDownloadStatus.suspend.rawValue:
+            DYDownloadManager.shared.resume(url: model.fileUrlString);
+            break;
+        case DYDownloadStatus.failed.rawValue:
+            DYDownloadManager.shared.resume(url: model.fileUrlString);
+            break;
+        case DYDownloadStatus.completed.rawValue:
+            let previewVC = WXXFilePreViewViewController()
+            let fileModel = WXXFileListModel()
+            fileModel.filePath = model.filePath;
+            previewVC.fileArray = [fileModel];
+            navigationController?.pushViewController(previewVC, animated: true)
+            break;
+        default:
+            break;
+        }
     }
-    //MARK: Helper
-
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true;
+    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        return .delete;
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        let model = DYDownloadManager.shared.allFiles[indexPath.row]
+        DYDownloadManager.shared.deleteFile(url: model.fileUrlString)
+        tableView.reloadData()
+    }
 }
 

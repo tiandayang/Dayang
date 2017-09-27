@@ -43,7 +43,7 @@ class DYProgressView: UIControl {
         super.layoutSubviews()
         progressLabel.frame = CGRect.init(x: (self.frame.size.width - progressWidth)/2.0, y: (self.frame.size.height - 20)/2.0, width: progressWidth, height: 20)
         stateLayer.frame = CGRect.init(x: (self.frame.size.width - stateWidth)/2.0, y: (self.frame.size.height - stateWidth)/2.0, width: stateWidth, height: stateWidth)
-
+        progressLayer.strokeEnd = CGFloat(self.progress);
     }
     
     lazy var progressLayer: CAShapeLayer = {
@@ -69,6 +69,7 @@ class DYProgressView: UIControl {
             progressLayer.strokeEnd = CGFloat(progress);
             progressLabel.text = String(format: "%.1f%%", progress * 100.0)
             stateLayer.opacity = 0
+            progressLabel.isHidden = false
             progressLayer.opacity = 1
         }
     }

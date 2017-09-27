@@ -9,9 +9,6 @@
 import UIKit
 import RealmSwift
 
-typealias DYDownloadProgressBlock = (_ progress: Float) -> Void //下载进度的回调
-typealias DYDownloadCompleteBlock = (_ finish: Bool, _ filePath: String) -> Void
-
 protocol DYDownloadManagerDelegate: NSObjectProtocol {
     func downloadingResponse(model: DYDownloadFileModel) // 异步回调
     func downloadComplete(model: DYDownloadFileModel)
@@ -20,7 +17,10 @@ protocol DYDownloadManagerDelegate: NSObjectProtocol {
 
 class DYDownloadManager: NSObject {
     static let shared = DYDownloadManager()  //构建单例对象
-    private override init(){}
+    private override init(){
+        super.init()
+        NotificationCenter.default.addObserver(self, selector: #selector(appWillBeKilled), name: NSNotification.Name.UIApplicationWillTerminate, object: nil)
+    }
     
     var downloadQueue = OperationQueue() //下载队列 
     var delegate: DYDownloadManagerDelegate?
@@ -28,7 +28,12 @@ class DYDownloadManager: NSObject {
     lazy var tasks: Dictionary<String, URLSessionDataTask> = {
         let dictionary = Dictionary<String, URLSessionDataTask>()
         return dictionary
-    }()
+    }() //下载任务的字典
+    
+    lazy var streams: Dictionary<String,OutputStream> = {
+        let dictionary = Dictionary<String,OutputStream>()
+        return dictionary
+    }()//下载流
     
     //MARK:  download
     /// 开启下载
@@ -50,6 +55,9 @@ class DYDownloadManager: NSObject {
         
         let urlTask = session.dataTask(with: request)
         tasks[model.fileUrlString] = urlTask;
+        
+         let outputStream = OutputStream(toFileAtPath: model.filePath, append: true)
+        streams[model.fileUrlString] = outputStream;
         urlTask.resume()
     }
     
@@ -59,11 +67,19 @@ class DYDownloadManager: NSObject {
     public func suspend(url: String) {
         if let task = tasks[url] {
             task.suspend()
-            DispatchQueue.main.sync {
-                let model = getFileModel(url: URL(string: url)!)
+            DispatchQueue.main.async {
+                let model = self.getFileModel(url: URL(string: url)!)
                 try! DYRealm.write {
                     model.setValue(DYDownloadStatus.suspend.rawValue, forKey: "dowloadState")
                 }
+            }
+        }else{
+            DispatchQueue.main.async {
+                let model = self.getFileModel(url: URL(string: url)!)
+                try! DYRealm.write {
+                    model.setValue(DYDownloadStatus.failed.rawValue, forKey: "dowloadState")
+                }
+                self.resume(url: url)
             }
         }
     }
@@ -72,13 +88,18 @@ class DYDownloadManager: NSObject {
     /// - Parameter url: 链接
     public func resume(url: String) {
         if let task = tasks[url] {
-            task.resume()
-            DispatchQueue.main.sync {
-                let model = getFileModel(url: URL(string: url)!)
-                try! DYRealm.write {
-                    model.setValue(DYDownloadStatus.ing.rawValue, forKey: "dowloadState")
+            if task.state == URLSessionTask.State.canceling || task.state == URLSessionTask.State.completed {
+                beginDownload(url: URL(string: url)!)
+            }else{
+                task.resume()
+                DispatchQueue.main.async {
+                    let model = self.getFileModel(url: URL(string: url)!)
+                    try! DYRealm.write {
+                        model.setValue(DYDownloadStatus.ing.rawValue, forKey: "dowloadState")
+                    }
                 }
             }
+            
         }else{
             beginDownload(url: URL(string: url)!)
         }
@@ -98,6 +119,17 @@ class DYDownloadManager: NSObject {
         }
     }
     
+   @objc func appWillBeKilled() {
+    for model in allFiles {
+        if (model.value(forKeyPath: "dowloadState") as! Int) == 3 {
+            DispatchQueue.main.sync {
+                try! DYRealm.write {
+                    model.setValue(DYDownloadStatus.failed.rawValue, forKey: "dowloadState")
+                }
+            }
+        }
+    }
+    }
     
     //MARK: helper
     /// 创建或者从从数据库获取model
@@ -142,6 +174,14 @@ class DYDownloadManager: NSObject {
         }
         return false
     }
+    
+    public func deleteFile(url: String) {
+        let model = getFileModel(url: URL.init(string: url)!)
+        WXXFileServer.removeFileAtPath(path: model.filePath)
+        try! DYRealm.write {
+            DYRealm.delete(model)
+        }
+    }
 }
 
 extension DYDownloadManager: URLSessionDelegate, URLSessionTaskDelegate,URLSessionDataDelegate {
@@ -150,10 +190,11 @@ extension DYDownloadManager: URLSessionDelegate, URLSessionTaskDelegate,URLSessi
         
         let url = task.currentRequest?.url
         task.cancel()
+        var stream = streams[(url?.absoluteString)!];
+        stream?.close()
+
         DispatchQueue.main.sync {
           let  model = getFileModel(url: url!)
-            model.stream?.close()
-            model.stream = nil
             if error != nil  {
                 try! DYRealm.write {
                     model.setValue(DYDownloadStatus.failed.rawValue, forKey: "dowloadState")
@@ -166,12 +207,13 @@ extension DYDownloadManager: URLSessionDelegate, URLSessionTaskDelegate,URLSessi
                     try! DYRealm.write {
                         model.setValue(DYDownloadStatus.completed.rawValue, forKey: "dowloadState")
                     }
+                    stream = nil
+                    streams[(url?.absoluteString)!] = nil
                 }
                 if self.delegate != nil {
                     self.delegate?.downloadComplete(model: model)
                 }
             }
-
         }
     }
     
@@ -182,7 +224,8 @@ extension DYDownloadManager: URLSessionDelegate, URLSessionTaskDelegate,URLSessi
             if let length = httpResponse.allHeaderFields["Content-Length"] {
                 let totalSize = Int64((length as! String).toInt()) + model.downloadSize
                 debugPrint("totalSize:",totalSize)
-                model.stream?.open()
+                let stream = streams[(response.url?.absoluteString)!];
+                stream?.open()
                 try! DYRealm.write {
                     model.setValue(DYDownloadStatus.ing.rawValue, forKey: "dowloadState")
                     model.setValue(Int64(totalSize), forKey: "totalLength")
@@ -195,17 +238,11 @@ extension DYDownloadManager: URLSessionDelegate, URLSessionTaskDelegate,URLSessi
     
     func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
         let url = dataTask.currentRequest?.url
+        let array = [UInt8](data)
+        let stream = self.streams[(url?.absoluteString)!];
+        stream?.write(array, maxLength: data.count)
         DispatchQueue.main.sync {
             let model = getFileModel(url: url!)
-            var localData = NSMutableData.init(contentsOfFile:model.filePath)
-            DispatchQueue.global().sync {
-                if localData == nil {
-                    localData = data as? NSMutableData
-                }else{
-                    localData?.append(data)
-                }
-                localData?.write(toFile: model.filePath, atomically: true)
-            }
             if self.delegate != nil {
                 self.delegate?.downloadingResponse(model: model)
             }

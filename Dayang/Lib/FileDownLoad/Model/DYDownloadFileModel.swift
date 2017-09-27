@@ -44,14 +44,6 @@ class DYDownloadFileModel: DYBaseModel {
     open var totalSize: String = "0" //总长度
     open var icon: String? //文件的链接icon
     
-    lazy var stream: OutputStream? = {
-        if self.dowloadState != DYDownloadStatus.completed.rawValue {
-            let outputStream = OutputStream(toFileAtPath: self.filePath, append: true)
-            return outputStream
-        }
-        return nil
-    }()//下载流
-    
     open var downloadStatus: DYDownloadStatus = .none {
         didSet{
             self.dowloadState = downloadStatus.rawValue
@@ -141,7 +133,7 @@ class DYDownloadFileModel: DYBaseModel {
     }
     
     override static func ignoredProperties() -> [String] {
-        return ["stream","progress","downloadSize","filePath","fileName","fileType","fileURL","downloadStatus"]
+        return ["progress","downloadSize","filePath","fileName","fileType","fileURL","downloadStatus"]
     }
 }
 
