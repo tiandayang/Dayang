@@ -175,6 +175,9 @@ class DYDownloadManager: NSObject {
         return false
     }
     
+    /// 删除下载记录
+    ///
+    /// - Parameter url: url
     public func deleteFile(url: String) {
         let model = getFileModel(url: URL.init(string: url)!)
         WXXFileServer.removeFileAtPath(path: model.filePath)

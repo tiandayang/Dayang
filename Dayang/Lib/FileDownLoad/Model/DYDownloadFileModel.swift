@@ -49,6 +49,7 @@ class DYDownloadFileModel: DYBaseModel {
             self.dowloadState = downloadStatus.rawValue
         }
     }
+    
     open var totalLength: Int64 = 0 {
         didSet{
             self.totalSize = String(totalLength)
