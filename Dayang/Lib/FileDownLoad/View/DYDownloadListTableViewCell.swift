@@ -16,17 +16,21 @@ class DYDownloadListTableViewCell: DYBaseTableViewCell {
         didSet{
             if fileModel != nil {
                 self.titleLabel.text = fileModel?.fileName;
-                switch fileModel!.value(forKeyPath: "dowloadState") as! Int {
-                case DYDownloadStatus.ing.rawValue:
+                switch fileModel!.downloadStatus {
+                case .ing:
                     progressView.progress = fileModel!.progress
                     break
-                case DYDownloadStatus.suspend.rawValue:
-                    progressView.progress = fileModel!.progress
+                case .suspend:
+//                    progressView.progress = fileModel!.progress
+                    progressView.setStateLayer(image:#imageLiteral(resourceName: "file_pause"))
                     break
-                case DYDownloadStatus.completed.rawValue:
+                case .wait:
+                    progressView.setStateLayer(image: #imageLiteral(resourceName: "file_wait"))
+                    break
+                case .completed:
                     progressView.setStateLayer(image: #imageLiteral(resourceName: "file_success"))
                     break
-                case DYDownloadStatus.failed.rawValue:
+                case .failed:
                     progressView.setStateLayer(image: #imageLiteral(resourceName: "file_retry"))
                     break
                 default: break

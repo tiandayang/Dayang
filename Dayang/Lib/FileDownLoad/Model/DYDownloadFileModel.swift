@@ -40,20 +40,18 @@ enum DYDownloadStatus: Int {
 class DYDownloadFileModel: DYBaseModel {
     
     dynamic var fileUrlString: String!// 文件的下载链接
-    open var dowloadState: Int = 0 //数据库用
+    open var downloadState: Int = 0 //数据库用
     open var totalSize: String = "0" //总长度
     open var icon: String? //文件的链接icon
     
-    open var downloadStatus: DYDownloadStatus = .none {
-        didSet{
-            self.dowloadState = downloadStatus.rawValue
-        }
+    open var downloadStatus: DYDownloadStatus {
+        return DYDownloadStatus(rawValue: self.value(forKeyPath: "downloadState") as! Int)!
     }
     
-    open var totalLength: Int64 = 0 {
-        didSet{
-            self.totalSize = String(totalLength)
-        }
+    open var totalLength: Int64 {
+   
+        return Int64((self.value(forKeyPath: "totalSize") as! String).toInt())
+        
     } //文件总大小
     open var progress: Double {
         if (value(forKeyPath: "totalLength") as! Int) > 0 {
@@ -62,7 +60,6 @@ class DYDownloadFileModel: DYBaseModel {
         return 0.0
     }; //下载进度
 
-    
     open var fileURL: URL! { // 文件的下载链接
         return URL.init(string: fileUrlString)
     }

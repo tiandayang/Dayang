@@ -59,6 +59,7 @@ class DYPhotoPreviewController: DYBaseViewController {
     //MARK: LoadData
     private func loadData() {
         collectionView.reloadData()
+        collectionView.layoutIfNeeded()
         collectionView.setContentOffset(CGPoint(x: WINDOW_WIDTH * CGFloat(selectIndex), y: 0), animated: false)
     }
     

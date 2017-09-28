@@ -75,20 +75,20 @@ class DYDownloadListViewController: DYBaseTableViewController,DYDownloadManagerD
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true);
         let model = DYDownloadManager.shared.allFiles[indexPath.row]
-        switch model.value(forKeyPath: "dowloadState") as! Int {
-        case DYDownloadStatus.ing.rawValue:
+        switch model.downloadStatus {
+        case .ing:
             DYDownloadManager.shared.suspend(url: model.fileUrlString);
             break;
-        case DYDownloadStatus.none.rawValue:
+        case .none:
             DYDownloadManager.shared.resume(url: model.fileUrlString);
             break;
-        case DYDownloadStatus.suspend.rawValue:
+        case .suspend:
             DYDownloadManager.shared.resume(url: model.fileUrlString);
             break;
-        case DYDownloadStatus.failed.rawValue:
+        case .failed:
             DYDownloadManager.shared.resume(url: model.fileUrlString);
             break;
-        case DYDownloadStatus.completed.rawValue:
+        case .completed:
             let previewVC = WXXFilePreViewViewController()
             let fileModel = WXXFileListModel()
             fileModel.filePath = model.filePath;
