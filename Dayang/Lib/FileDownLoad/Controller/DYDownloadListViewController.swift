@@ -38,13 +38,11 @@ class DYDownloadListViewController: DYBaseTableViewController,DYDownloadManagerD
 
     //MARK: DYDownloadManagerDelegate
     func downloadingResponse(model: DYDownloadFileModel) {
-        DispatchQueue.main.async {
-            if let index = DYDownloadManager.shared.allFiles.index(of: model) {
-                let indexPath = IndexPath.init(row: index, section: 0)
-                if let cell = self.tableView.cellForRow(at: indexPath) {
-                    let fileCell = cell as! DYDownloadListTableViewCell
-                    fileCell.fileModel = model;
-                }
+        if let index = DYDownloadManager.shared.allFiles.index(of: model) {
+            let indexPath = IndexPath.init(row: index, section: 0)
+            if let cell = self.tableView.cellForRow(at: indexPath) {
+                let fileCell = cell as! DYDownloadListTableViewCell
+                fileCell.fileModel = model;
             }
         }
     }
@@ -88,6 +86,9 @@ class DYDownloadListViewController: DYBaseTableViewController,DYDownloadManagerD
         case .failed:
             DYDownloadManager.shared.resume(url: model.fileUrlString);
             break;
+        case .wait:
+            DYDownloadManager.shared.resume(url: model.fileUrlString);
+            break;
         case .completed:
             let previewVC = WXXFilePreViewViewController()
             let fileModel = WXXFileListModel()
@@ -98,6 +99,7 @@ class DYDownloadListViewController: DYBaseTableViewController,DYDownloadManagerD
         default:
             break;
         }
+        tableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

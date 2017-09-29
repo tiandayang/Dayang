@@ -23,3 +23,14 @@ public func SCALE_WIDTH(width:CGFloat) -> CGFloat {
 public func SCALE_HEIGHT(height:CGFloat) -> CGFloat {
     return UIScreen.main.bounds.size.height / 667 * height
 }
+
+public func dy_safeAsync(_ block: @escaping ()->()) {
+    if Thread.isMainThread {
+        block()
+    } else {
+        DispatchQueue.main.sync {
+            block()
+        }
+    }
+}
+

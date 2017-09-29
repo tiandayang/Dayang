@@ -74,6 +74,7 @@
 		7E4776BB1F553EA80017E7EE /* WXXFileListCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4776901F553EA80017E7EE /* WXXFileListCollectionView.swift */; };
 		7E4776BC1F553EA80017E7EE /* UIDeviceHardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4776931F553EA80017E7EE /* UIDeviceHardware.m */; };
 		7E4776BE1F5574770017E7EE /* DYPhotosHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4776BD1F5574770017E7EE /* DYPhotosHeader.swift */; };
+		7EACB22F1F7DFE97000BD8D9 /* ThreadExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EACB22E1F7DFE97000BD8D9 /* ThreadExt.swift */; };
 		7EB237691F5E783900CDB011 /* DYDownloadListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB237681F5E783900CDB011 /* DYDownloadListViewController.swift */; };
 		7EB2376B1F5E785400CDB011 /* DYDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB2376A1F5E785400CDB011 /* DYDownloadManager.swift */; };
 		7EB2376D1F5E786E00CDB011 /* DYDownloadFileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB2376C1F5E786E00CDB011 /* DYDownloadFileModel.swift */; };
@@ -181,6 +182,7 @@
 		7E4776921F553EA80017E7EE /* UIDeviceHardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIDeviceHardware.h; sourceTree = "<group>"; };
 		7E4776931F553EA80017E7EE /* UIDeviceHardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIDeviceHardware.m; sourceTree = "<group>"; };
 		7E4776BD1F5574770017E7EE /* DYPhotosHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYPhotosHeader.swift; sourceTree = "<group>"; };
+		7EACB22E1F7DFE97000BD8D9 /* ThreadExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadExt.swift; sourceTree = "<group>"; };
 		7EB237681F5E783900CDB011 /* DYDownloadListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYDownloadListViewController.swift; sourceTree = "<group>"; };
 		7EB2376A1F5E785400CDB011 /* DYDownloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYDownloadManager.swift; sourceTree = "<group>"; };
 		7EB2376C1F5E786E00CDB011 /* DYDownloadFileModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYDownloadFileModel.swift; sourceTree = "<group>"; };
@@ -657,6 +659,7 @@
 				7ED4B7E71F500F300065A94F /* DictionaryExt.swift */,
 				7ED4B7E91F500F3B0065A94F /* DateExt.swift */,
 				7ED4B7F61F502B410065A94F /* TimerExt.swift */,
+				7EACB22E1F7DFE97000BD8D9 /* ThreadExt.swift */,
 			);
 			path = UIKitExt;
 			sourceTree = "<group>";
@@ -949,6 +952,7 @@
 				7E4776981F553EA80017E7EE /* DYAlbumModel.swift in Sources */,
 				7E02BF8A1F5F9497007BD498 /* DYCloudFileListTableViewCell.swift in Sources */,
 				7E4776B81F553EA80017E7EE /* WXXFileListModel.swift in Sources */,
+				7EACB22F1F7DFE97000BD8D9 /* ThreadExt.swift in Sources */,
 				7E313AB61F53CA2A00FC426D /* DYConfigThirtPlatForm.swift in Sources */,
 				7EEEC0651F56B8EF00A84B98 /* DYPhotoPreviewBaseCell.swift in Sources */,
 				7ED4B7BC1F4FF4B50065A94F /* DYBaseModel.swift in Sources */,
