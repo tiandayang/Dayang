@@ -12,7 +12,7 @@ import RealmSwift
 private let maxDownloadCount = 3;
 
 protocol DYDownloadManagerDelegate: NSObjectProtocol {
-    func downloadingResponse(model: DYDownloadFileModel) // 异步回调
+    func downloadingResponse(model: DYDownloadFileModel)
     func downloadComplete(model: DYDownloadFileModel)
     func downloadFaild(model: DYDownloadFileModel, error: Error?)
 }
