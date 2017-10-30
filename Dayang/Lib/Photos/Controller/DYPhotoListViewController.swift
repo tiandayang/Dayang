@@ -75,40 +75,40 @@ class DYPhotoListViewController: DYBaseViewController {
         view.addSubview(collectionView)
         collectionView.snp.makeConstraints { (make) in
             make.top.left.right.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-40)
+            make.bottom.equalToSuperview().offset(0)
         }
         
-        let menuView = DYPhotosMenuView()
-        view.addSubview(menuView)
-        menuView.snp.makeConstraints { (make) in
-            make.left.right.bottom.equalToSuperview()
-            make.height.equalTo(40)
-        }
+//        let menuView = DYPhotosMenuView()
+//        view.addSubview(menuView)
+//        menuView.snp.makeConstraints { (make) in
+//            make.left.right.bottom.equalToSuperview()
+//            make.height.equalTo(40)
+//        }
         
-        menuView.button.tappedBlock {[weak self] (button) in
-            if (self?.selectArray.count)! > 0 {
-                var preViewArray = [DYPhotoPreviewModel]()
-                for model in (self?.selectArray)! {
-                    let preViewModel = DYPhotoPreviewModel()
-                    preViewModel.isVideo = model.isVideo
-                    preViewModel.thumbImage = model.thumImage
-                    preViewModel.asset = model.asset
-                    preViewArray.append(preViewModel)
-                }
-                
-                let photoPreviewVC = DYPhotoPreviewController()
-                photoPreviewVC.tapSuperView = self?.collectionView
-                photoPreviewVC.dataArray = preViewArray
-                photoPreviewVC.delegate = self
-                let model = self?.selectArray.first
-                let index = self?.dataArray.index(of: model!)
-                let indexPath = IndexPath.init(item: index!, section: 0)
-                if let cell = self?.collectionView.cellForItem(at: indexPath) {
-                    photoPreviewVC.thumbTapView = (cell as! DYPhotoListCollectionCell).corverImage
-                }
-                self?.present(photoPreviewVC, animated: true, completion: nil)
-            }
-        }
+//        menuView.button.tappedBlock {[weak self] (button) in
+//            if (self?.selectArray.count)! > 0 {
+//                var preViewArray = [DYPhotoPreviewModel]()
+//                for model in (self?.selectArray)! {
+//                    let preViewModel = DYPhotoPreviewModel()
+//                    preViewModel.isVideo = model.isVideo
+//                    preViewModel.thumbImage = model.thumImage
+//                    preViewModel.asset = model.asset
+//                    preViewArray.append(preViewModel)
+//                }
+//
+//                let photoPreviewVC = DYPhotoPreviewController()
+//                photoPreviewVC.tapSuperView = self?.collectionView
+//                photoPreviewVC.dataArray = preViewArray
+//                photoPreviewVC.delegate = self
+//                let model = self?.selectArray.first
+//                let index = self?.dataArray.index(of: model!)
+//                let indexPath = IndexPath.init(item: index!, section: 0)
+//                if let cell = self?.collectionView.cellForItem(at: indexPath) {
+//                    photoPreviewVC.thumbTapView = (cell as! DYPhotoListCollectionCell).corverImage
+//                }
+//                self?.present(photoPreviewVC, animated: true, completion: nil)
+//            }
+//        }
     }
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -160,11 +160,10 @@ extension DYPhotoListViewController: UICollectionViewDelegate, UICollectionViewD
                 selectArray.remove(at: index)
             }
         }
-        cell.photoModel = photoModel!
-        
         for (index,model) in selectArray.enumerated() {
             model.selectIndex = index + 1
         }
+        cell.photoModel = photoModel!
         updateNavigationRightTitle()
         cell.cellDidClickAnimation {
             collectionView.reloadData()

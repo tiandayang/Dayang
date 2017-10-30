@@ -3,7 +3,7 @@
 # 目录
 ## base 基类
 * BaseCell  基类的collectionViewCell 和 TableViewCell
-* BaseModel 模型的基类 可用作 模型赋值（HandyJson） 和 数据库存储（Realm）
+* BaseModel 模型的基类 数据库基于Realm实现
 * BaseController 包括baseVC baseTableVC 还有window的rootVC baseNav 和 baseTabbarVC等
 ## Configuration 配置信息
 * DYConstant 常量的定义
