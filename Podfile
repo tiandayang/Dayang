@@ -2,14 +2,14 @@
 # platform :ios, ‘8.0’
 
 pod 'SnapKit', '~> 4.0'
-pod 'RealmSwift', '2.10.1'
+pod 'RealmSwift', '~> 3.0'
 pod 'KeychainAccess', '~> 3.1'
-pod 'IQKeyboardManagerSwift', '4.0.13'
-pod 'ReactiveCocoa', '6.0'
-pod 'MJRefresh’, '3.1.12'
-pod 'Kingfisher', '~> 4.0'
+pod 'IQKeyboardManagerSwift', '~> 5.0'
+pod 'ReactiveCocoa', '7.0.0-alpha.2'
+pod 'MJRefresh’, '3.1.15'
+pod 'Kingfisher', '~> 4.2'
 pod 'Bugly', '~> 2.4'
-pod 'PKHUD', '4.2.3'
+pod 'PKHUD', '~> 5.0'
 pod 'PromiseKit/CorePromise', '4.4'
 
 target 'Dayang' do

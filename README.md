@@ -11,9 +11,12 @@
 * DYConfigThirtPlatForm 配置第三方平台的信息
 ## Class 模型对应的类
  不同模块对应的文件夹
- ## Servers 项目中用的一些工具服务类
- ## Extention 常用的系统类扩展
- ## Until  自定义的空间
+ ## Servers
+ 项目中用的一些工具服务类
+ ## Extention
+ 常用的系统类扩展
+ ## Until
+ 自定义的控件
  ## Lib 存储了自己写的一些框架或者某些第三方工具（只标注自己写的）
  * FileDownLoad 文件下载框架
  * Photos  基于系统的photos 封装的媒体选择和预览工具
