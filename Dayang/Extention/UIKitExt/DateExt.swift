@@ -127,7 +127,7 @@ extension Date {
         guard let aBaseBegin = baseBegin, let aLastBegin = lastBegin else {
             return 0
         }
-        days = String(format: ".0f", aLastBegin.timeIntervalSince(aBaseBegin)).toInt() ?? 0
+        days = String(format: ".0f", aLastBegin.timeIntervalSince(aBaseBegin)).toInt()
         return days
     }
     
