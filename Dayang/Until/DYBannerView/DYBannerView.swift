@@ -195,7 +195,7 @@ class DYBannerModel: DYBaseModel {
     
     public class func getBannerArray() -> Array<DYBannerModel>{
         var bannerArray = [DYBannerModel]()
-        let urlArray = ["https://b-ssl.duitang.com/uploads/item/201411/06/20141106222213_WBZa8.thumb.700_0.jpeg","https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=4286955076,4147232194&fm=27&gp=0.jpg","https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1510045785081&di=47c89e4c8d61ba651d1d5e8bfc7b6293&imgtype=0&src=http%3A%2F%2Fp2.qhmsg.com%2Ft011fc13354f12d1a46.jpg"]
+        let urlArray = ["https://b-ssl.duitang.com/uploads/item/201411/06/20141106222213_WBZa8.thumb.700_0.jpeg","https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=4286955076,4147232194&fm=27&gp=0.jpg","https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1510045785081&di=47c89e4c8d61ba651d1d5e8bfc7b6293&imgtype=0&src=http%3A%2F%2Fp2.qhmsg.com%2Ft011fc13354f12d1a46.jpg","http://metalk-5-cn.oss-cn-beijing.aliyuncs.com/ufile%2F280b723919a680abf16b99d70df07fdb%2F0EF8093F-C65C-4BC7-95E6-49C58EE6D15E.mp4"]
         for index in 0...urlArray.count-1 {
             let model = DYBannerModel()
             model.icon = urlArray.dy_objectAtIndex(index: index)

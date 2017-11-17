@@ -55,6 +55,10 @@ class DYHomeViewController: DYBaseTableViewController {
             for model in bannerView.bannerArray! {
                 let photoModel = DYPhotoPreviewModel()
                 photoModel.imageURL = model.icon
+                if(model.icon?.contains("mp4")) ?? false{
+                    photoModel.isVideo = true
+                    photoModel.videoURL = model.icon
+                }
                 array.append(photoModel)
             }
             photoPreviewVC.dataArray = array
