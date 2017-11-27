@@ -9,6 +9,7 @@
 import UIKit
 import Photos
 import PromiseKit
+import Kingfisher
 
 class DYPhotosHelper {
 
@@ -184,23 +185,35 @@ class DYPhotosHelper {
         if complete == nil {
             return
         }
-        
-        let avAsset = AVURLAsset.init(url: url)
-        let assetImageGenerator = AVAssetImageGenerator.init(asset: avAsset)
-        assetImageGenerator.appliesPreferredTrackTransform = true
-        assetImageGenerator.apertureMode = AVAssetImageGeneratorApertureModeEncodedPixels
-        
-        var cmTime = CMTimeMakeWithSeconds(duration, 30)
-        if duration == 0 {
-            cmTime = CMTimeMakeWithSeconds(duration, 1);
+        let imageCache = ImageCache.default
+        let cacheKey = url.absoluteString.md5()
+        if let cacheImage = imageCache.retrieveImageInDiskCache(forKey: cacheKey) {
+            complete!(cacheImage)
+            return
         }
-        do {
-             let thumbImageRef =  try assetImageGenerator.copyCGImage(at: cmTime, actualTime: nil)
-            complete!(UIImage.init(cgImage: thumbImageRef))
-        } catch _ {
-            complete!(nil)
+        DispatchQueue.global().async {
+            let avAsset = AVURLAsset.init(url: url)
+            let assetImageGenerator = AVAssetImageGenerator.init(asset: avAsset)
+            assetImageGenerator.appliesPreferredTrackTransform = true
+            assetImageGenerator.apertureMode = AVAssetImageGeneratorApertureModeEncodedPixels
+            
+            var cmTime = CMTimeMakeWithSeconds(duration, 30)
+            if duration == 0 {
+                cmTime = CMTimeMakeWithSeconds(duration, 1);
+            }
+            do {
+                let thumbImageRef =  try assetImageGenerator.copyCGImage(at: cmTime, actualTime: nil)
+                let image = UIImage.init(cgImage: thumbImageRef)
+                imageCache.store(image, forKey: imageCache.cachePath(forKey: cacheKey))
+                dy_safeAsync {
+                    complete!(image)
+                }
+            } catch _ {
+                dy_safeAsync {
+                    complete!(nil)
+                }
+            }
         }
-        
     }
     
     // 根据地质类型生成URL

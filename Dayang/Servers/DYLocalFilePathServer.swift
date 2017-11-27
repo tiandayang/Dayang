@@ -13,11 +13,12 @@ private let kLibrary = "Library"
 private let kImages = "Image"
 private let kVideos = "video"
 private let kOthers = "others"
+private let kCaches = "DYCaches"
 
 class DYLocalFilePathServer {
     public class func checkLocalPath() {
         let fileManager = FileManager.default
-        let pathArray = [imagePath(), videoPath(), otherPath()]
+        let pathArray = [imagePath(), videoPath(), otherPath(),cachePath()]
         for path in pathArray {
             if !fileManager.fileExists(atPath: path) {
                 do {
@@ -29,7 +30,11 @@ class DYLocalFilePathServer {
     
     public class func userRootPath()-> String {
         let deviceId = DYKeychainServer.getDeviveID()
-       return NSHomeDirectory() + "/Documents/" + deviceId
+       return sandBoxPath() + "/Documents/" + deviceId
+    }
+    
+    public class func cachePath() -> String {
+        return sandBoxPath().appending("/Library/Caches/") + kCaches
     }
     
     public class func imagePath() -> String {
@@ -42,5 +47,9 @@ class DYLocalFilePathServer {
     
     public class func otherPath() -> String {
         return userRootPath().appending("/") + kOthers
+    }
+    
+    public class func sandBoxPath() -> String {
+        return NSHomeDirectory()
     }
 }

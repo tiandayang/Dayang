@@ -22,6 +22,7 @@ class DYDownloadManager: NSObject {
     private override init(){
         super.init()
         NotificationCenter.default.addObserver(self, selector: #selector(appWillBeKilled), name: NSNotification.Name.UIApplicationWillTerminate, object: nil)
+        downloadQueue.maxConcurrentOperationCount = maxDownloadCount;
     }
     
     var downloadQueue = OperationQueue() //下载队列 

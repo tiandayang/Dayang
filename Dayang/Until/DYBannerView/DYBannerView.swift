@@ -164,8 +164,14 @@ class DYBannerCollectionCell: UICollectionViewCell {
     //MARK: Action
     var model: DYBannerModel? {
         didSet{
-            let url = URL(string: model?.icon ?? "")
-            imageView.kf.setImage(with: url, placeholder: #imageLiteral(resourceName: "photo_PlaceHolder.png"), options:nil, progressBlock: nil, completionHandler: nil)
+            if (model?.isVideo)! {
+                DYPhotosHelper.getVideoDefaultImage(url: DYPhotosHelper.getURL(url: (model?.icon)!), duration: 0, complete: { (image) in
+                    self.imageView.image = image;
+                })
+            }else{
+                let url = URL(string: model?.icon ?? "")
+                imageView.kf.setImage(with: url, placeholder: #imageLiteral(resourceName: "photo_PlaceHolder.png"), options:nil, progressBlock: nil, completionHandler: nil)
+            }
         }
     }
     
@@ -192,6 +198,9 @@ class DYBannerModel: DYBaseModel {
     var id: String?
     var name: String?
     var icon: String?
+    var isVideo:Bool {
+        return self.icon?.contains("mp4") ?? false
+    }
     
     public class func getBannerArray() -> Array<DYBannerModel>{
         var bannerArray = [DYBannerModel]()

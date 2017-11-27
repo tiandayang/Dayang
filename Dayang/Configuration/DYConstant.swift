@@ -28,7 +28,7 @@ public func dy_safeAsync(_ block: @escaping ()->()) {
     if Thread.isMainThread {
         block()
     } else {
-        DispatchQueue.main.sync {
+        DispatchQueue.main.async {
             block()
         }
     }
