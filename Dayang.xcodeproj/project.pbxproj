@@ -74,6 +74,10 @@
 		7E4776BB1F553EA80017E7EE /* WXXFileListCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4776901F553EA80017E7EE /* WXXFileListCollectionView.swift */; };
 		7E4776BC1F553EA80017E7EE /* UIDeviceHardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4776931F553EA80017E7EE /* UIDeviceHardware.m */; };
 		7E4776BE1F5574770017E7EE /* DYPhotosHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4776BD1F5574770017E7EE /* DYPhotosHeader.swift */; };
+		7E4B4DD41FCD084C0090E6AB /* DYAVKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4B4DD31FCD084C0090E6AB /* DYAVKitHelper.swift */; };
+		7E4B4DD71FCD09560090E6AB /* DYAVCaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4B4DD61FCD09560090E6AB /* DYAVCaptureView.swift */; };
+		7E4B4DD91FCD09770090E6AB /* DYVideoRecorderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4B4DD81FCD09770090E6AB /* DYVideoRecorderController.swift */; };
+		7E4B4DFB1FCD71DF0090E6AB /* DYCaptureButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4B4DFA1FCD71DF0090E6AB /* DYCaptureButton.swift */; };
 		7EACB22F1F7DFE97000BD8D9 /* ThreadExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EACB22E1F7DFE97000BD8D9 /* ThreadExt.swift */; };
 		7EB237691F5E783900CDB011 /* DYDownloadListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB237681F5E783900CDB011 /* DYDownloadListViewController.swift */; };
 		7EB2376B1F5E785400CDB011 /* DYDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB2376A1F5E785400CDB011 /* DYDownloadManager.swift */; };
@@ -182,6 +186,10 @@
 		7E4776921F553EA80017E7EE /* UIDeviceHardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIDeviceHardware.h; sourceTree = "<group>"; };
 		7E4776931F553EA80017E7EE /* UIDeviceHardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIDeviceHardware.m; sourceTree = "<group>"; };
 		7E4776BD1F5574770017E7EE /* DYPhotosHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYPhotosHeader.swift; sourceTree = "<group>"; };
+		7E4B4DD31FCD084C0090E6AB /* DYAVKitHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DYAVKitHelper.swift; sourceTree = "<group>"; };
+		7E4B4DD61FCD09560090E6AB /* DYAVCaptureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DYAVCaptureView.swift; sourceTree = "<group>"; };
+		7E4B4DD81FCD09770090E6AB /* DYVideoRecorderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DYVideoRecorderController.swift; sourceTree = "<group>"; };
+		7E4B4DFA1FCD71DF0090E6AB /* DYCaptureButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYCaptureButton.swift; sourceTree = "<group>"; };
 		7EACB22E1F7DFE97000BD8D9 /* ThreadExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadExt.swift; sourceTree = "<group>"; };
 		7EB237681F5E783900CDB011 /* DYDownloadListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYDownloadListViewController.swift; sourceTree = "<group>"; };
 		7EB2376A1F5E785400CDB011 /* DYDownloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYDownloadManager.swift; sourceTree = "<group>"; };
@@ -346,6 +354,7 @@
 		7E47765D1F553EA80017E7EE /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				7E4B4DD01FCD07240090E6AB /* DYAVKit */,
 				7E1C169B1F5E4EF800CAC4D9 /* FileDownLoad */,
 				7E47765E1F553EA80017E7EE /* Photos */,
 				7E47766B1F553EA80017E7EE /* SandboxFilePreview */,
@@ -497,6 +506,41 @@
 				7E4776931F553EA80017E7EE /* UIDeviceHardware.m */,
 			);
 			path = UIDeviceIdentifier;
+			sourceTree = "<group>";
+		};
+		7E4B4DD01FCD07240090E6AB /* DYAVKit */ = {
+			isa = PBXGroup;
+			children = (
+				7E4B4DD51FCD08FA0090E6AB /* View */,
+				7E4B4DD21FCD07540090E6AB /* Controller */,
+				7E4B4DD11FCD07400090E6AB /* Helper */,
+			);
+			path = DYAVKit;
+			sourceTree = "<group>";
+		};
+		7E4B4DD11FCD07400090E6AB /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				7E4B4DD31FCD084C0090E6AB /* DYAVKitHelper.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		7E4B4DD21FCD07540090E6AB /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7E4B4DD81FCD09770090E6AB /* DYVideoRecorderController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		7E4B4DD51FCD08FA0090E6AB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7E4B4DFA1FCD71DF0090E6AB /* DYCaptureButton.swift */,
+				7E4B4DD61FCD09560090E6AB /* DYAVCaptureView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		7ED4B77F1F4FD0030065A94F = {
@@ -920,9 +964,11 @@
 				7E4776971F553EA80017E7EE /* DYPhotosHelper.swift in Sources */,
 				7E4776951F553EA80017E7EE /* DYPhotoListViewController.swift in Sources */,
 				7EEEC0671F56B91F00A84B98 /* DYPhotoPreviewVideoCell.swift in Sources */,
+				7E4B4DD71FCD09560090E6AB /* DYAVCaptureView.swift in Sources */,
 				7ED4B7B61F4FF4900065A94F /* DYBaseNavigationController.swift in Sources */,
 				7E4776561F54F8860017E7EE /* DYActionSheetHelper.swift in Sources */,
 				7E4775F61F54E9900017E7EE /* UITextFieldExt.swift in Sources */,
+				7E4B4DD91FCD09770090E6AB /* DYVideoRecorderController.swift in Sources */,
 				7ED4B7EA1F500F3B0065A94F /* DateExt.swift in Sources */,
 				7ED4B7B71F4FF4900065A94F /* DYBaseTabBaController.swift in Sources */,
 				7ED4B7E81F500F300065A94F /* DictionaryExt.swift in Sources */,
@@ -938,6 +984,7 @@
 				7ED4B7BA1F4FF4900065A94F /* DYRootViewController.swift in Sources */,
 				7ED4B7B81F4FF4900065A94F /* DYBaseTableViewController.swift in Sources */,
 				7ED4B7E61F500F1F0065A94F /* ArrayExt.swift in Sources */,
+				7E4B4DFB1FCD71DF0090E6AB /* DYCaptureButton.swift in Sources */,
 				7ED4B7F51F5015950065A94F /* DYBannerView.swift in Sources */,
 				7ED4B7F71F502B410065A94F /* TimerExt.swift in Sources */,
 				7E313AB41F53C7A000FC426D /* DYThirdPlatformKey.swift in Sources */,
@@ -956,6 +1003,7 @@
 				7E313AB61F53CA2A00FC426D /* DYConfigThirtPlatForm.swift in Sources */,
 				7EEEC0651F56B8EF00A84B98 /* DYPhotoPreviewBaseCell.swift in Sources */,
 				7ED4B7BC1F4FF4B50065A94F /* DYBaseModel.swift in Sources */,
+				7E4B4DD41FCD084C0090E6AB /* DYAVKitHelper.swift in Sources */,
 				7E313ABB1F54071900FC426D /* DYPersonUIModel.swift in Sources */,
 				7ED4B7EE1F5011D10065A94F /* UIButtonExt.swift in Sources */,
 				7E4776BE1F5574770017E7EE /* DYPhotosHeader.swift in Sources */,
