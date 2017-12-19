@@ -8,8 +8,9 @@
 
 import UIKit
 
-let lineWidth = CGFloat(4);
-let animationDuration = 0.18;
+let lineWidth = CGFloat(4)
+let cb_animationDuration = 0.18
+
 @objc protocol DYCaptureButtonDelegate: NSObjectProtocol {
     @objc optional func dy_takePhotoAction()
     @objc optional func dy_beginRecord()
@@ -124,7 +125,7 @@ class DYCaptureButton: UIView {
     }
     
     private func touchAnimation(complete:(() ->())?) {
-        UIView.animate(withDuration: animationDuration, animations: {
+        UIView.animate(withDuration: cb_animationDuration, animations: {
             self.transform = CGAffineTransform.init(scaleX: 1.2, y: 1.2)
         }) { (finish) in
             if complete != nil {
@@ -134,7 +135,7 @@ class DYCaptureButton: UIView {
     }
     
     private func cancelAnimation() {
-        UIView.animate(withDuration: animationDuration) {
+        UIView.animate(withDuration: cb_animationDuration) {
             self.transform = CGAffineTransform.identity
         }
     }

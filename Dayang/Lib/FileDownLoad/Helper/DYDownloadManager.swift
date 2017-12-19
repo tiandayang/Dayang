@@ -17,7 +17,7 @@ protocol DYDownloadManagerDelegate: NSObjectProtocol {
     func downloadFaild(model: DYDownloadFileModel, error: Error?)
 }
 
-class DYDownloadManager: NSObject {
+public class DYDownloadManager: NSObject {
     static let shared = DYDownloadManager()  //构建单例对象
     private override init(){
         super.init()
@@ -155,7 +155,7 @@ class DYDownloadManager: NSObject {
     ///
     /// - Parameter url: 下载用到的链接
     /// - Returns: 返回 DYDownloadFileModel
-    public func getFileModel(url: URL) -> DYDownloadFileModel? {
+     func getFileModel(url: URL) -> DYDownloadFileModel? {
      
         for model in allFiles {
             if model.fileUrlString == url.absoluteString {
@@ -224,7 +224,7 @@ class DYDownloadManager: NSObject {
 
 extension DYDownloadManager: URLSessionDelegate, URLSessionTaskDelegate,URLSessionDataDelegate {
 
-    func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
+    public func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
         let url = task.currentRequest?.url
         var stream = streams[(url?.absoluteString)!];
         stream?.close()
@@ -260,7 +260,7 @@ extension DYDownloadManager: URLSessionDelegate, URLSessionTaskDelegate,URLSessi
         }
     }
     
-    func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive response: URLResponse, completionHandler: @escaping (URLSession.ResponseDisposition) -> Void) {
+    public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive response: URLResponse, completionHandler: @escaping (URLSession.ResponseDisposition) -> Void) {
         dy_safeAsync {
             if let model = self.getFileModel(url: response.url!) {
                 let httpResponse = response as! HTTPURLResponse;
@@ -279,7 +279,7 @@ extension DYDownloadManager: URLSessionDelegate, URLSessionTaskDelegate,URLSessi
         completionHandler(URLSession.ResponseDisposition.allow)
     }
     
-    func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
+    public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
         let url = dataTask.currentRequest?.url
         let array = [UInt8](data)
         let stream = self.streams[(url?.absoluteString)!];

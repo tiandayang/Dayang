@@ -8,11 +8,11 @@
 
 import UIKit
 
-private let animationDuration = 0.25
+let animationDuration = 0.4
 
 class DYPhotoPreviewAnimation: NSObject, UIViewControllerAnimatedTransitioning {
     
-    private var thumbTapView: UIImageView? //点击的view not null
+    private var thumbTapView: UIImageView! //点击的view not null
     
     init(thumbTapView: UIImageView?) {
         super.init()
@@ -42,19 +42,18 @@ class DYPhotoPreviewAnimation: NSObject, UIViewControllerAnimatedTransitioning {
         toVC?.collectionView.isHidden = true
         var endFrame = CGRect.zero
         var startFrame = CGRect.zero
-        if self.thumbTapView != nil {
-            endFrame = scaleImageFrame(image: (self.thumbTapView?.image)!)
-            startFrame = (self.thumbTapView?.superview?.convert((thumbTapView?.frame)!, to: getWindow()))!
-        }
         if self.thumbTapView?.image == nil {
             self.thumbTapView?.image = UIImage(named: "photo_PlaceHolder")
         }
+        endFrame = UIImage.scaleImageFrame(image: (self.thumbTapView?.image)!)
+        startFrame = (self.thumbTapView?.superview?.convert((thumbTapView?.frame)!, to: getWindow()))!
+       
         containerView.insertSubview((toVC?.view)!, aboveSubview: containerView)
         let imageView = UIImageView.init(frame: startFrame)
         imageView.image = self.thumbTapView?.image
         containerView.insertSubview(imageView, aboveSubview: (toVC?.view)!)
         
-        UIView.animate(withDuration: animationDuration, delay: 0, options: .curveLinear, animations: { 
+        UIView.animate(withDuration: animationDuration, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.1, options: .curveLinear, animations: {
             imageView.frame = endFrame
             toVC?.view.alpha = 1
         }) { (finish) in
@@ -76,7 +75,7 @@ class DYPhotoPreviewAnimation: NSObject, UIViewControllerAnimatedTransitioning {
         imageView.image = cell.imageView?.image ?? UIImage(named: "photo_PlaceHolder")
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill
-        imageView.frame = scaleImageFrame(image: imageView.image!)
+        imageView.frame = UIImage.scaleImageFrame(image: imageView.image!)
 
         containerView.addSubview(imageView)
         containerView.addSubview(fromVC.view)
@@ -85,7 +84,7 @@ class DYPhotoPreviewAnimation: NSObject, UIViewControllerAnimatedTransitioning {
     
         if self.thumbTapView != nil && endFrame != nil && rect.contains(endFrame!) {
             cell.isHidden = true
-                UIView.animate(withDuration: animationDuration, animations: {
+            UIView.animate(withDuration: animationDuration, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.1, options: .curveLinear, animations: {
                     fromVC.view.alpha = 0
                     imageView.frame = endFrame!
                 }, completion: { (finish) in
@@ -109,31 +108,6 @@ class DYPhotoPreviewAnimation: NSObject, UIViewControllerAnimatedTransitioning {
             transitionContext.completeTransition(true)
             transitionContext.finishInteractiveTransition()
         }
-    }
-    
-    private func  scaleImageFrame(image: UIImage?) -> CGRect {
-        if image == nil || image?.size ==  CGSize.zero {
-            return CGRect.zero
-        }
-        let screenSize = UIScreen.main.bounds.size
-        let screenScale = screenSize.width / screenSize.height
-        let imageScale = (image?.size.width)! / (image?.size.height)!
-        
-        var x = CGFloat(0)
-        var y = CGFloat(0)
-        var width = CGFloat(0)
-        var height = CGFloat(0)
-        
-        if imageScale > screenScale {
-            width = screenSize.width
-            height = width / imageScale
-            y = (screenSize.height - height) / 2
-        }else{
-           height = screenSize.height
-            width = height * imageScale
-            x = (screenSize.width - width) / 2
-        }
-        return CGRect(x: x, y: y, width: width, height: height)
     }
     
     private func  getWindow() ->UIWindow {

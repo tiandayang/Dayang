@@ -16,6 +16,11 @@ class DYPhotoPreviewController: DYBaseViewController {
     open var thumbTapView: UIImageView?// 点击的view
     open var tapSuperView: UIScrollView? // imageView的滚动父视图  collectionView 或者 tableView
     open var selectIndex: Int = 0 //当前展示的索引
+    
+    //手势
+    fileprivate var panGesture: UIPanGestureRecognizer!
+    fileprivate var originCenter: CGPoint!
+    fileprivate var isTap: Bool = false //是否是点击取消
     weak var delegate: DYPhotoPreviewControllerDelegate?
     
     open var dataArray: Array<DYPhotoPreviewModel>?{
@@ -45,10 +50,13 @@ class DYPhotoPreviewController: DYBaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        configVideo(isDisAppear: false)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        configVideo(isDisAppear: true)
+       
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -67,6 +75,43 @@ class DYPhotoPreviewController: DYBaseViewController {
         view.backgroundColor = .black
     }
     //MARK: Action
+    private func configVideo(isDisAppear: Bool) {
+        let cell = collectionView.visibleCells.first
+        if cell != nil && (cell?.isKind(of: DYPhotoPreviewVideoCell.classForCoder()))!{
+            let videoCell = cell as! DYPhotoPreviewVideoCell
+            videoCell.isDisplay = !isDisAppear
+        }
+    }
+    
+    
+    @objc private func panGestureAction(sender: UIPanGestureRecognizer) {
+        let translation = sender.translation(in: sender.view)
+        var scale = 1 - (translation.y / view.frame.size.height)
+        scale = scale < 0 ? 0 : scale
+        scale = scale > 1 ? 1 : scale
+        switch sender.state {
+        case .possible:
+            break
+        case .began:
+            dismiss(animated: true, completion: nil)
+            break
+        case .changed:
+            self.collectionView.center = CGPoint.init(x: self.originCenter.x + translation.x * scale, y: self.originCenter.y + translation.y);
+            self.collectionView.transform = CGAffineTransform.init(scaleX: scale, y: scale);
+            break
+        default:
+//        .failed:
+//        .cancelled:
+//        .ended:
+            if scale > 0.8 {
+                UIView.animate(withDuration: 0.25, animations: {
+                    self.collectionView.center = self.originCenter;
+                    self.collectionView.transform = CGAffineTransform.identity
+                })
+            }
+            break
+        }
+    }
     
     //MARK: AddNotificatoin
     private func registNotification() {
@@ -78,6 +123,10 @@ class DYPhotoPreviewController: DYBaseViewController {
         collectionView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
+        view.layoutIfNeeded()
+        originCenter = collectionView.center
+        panGesture = UIPanGestureRecognizer.init(target: self, action: #selector(panGestureAction))
+        self.view.addGestureRecognizer(panGesture)
     }
  
     lazy var collectionView: UICollectionView = {
@@ -140,6 +189,7 @@ extension DYPhotoPreviewController: UICollectionViewDelegate, UICollectionViewDa
     }
     
     func dYPhotoPreviewCellSingleTap(index: Int) {
+        isTap = true
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -185,5 +235,12 @@ extension DYPhotoPreviewController: UIViewControllerTransitioningDelegate {
             }
         }
         return DYPhotoPreviewAnimation.init(thumbTapView: self.thumbTapView)
+    }
+    
+    func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        if !isTap {
+            return DYPhotoPercentInteractive.init(gesture: self.panGesture)
+        }
+        return nil
     }
 }
