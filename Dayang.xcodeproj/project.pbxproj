@@ -279,7 +279,7 @@
 			path = Resource;
 			sourceTree = "<group>";
 		};
-		7E1C169B1F5E4EF800CAC4D9 /* FileDownLoad */ = {
+		7E1C169B1F5E4EF800CAC4D9 /* DYFileDownLoad */ = {
 			isa = PBXGroup;
 			children = (
 				7E1C169C1F5E4EF800CAC4D9 /* Controller */,
@@ -287,7 +287,7 @@
 				7E1C169E1F5E4EF800CAC4D9 /* Model */,
 				7E1C169F1F5E4EF800CAC4D9 /* View */,
 			);
-			path = FileDownLoad;
+			path = DYFileDownLoad;
 			sourceTree = "<group>";
 		};
 		7E1C169C1F5E4EF800CAC4D9 /* Controller */ = {
@@ -362,16 +362,17 @@
 		7E47765D1F553EA80017E7EE /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				7E6B182D1FEA4D570077C7B2 /* DYNetWork */,
 				7E4B4DD01FCD07240090E6AB /* DYAVKit */,
-				7E1C169B1F5E4EF800CAC4D9 /* FileDownLoad */,
-				7E47765E1F553EA80017E7EE /* Photos */,
-				7E47766B1F553EA80017E7EE /* SandboxFilePreview */,
+				7E1C169B1F5E4EF800CAC4D9 /* DYFileDownLoad */,
+				7E47765E1F553EA80017E7EE /* DYPhotos */,
+				7E47766B1F553EA80017E7EE /* DYSandboxFilePreview */,
 				7E4776911F553EA80017E7EE /* UIDeviceIdentifier */,
 			);
 			path = Lib;
 			sourceTree = "<group>";
 		};
-		7E47765E1F553EA80017E7EE /* Photos */ = {
+		7E47765E1F553EA80017E7EE /* DYPhotos */ = {
 			isa = PBXGroup;
 			children = (
 				7E01D2F61F5D3A25000937E4 /* Resource */,
@@ -380,7 +381,7 @@
 				7E4776651F553EA80017E7EE /* Model */,
 				7E4776681F553EA80017E7EE /* View */,
 			);
-			path = Photos;
+			path = DYPhotos;
 			sourceTree = "<group>";
 		};
 		7E47765F1F553EA80017E7EE /* Controller */ = {
@@ -429,7 +430,7 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		7E47766B1F553EA80017E7EE /* SandboxFilePreview */ = {
+		7E47766B1F553EA80017E7EE /* DYSandboxFilePreview */ = {
 			isa = PBXGroup;
 			children = (
 				7E47766C1F553EA80017E7EE /* Controller */,
@@ -437,7 +438,7 @@
 				7E4776891F553EA80017E7EE /* Model */,
 				7E47768D1F553EA80017E7EE /* View */,
 			);
-			path = SandboxFilePreview;
+			path = DYSandboxFilePreview;
 			sourceTree = "<group>";
 		};
 		7E47766C1F553EA80017E7EE /* Controller */ = {
@@ -552,6 +553,13 @@
 				7E4B4DD61FCD09560090E6AB /* DYAVCaptureView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		7E6B182D1FEA4D570077C7B2 /* DYNetWork */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DYNetWork;
 			sourceTree = "<group>";
 		};
 		7ED4B77F1F4FD0030065A94F = {

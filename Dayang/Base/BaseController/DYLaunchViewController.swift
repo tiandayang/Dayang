@@ -10,7 +10,10 @@ import UIKit
 
 class DYLaunchViewController: UIViewController,CAAnimationDelegate {
 
-    @IBOutlet weak var imageView: UIImageView!
+    lazy var imageView: UIImageView = {
+        let imageView = self.view.subviews.first as! UIImageView
+        return imageView
+    }()
     override func viewDidLoad() {
         super.viewDidLoad()
 

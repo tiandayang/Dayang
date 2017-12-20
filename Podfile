@@ -11,6 +11,7 @@ pod 'Kingfisher', '~> 4.2'
 pod 'Bugly', '~> 2.4'
 pod 'PKHUD', '~> 5.0'
 pod 'PromiseKit/CorePromise', '4.4'
+pod 'Alamofire', '~> 4.6'
 
 target 'Dayang' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
