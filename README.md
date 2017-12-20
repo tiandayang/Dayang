@@ -9,7 +9,7 @@
 * DYConstant 常量的定义
 * DYThirdPlatformKey 声明 第三方平台的 key 和secret
 * DYConfigThirtPlatForm 配置第三方平台的信息
-## Class 模型对应的类
+## Class 模块对应的类
  不同模块对应的文件夹
  ## Servers
  项目中用的一些工具服务类
