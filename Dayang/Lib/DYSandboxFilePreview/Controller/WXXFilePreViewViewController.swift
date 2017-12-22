@@ -25,7 +25,7 @@ class WXXFilePreViewViewController: UIViewController {
     }
     
     deinit {
-        debugPrint("dealloc:",self)
+        dy_Print("dealloc:\(self)")
     }
     //MARK: LoadData
     private func loadData() {

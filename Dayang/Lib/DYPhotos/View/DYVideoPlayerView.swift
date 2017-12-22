@@ -33,7 +33,7 @@ class DYVideoPlayerView: UIImageView, DYVideoPlayerMenuViewDelegate{
     
     deinit {
         NotificationCenter.default.removeObserver(self)
-        debugPrint("播放器释放")
+        dy_Print("播放器释放")
     }
     
     required init?(coder aDecoder: NSCoder) {

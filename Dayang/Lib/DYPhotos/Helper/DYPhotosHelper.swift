@@ -266,7 +266,7 @@ class DYPhotosHelper {
                 })
                 
             }.catch { (error) in
-                debugPrint(error)
+                dy_Print(error)
                 if complete != nil {
                     DispatchQueue.main.async {
                         complete!(false)
@@ -327,7 +327,7 @@ class DYPhotosHelper {
             })
             
         }.catch { (error) in
-            debugPrint(error)
+            dy_Print(error)
             if complete != nil {
                 DispatchQueue.main.async {
                     complete!(false)

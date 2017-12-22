@@ -14,7 +14,7 @@ public class DYConfigThirtPlatForm {
         configBugly()
         DYLocalFilePathServer.checkLocalPath()
         DYRealmDBServer.configDB()
-        debugPrint(DYLocalFilePathServer.userRootPath())
+        dy_Print(DYLocalFilePathServer.userRootPath())
     }
     
     /// 启动bugly

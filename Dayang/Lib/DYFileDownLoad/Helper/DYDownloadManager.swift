@@ -266,7 +266,7 @@ extension DYDownloadManager: URLSessionDelegate, URLSessionTaskDelegate,URLSessi
                 let httpResponse = response as! HTTPURLResponse;
                 if let length = httpResponse.allHeaderFields["Content-Length"] {
                     let totalSize = Int64((length as! String).toInt()) + model.downloadSize
-                    debugPrint("totalSize:",totalSize)
+                    dy_Print("totalSize:\(totalSize)")
                     let stream = self.streams[(response.url?.absoluteString)!];
                     stream?.open()
                     try! DYRealm.write {

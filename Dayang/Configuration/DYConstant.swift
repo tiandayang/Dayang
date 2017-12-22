@@ -34,3 +34,12 @@ public func dy_safeAsync(_ block: @escaping ()->()) {
     }
 }
 
+public func dy_Print<T>(_ item: T,
+                        file: String = #file,
+                        method: String = #function,
+                        line: Int = #line){
+    #if DYDEBUG
+        print("\((file as NSString).lastPathComponent)[\(line)], \(method): \(item)")
+    #endif
+}
+

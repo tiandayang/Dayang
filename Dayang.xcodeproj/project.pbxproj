@@ -21,6 +21,8 @@
 		7E02BF861F5F9410007BD498 /* DYCloudFileListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E02BF851F5F9410007BD498 /* DYCloudFileListViewController.swift */; };
 		7E02BF881F5F946B007BD498 /* DYCloudFileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E02BF871F5F946B007BD498 /* DYCloudFileModel.swift */; };
 		7E02BF8A1F5F9497007BD498 /* DYCloudFileListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E02BF891F5F9497007BD498 /* DYCloudFileListTableViewCell.swift */; };
+		7E24B7841FEB63EB0016B9F1 /* DYNetConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E24B7831FEB63EB0016B9F1 /* DYNetConfig.swift */; };
+		7E24B7861FEB6BA90016B9F1 /* DYApiConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E24B7851FEB6BA90016B9F1 /* DYApiConfig.swift */; };
 		7E27373E1FD6702B0003CBDF /* DYAVRecordManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E27373D1FD6702B0003CBDF /* DYAVRecordManager.swift */; };
 		7E2737401FD674FC0003CBDF /* DYAVRecordEncode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E27373F1FD674FC0003CBDF /* DYAVRecordEncode.swift */; };
 		7E313AAC1F53B7B800FC426D /* DYPersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E313AAB1F53B7B800FC426D /* DYPersonalViewController.swift */; };
@@ -136,6 +138,8 @@
 		7E02BF851F5F9410007BD498 /* DYCloudFileListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYCloudFileListViewController.swift; sourceTree = "<group>"; };
 		7E02BF871F5F946B007BD498 /* DYCloudFileModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYCloudFileModel.swift; sourceTree = "<group>"; };
 		7E02BF891F5F9497007BD498 /* DYCloudFileListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYCloudFileListTableViewCell.swift; sourceTree = "<group>"; };
+		7E24B7831FEB63EB0016B9F1 /* DYNetConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DYNetConfig.swift; sourceTree = "<group>"; };
+		7E24B7851FEB6BA90016B9F1 /* DYApiConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DYApiConfig.swift; sourceTree = "<group>"; };
 		7E27373D1FD6702B0003CBDF /* DYAVRecordManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DYAVRecordManager.swift; sourceTree = "<group>"; };
 		7E27373F1FD674FC0003CBDF /* DYAVRecordEncode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DYAVRecordEncode.swift; sourceTree = "<group>"; };
 		7E313AAB1F53B7B800FC426D /* DYPersonalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYPersonalViewController.swift; sourceTree = "<group>"; };
@@ -558,6 +562,7 @@
 		7E6B182D1FEA4D570077C7B2 /* DYNetWork */ = {
 			isa = PBXGroup;
 			children = (
+				7E24B7831FEB63EB0016B9F1 /* DYNetConfig.swift */,
 			);
 			path = DYNetWork;
 			sourceTree = "<group>";
@@ -734,6 +739,7 @@
 				7ED4B7D61F50097B0065A94F /* DYConstant.swift */,
 				7E313AB31F53C7A000FC426D /* DYThirdPlatformKey.swift */,
 				7E313AB51F53CA2A00FC426D /* DYConfigThirtPlatForm.swift */,
+				7E24B7851FEB6BA90016B9F1 /* DYApiConfig.swift */,
 			);
 			path = Configuration;
 			sourceTree = "<group>";
@@ -917,6 +923,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Dayang/Pods-Dayang-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
@@ -932,6 +939,7 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
@@ -967,6 +975,7 @@
 				7EB237691F5E783900CDB011 /* DYDownloadListViewController.swift in Sources */,
 				7EEEC0691F57B68700A84B98 /* DYPhotoPreviewModel.swift in Sources */,
 				7ED4B7EC1F500F580065A94F /* UIFontExt.swift in Sources */,
+				7E24B7841FEB63EB0016B9F1 /* DYNetConfig.swift in Sources */,
 				7E02BF881F5F946B007BD498 /* DYCloudFileModel.swift in Sources */,
 				7E313ABD1F540EC700FC426D /* DYBaseTableViewCell.swift in Sources */,
 				7ED4B7DB1F500A890065A94F /* StringExt.swift in Sources */,
@@ -1029,6 +1038,7 @@
 				7ED4B7BC1F4FF4B50065A94F /* DYBaseModel.swift in Sources */,
 				7E4B4DD41FCD084C0090E6AB /* DYAVKitHelper.swift in Sources */,
 				7E313ABB1F54071900FC426D /* DYPersonUIModel.swift in Sources */,
+				7E24B7861FEB6BA90016B9F1 /* DYApiConfig.swift in Sources */,
 				7ED4B7EE1F5011D10065A94F /* UIButtonExt.swift in Sources */,
 				7E4776BE1F5574770017E7EE /* DYPhotosHeader.swift in Sources */,
 				7ED4B7B91F4FF4900065A94F /* DYBaseViewController.swift in Sources */,
@@ -1155,6 +1165,7 @@
 				INFOPLIST_FILE = Dayang/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -D DYDEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wxx.Dayang;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Dayang/Dayang-Bridging-Header.h";

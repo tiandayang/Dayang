@@ -210,11 +210,11 @@ public class DYAVRecordManager: NSObject {
             let input = try AVCaptureDeviceInput.init(device: micDevice)
             return input
         }catch {
-            debugPrint("获取麦克风出错")
+            dy_Print("获取麦克风出错")
             return nil
         }
     }
-    debugPrint("获取麦克风出错")
+    dy_Print("获取麦克风出错")
     return nil
     }()
     // 后置摄像头输入

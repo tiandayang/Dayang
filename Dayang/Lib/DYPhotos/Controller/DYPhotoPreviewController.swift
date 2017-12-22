@@ -203,14 +203,14 @@ extension DYPhotoPreviewController: UICollectionViewDelegate, UICollectionViewDa
                 if !(photoModel?.isVideo)! {
                     DYPhotosHelper.saveImageToAlbum(image: (photoModel?.image)!, complete: { (finish) in
                         let title = finish ? "保存成功" : "保存失败"
-                        debugPrint(title)
+                        dy_Print(title)
                         DYHUDHelper.showSuccessHUD(inView: self.view, title: title, isSuccess: finish)
                     })
                 }else{
                     if photoModel?.videoPath != nil {
                         DYPhotosHelper.saveVideoToAlbum(videoPath:(photoModel?.videoPath)!, complete: { (finish) in
                             let title = finish ? "保存成功" : "保存失败"
-                            debugPrint(title)
+                            dy_Print(title)
                             DYHUDHelper.showSuccessHUD(inView: self.view, title: title, isSuccess: finish)
                         })
                     }

@@ -24,7 +24,7 @@ public class DYAVRecordEncode: NSObject {
         do {
             try avWriter = AVAssetWriter.init(url: url, fileType: AVFileTypeMPEG4)
         } catch _ {
-            debugPrint("init AVWriter error")
+            dy_Print("init AVWriter error")
             return
         }
         avWriter.shouldOptimizeForNetworkUse = true
@@ -85,7 +85,7 @@ public class DYAVRecordEncode: NSObject {
             }
             //写入失败
             if avWriter.status == .failed {
-                debugPrint(avWriter.error?.localizedDescription as Any)
+                dy_Print(avWriter.error?.localizedDescription as Any)
                return false
             }
             //拼接buffer
