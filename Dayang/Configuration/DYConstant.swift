@@ -39,7 +39,7 @@ public func dy_Print<T>(_ item: T,
                         method: String = #function,
                         line: Int = #line){
     #if DYDEBUG
-        print("\((file as NSString).lastPathComponent)[\(line)], \(method): \(item)")
+        print("\((file as NSString).lastPathComponent).line:[\(line)],method:\(method):\(item)")
     #endif
 }
 
