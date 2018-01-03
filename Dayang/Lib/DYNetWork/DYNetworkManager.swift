@@ -56,7 +56,7 @@ public class DYNetworkManager: NSObject {
                         error = NSError.init(domain: DYNetworkDomain, code: errorCode.netError.rawValue, userInfo: nil)
                     }
                     dy_safeAsync {
-                        complete?(error!, nil)
+                        complete?(error! as NSError, nil)
                     }
                     return
                 }
@@ -80,7 +80,7 @@ public class DYNetworkManager: NSObject {
                         error = NSError.init(domain: DYNetworkDomain, code: errorCode.serverError.rawValue, userInfo: nil)
                     }
                     dy_safeAsync {
-                        complete?(error!, nil)
+                        complete?(error! as NSError, nil)
                     }
                 }
                 

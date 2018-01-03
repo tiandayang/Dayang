@@ -25,7 +25,9 @@ class DYHomeViewController: DYBaseTableViewController {
     //MARK: LoadData
     private func loadData() {
         DYHomeModel.getHomePageRequest { (error, result) -> (Void) in
-            dy_Print("error:\(error) \n result:\(String(describing: result))")
+            if error.code == errorCode.success.rawValue {
+                DYHUDHelper.showHUD(inView: self.view, title: "请求成功")
+            }
         }
     }
     

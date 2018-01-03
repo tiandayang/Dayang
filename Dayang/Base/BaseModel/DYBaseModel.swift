@@ -8,10 +8,11 @@
 
 import UIKit
 import RealmSwift
+import HandyJSON
 
 let DYRealm = try! Realm()
 
-class DYBaseModel: Object,NSCopying {
+class DYBaseModel: Object,NSCopying,HandyJSON {
     
     func copy(with zone: NSZone? = nil) -> Any {
        return self

@@ -129,7 +129,7 @@ extension DYCache {
             let resourceKeys = [URLResourceKey.isDirectoryKey,URLResourceKey.contentModificationDateKey,URLResourceKey.totalFileAllocatedSizeKey]
             if let fileEnumerator = FileManager.default.enumerator(at: URL.init(fileURLWithPath: cacheURL), includingPropertiesForKeys: resourceKeys){
                 let expireDate = Date.init(timeIntervalSinceNow: TimeInterval(-autoDeleteTime))
-                let cacheFiles = Dictionary<URL,URLResourceValues>() as NSDictionary
+                let cacheFiles = NSMutableDictionary()
                 var cacheCurrentSize = 0
                 var urlsToDel = [URL]()
                 for url in fileEnumerator {
@@ -147,7 +147,7 @@ extension DYCache {
                         }
                      let fileSize = att.totalFileAllocatedSize ?? 0
                         cacheCurrentSize += fileSize
-                        cacheFiles.setValue(att, forKey: url.path)
+                        cacheFiles.setObject(att, forKey: url.path as NSCopying)
                     } catch _{}
                 }
                 

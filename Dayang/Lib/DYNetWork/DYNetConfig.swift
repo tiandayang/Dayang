@@ -22,4 +22,4 @@ public enum errorCode: Int {
     case loginFaild = 9000 //登录失败
 }
 
-typealias DYRequestCompleteBlock = (_ error: Error, _ result: [String:Any]?) -> (Void)
+typealias DYRequestCompleteBlock = (_ error: NSError, _ result: [String:Any]?) -> (Void)

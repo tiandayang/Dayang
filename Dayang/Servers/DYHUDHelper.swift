@@ -51,7 +51,7 @@ class DYHUDHelper {
     ///   - content: hud的contentType
     ///   - complete: 结束后的回调
     public class func showHUD(inView: UIView,content: HUDContentType, complete: ((_ finish: Bool) -> Void)?) {
-        HUD.flash(content, onView: inView, delay: 0.8, completion: complete)
+        HUD.flash(content, onView: inView, delay: 1.5, completion: complete)
     }
     
     public class func showProgressHUD(inView: UIView, progress: Float) {
