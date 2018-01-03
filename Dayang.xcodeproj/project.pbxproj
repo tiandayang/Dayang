@@ -86,6 +86,9 @@
 		7E4B4DD71FCD09560090E6AB /* DYAVCaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4B4DD61FCD09560090E6AB /* DYAVCaptureView.swift */; };
 		7E4B4DD91FCD09770090E6AB /* DYVideoRecorderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4B4DD81FCD09770090E6AB /* DYVideoRecorderController.swift */; };
 		7E4B4DFB1FCD71DF0090E6AB /* DYCaptureButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4B4DFA1FCD71DF0090E6AB /* DYCaptureButton.swift */; };
+		7E6B89461FFC7AF000735D78 /* DYNetCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6B89451FFC7AF000735D78 /* DYNetCache.swift */; };
+		7E6B89481FFC90BB00735D78 /* DYNetWorkServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6B89471FFC90BB00735D78 /* DYNetWorkServer.swift */; };
+		7E6B894A1FFC926900735D78 /* DYHomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6B89491FFC926900735D78 /* DYHomeModel.swift */; };
 		7E74A4B51FDF7F120029F616 /* DYPhotoPercentInteractive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E74A4B41FDF7F120029F616 /* DYPhotoPercentInteractive.swift */; };
 		7EACB22F1F7DFE97000BD8D9 /* ThreadExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EACB22E1F7DFE97000BD8D9 /* ThreadExt.swift */; };
 		7EB237691F5E783900CDB011 /* DYDownloadListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB237681F5E783900CDB011 /* DYDownloadListViewController.swift */; };
@@ -208,6 +211,9 @@
 		7E4B4DD61FCD09560090E6AB /* DYAVCaptureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DYAVCaptureView.swift; sourceTree = "<group>"; };
 		7E4B4DD81FCD09770090E6AB /* DYVideoRecorderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DYVideoRecorderController.swift; sourceTree = "<group>"; };
 		7E4B4DFA1FCD71DF0090E6AB /* DYCaptureButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYCaptureButton.swift; sourceTree = "<group>"; };
+		7E6B89451FFC7AF000735D78 /* DYNetCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DYNetCache.swift; sourceTree = "<group>"; };
+		7E6B89471FFC90BB00735D78 /* DYNetWorkServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DYNetWorkServer.swift; sourceTree = "<group>"; };
+		7E6B89491FFC926900735D78 /* DYHomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DYHomeModel.swift; sourceTree = "<group>"; };
 		7E74A4B41FDF7F120029F616 /* DYPhotoPercentInteractive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DYPhotoPercentInteractive.swift; sourceTree = "<group>"; };
 		7EACB22E1F7DFE97000BD8D9 /* ThreadExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadExt.swift; sourceTree = "<group>"; };
 		7EB237681F5E783900CDB011 /* DYDownloadListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYDownloadListViewController.swift; sourceTree = "<group>"; };
@@ -582,6 +588,7 @@
 				7E24B7831FEB63EB0016B9F1 /* DYNetConfig.swift */,
 				7E072E731FF33D8100C63F76 /* DYBaseRequest.swift */,
 				7E072E771FF350A800C63F76 /* DYNetworkManager.swift */,
+				7E6B89451FFC7AF000735D78 /* DYNetCache.swift */,
 			);
 			path = DYNetWork;
 			sourceTree = "<group>";
@@ -657,6 +664,7 @@
 				7E4776551F54F8860017E7EE /* DYActionSheetHelper.swift */,
 				7E010F641F58FF8B00D593FC /* DYHUDHelper.swift */,
 				7EEC91C41F74DFCA00CF9707 /* DYRealmDBServer.swift */,
+				7E6B89471FFC90BB00735D78 /* DYNetWorkServer.swift */,
 			);
 			path = Servers;
 			sourceTree = "<group>";
@@ -724,6 +732,7 @@
 		7ED4B7C81F4FFC210065A94F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				7E6B89491FFC926900735D78 /* DYHomeModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1005,6 +1014,7 @@
 				7E4776BB1F553EA80017E7EE /* WXXFileListCollectionView.swift in Sources */,
 				7E02BF861F5F9410007BD498 /* DYCloudFileListViewController.swift in Sources */,
 				7E072E761FF34E8D00C63F76 /* UIDeviceExt.swift in Sources */,
+				7E6B89461FFC7AF000735D78 /* DYNetCache.swift in Sources */,
 				7EB2376F1F5E788C00CDB011 /* DYDownloadListTableViewCell.swift in Sources */,
 				7E47E46D1FF4E6FD00E331D1 /* DYCache.swift in Sources */,
 				7ED4B7C31F4FF7F20065A94F /* TableViewExt.swift in Sources */,
@@ -1028,6 +1038,7 @@
 				7E74A4B51FDF7F120029F616 /* DYPhotoPercentInteractive.swift in Sources */,
 				7E4776541F54F82F0017E7EE /* DYAlertViewHelper.swift in Sources */,
 				7E4776B71F553EA80017E7EE /* WXXCellAnimation.swift in Sources */,
+				7E6B894A1FFC926900735D78 /* DYHomeModel.swift in Sources */,
 				7ED4B7F91F523CD90065A94F /* DYLaunchViewController.swift in Sources */,
 				7E47769B1F553EA80017E7EE /* DYPhotoListCollectionCell.swift in Sources */,
 				7E010F671F59164200D593FC /* DYVideoPlayerView.swift in Sources */,
@@ -1036,6 +1047,7 @@
 				7E47769C1F553EA80017E7EE /* WXXFileListViewController.swift in Sources */,
 				7ED4B7BA1F4FF4900065A94F /* DYRootViewController.swift in Sources */,
 				7EC26D341FE1381D0077EDFE /* UIImageExt.swift in Sources */,
+				7E6B89481FFC90BB00735D78 /* DYNetWorkServer.swift in Sources */,
 				7ED4B7B81F4FF4900065A94F /* DYBaseTableViewController.swift in Sources */,
 				7ED4B7E61F500F1F0065A94F /* ArrayExt.swift in Sources */,
 				7E4B4DFB1FCD71DF0090E6AB /* DYCaptureButton.swift in Sources */,

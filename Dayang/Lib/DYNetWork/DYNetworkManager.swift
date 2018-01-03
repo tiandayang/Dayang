@@ -27,31 +27,50 @@ public class DYNetworkManager: NSObject {
         httpHeader = header
     }
     
-    func dyPost(request: DYBaseRequest,complete: DYRequestCompleteBlock?){
+    func dyGet(url: String, isCache: Bool = false, complete: DYRequestCompleteBlock?) {
+        let request = DYBaseRequest()
+        request.url = url
+        request.method = .get
+        request.isCache = isCache
+        dyRequest(request: request, complete: complete)
+    }
+        
+    func dyPost(url:String, params: Dictionary<String, Any>?,isCache: Bool = false,complete: DYRequestCompleteBlock?) {
+        let request = DYBaseRequest()
+        request.url = url
+        request.params = params
+        request.isCache = isCache
+        dyRequest(request: request, complete: complete)
+    }
+    
+    func dyRequest(request: DYBaseRequest,complete: DYRequestCompleteBlock?){
         if request.isCache {
-            
-        }else{
-           let method = HTTPMethod(rawValue: request.method.rawValue)!
-            Alamofire.request(request.url, method: method, parameters: request.params, encoding: JSONEncoding.default, headers: httpHeader).responseData(completionHandler: { (response) in
+            DYNetCache.getCache(request: request, complete: complete)
+        }
+        let method = HTTPMethod(rawValue: request.method.rawValue)!
+        Alamofire.request(request.url, method: method, parameters: request.params, encoding: JSONEncoding.default, headers: httpHeader).responseData(completionHandler: { (response) in
+            DispatchQueue.global().async {
                 if response.data == nil {
                     var error = response.error
                     if error == nil {
                         error = NSError.init(domain: DYNetworkDomain, code: errorCode.netError.rawValue, userInfo: nil)
                     }
-                    complete?(error!, nil)
+                    dy_safeAsync {
+                        complete?(error!, nil)
+                    }
                     return
                 }
                 
                 do {
-                    
-                    if let dict = try JSONSerialization.jsonObject(with: response.data!, options: .mutableContainers) as? [String : Any] {
-//                      let code = dict["code"] as! Int  根据自己接口结构而定
-                        let code = (response.error as NSError?)?.code ?? 200
+                    if let dict = try JSONSerialization.jsonObject(with: response.data!, options: .allowFragments) as? [String : Any] {
+                        let code = dict["code"] as! Int  // 根据自己接口结构而定
+                        // let code = (response.error as NSError?)?.code ?? 200
                         let error = NSError(domain: DYNetworkDomain, code: code, userInfo: nil)
-                        complete?(error, dict)
+                        dy_safeAsync {
+                            complete?(error, dict)
+                        }
                         if request.isCache {
-//                            let cache = NSKeyedArchiver.archivedData(withRootObject: dict)
-//                            TCZNetCache.storeCache(resquest: request, data: cache)
+                            DYNetCache.store(request: request, data: response.data!)
                         }
                     }
                     
@@ -60,10 +79,12 @@ public class DYNetworkManager: NSObject {
                     if error == nil {
                         error = NSError.init(domain: DYNetworkDomain, code: errorCode.serverError.rawValue, userInfo: nil)
                     }
-                    complete?(error!, nil)
+                    dy_safeAsync {
+                        complete?(error!, nil)
+                    }
                 }
-
-            })
-        }
+                
+            }
+        })
     }
 }

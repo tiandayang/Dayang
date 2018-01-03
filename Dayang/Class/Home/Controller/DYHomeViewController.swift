@@ -24,7 +24,9 @@ class DYHomeViewController: DYBaseTableViewController {
     }
     //MARK: LoadData
     private func loadData() {
-        
+        DYHomeModel.getHomePageRequest { (error, result) -> (Void) in
+            dy_Print("error:\(error) \n result:\(String(describing: result))")
+        }
     }
     
     private func initControllerFirstData() {

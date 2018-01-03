@@ -75,17 +75,25 @@ extension DYCache {
         }
     }
     
-    public func getObject(key: String) -> Data? {
+    public func getObject(key: String, complete: ((_ data: Data?)->(Void))?) {
+        guard complete != nil else {
+            return
+        }
         if let data = self.memoryCache.object(forKey: key as AnyObject) {
-            return data as? Data
+            dy_safeAsync {
+                complete!(data as? Data)
+            }
         }else{
-            let path = self.getCachePath(key: key)
-            if FileManager.default.fileExists(atPath: path) {
-                let data = NSData.init(contentsOfFile: path)
-                return data as Data?
+            self.ioQueue.async {
+                let path = self.getCachePath(key: key)
+                if FileManager.default.fileExists(atPath: path) {
+                    let data = NSData.init(contentsOfFile: path)
+                    dy_safeAsync {
+                        complete!(data as Data?)
+                    }
+                }
             }
         }
-        return nil
     }
     
     public func remove(key: String) {
