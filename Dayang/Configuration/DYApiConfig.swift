@@ -24,23 +24,23 @@ public enum DYNetworkModuleBaseURL: String{
         case .local:
             switch self {
             case .home:
-                return "http://192.168.0.122:4000/"
+                return "http://192.168.0.100:4000"
             case .person:
-                return "http://192.168.0.122:4000/"
+                return "http://192.168.0.100:4000"
             }
         case .develop:
             switch self {
             case .home:
-                return "http://www.developDyHome.com/"
+                return "http://www.developDyHome.com"
             case .person:
-                return "http://www.developDyPerson.com/"
+                return "http://www.developDyPerson.com"
             }
         case .product:
             switch self {
             case .home:
-                return "http://www.dyHome.com/"
+                return "http://www.dyHome.com"
             case .person:
-                return "http://www.dyPerson.com/"
+                return "http://www.dyPerson.com"
             }
         }
     }

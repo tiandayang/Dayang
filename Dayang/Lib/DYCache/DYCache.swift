@@ -147,7 +147,7 @@ extension DYCache {
                         }
                      let fileSize = att.totalFileAllocatedSize ?? 0
                         cacheCurrentSize += fileSize
-                        cacheFiles.setObject(att, forKey: url.path as NSCopying)
+                        cacheFiles.setObject(att, forKey: url.path as NSString)
                     } catch _{}
                 }
                 
@@ -157,14 +157,15 @@ extension DYCache {
                 if self.maxDiskCacheSize > 0 && cacheCurrentSize > self.maxDiskCacheSize {
                    let desiredCacheSize = self.maxDiskCacheSize / 2
                  
-                    let sortFiles: [URL] = cacheFiles.keysSortedByValue(options: NSSortOptions.concurrent, usingComparator: { (obj1, obj2) -> ComparisonResult in
+                    let sortFiles: [String] = cacheFiles.keysSortedByValue(options: NSSortOptions.concurrent, usingComparator: { (obj1, obj2) -> ComparisonResult in
                         let obj1 = obj1 as! URLResourceValues
                         let obj2 = obj2 as! URLResourceValues
                         return obj1.contentModificationDate!.compare(obj2.contentModificationDate!)
-                    }) as! [URL]
+                    }) as! [String]
                     for url in sortFiles {
-                        let att = cacheFiles[url.path] as! URLResourceValues
+                        let att = cacheFiles[url] as! URLResourceValues
                         let size = att.totalFileAllocatedSize ?? 0
+                        WXXFileServer.removeFileAtPath(path: url)
                         cacheCurrentSize -= size
                         if cacheCurrentSize < desiredCacheSize {
                             break

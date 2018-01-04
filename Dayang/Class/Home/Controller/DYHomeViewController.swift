@@ -10,6 +10,8 @@ import UIKit
 
 class DYHomeViewController: DYBaseTableViewController {
     //MARK: ControllerLifeCycle
+    var homeModel: DYHomeModel? //
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initControllerFirstData()
@@ -24,9 +26,13 @@ class DYHomeViewController: DYBaseTableViewController {
     }
     //MARK: LoadData
     private func loadData() {
-        DYHomeModel.getHomePageRequest { (error, result) -> (Void) in
-            if error.code == errorCode.success.rawValue {
+        DYHomeModel.getHomePageRequest { (error, model) -> (Void) in
+            if error.code == errorCode.success.rawValue || error.code == errorCode.cache.rawValue {
                 DYHUDHelper.showHUD(inView: self.view, title: "请求成功")
+                self.homeModel = model
+                let bannerView = self.tableView.tableHeaderView as! DYBannerView
+                bannerView.bannerArray = self.homeModel?.banner
+                self.tableView.reloadData()
             }
         }
     }
@@ -48,8 +54,8 @@ class DYHomeViewController: DYBaseTableViewController {
     //MARK: CreateUI
     private func createUI() {
         let bannerView = DYBannerView(frame:CGRect.init(x: 0, y: 0, width: WINDOW_WIDTH, height: 200))
-        let bannerArray = DYBannerModel.getBannerArray()
-        bannerView.bannerArray = bannerArray
+//        let bannerArray = DYBannerModel.getBannerArray()
+//        bannerView.bannerArray = bannerArray
         self.tableView.tableHeaderView = bannerView
         
         bannerView.bannerTapBlock = { [weak self] (bannerModel) in

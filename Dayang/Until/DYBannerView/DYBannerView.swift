@@ -47,6 +47,7 @@ class DYBannerView: UIView {
     
     func addTimer() {
         if autoScroll && (bannerArray?.count ?? 0) > 0 {
+            deinitTimer()
             timer = Timer.dy_scheduledTimer(timeInterval: timeInterval, repeats: true, block: { [weak self] in
                 self?.autoScrollAction()
             })
@@ -195,7 +196,7 @@ class DYBannerCollectionCell: UICollectionViewCell {
 }
 
 class DYBannerModel: DYBaseModel {
-    var id: String?
+    var bannerId: String?
     var name: String?
     var icon: String?
     var isVideo:Bool {
