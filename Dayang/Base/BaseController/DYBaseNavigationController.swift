@@ -15,7 +15,7 @@ class DYBaseNavigationController: UINavigationController {
         navigationBar.isTranslucent = false
         navigationBar.tintColor = .black
         if #available(iOS 11.0, *) {
-            navigationBar.prefersLargeTitles = true
+            navigationBar.prefersLargeTitles = false
         } else {
             // Fallback on earlier versions
         }

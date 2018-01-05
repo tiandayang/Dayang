@@ -15,6 +15,11 @@ public class DYNetworkManager: NSObject {
     
     public static let shared = DYNetworkManager()
     var httpHeader: Dictionary<String, String>!
+    lazy var httpManager: SessionManager = {
+        let config = URLSessionConfiguration.default
+        config.timeoutIntervalForRequest = 15;  //设置网络请求最大时长
+        return SessionManager(configuration:config)
+    }()
     
     override init() {
         var header: [String: String] = [:]
@@ -48,9 +53,9 @@ public class DYNetworkManager: NSObject {
             DYNetCache.getCache(request: request, complete: complete)
         }
         let method = HTTPMethod(rawValue: request.method.rawValue)!
-        Alamofire.request(request.url, method: method, parameters: request.params, encoding: JSONEncoding.default, headers: httpHeader).responseData(completionHandler: { (response) in
+        self.httpManager.request(request.url, method: method, parameters: request.params, encoding: JSONEncoding.default, headers: httpHeader).responseData(completionHandler: { (response) in
             DispatchQueue.global().async {
-                if response.data == nil {
+                if response.data == nil || response.data?.count == 0{
                     var error = response.error
                     if error == nil {
                         error = NSError.init(domain: DYNetworkDomain, code: errorCode.netError.rawValue, userInfo: nil)
@@ -58,6 +63,7 @@ public class DYNetworkManager: NSObject {
                     dy_safeAsync {
                         complete?(error! as NSError, nil)
                     }
+                    dy_Print("\n error:\(String(describing: response.error))\n header:\(self.httpHeader)\n params:\(request.params ?? [:])")
                     return
                 }
                 
@@ -72,6 +78,7 @@ public class DYNetworkManager: NSObject {
                         if request.isCache {
                             DYNetCache.store(request: request, data: response.data!)
                         }
+                        dy_Print("\n params:\(request.params ?? [:]) \n response:\(dict)\n header:\(self.httpHeader)")
                     }
                     
                 } catch {
@@ -83,7 +90,6 @@ public class DYNetworkManager: NSObject {
                         complete?(error! as NSError, nil)
                     }
                 }
-                
             }
         })
     }

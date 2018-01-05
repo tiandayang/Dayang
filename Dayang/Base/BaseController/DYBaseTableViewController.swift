@@ -29,8 +29,7 @@ class DYBaseTableViewController: DYBaseViewController {
         dataArray = [Array<Any>]()
     }
     //MARK: Action
-  
-    
+
     //MARK: AddNotificatoin
     private func registNotification() {
         

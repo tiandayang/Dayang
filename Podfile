@@ -5,14 +5,15 @@ pod 'SnapKit', '~> 4.0' # swift 4.0
 pod 'RealmSwift', '~> 3.0'  # swift 4.0
 pod 'KeychainAccess', '~> 3.1'
 pod 'IQKeyboardManagerSwift', '~> 5.0'  # swift 4.0
-pod 'ReactiveCocoa', '7.0.0-alpha.2'
+pod 'RxSwift', '~> 4.1' # swift 4.0
+pod 'RxCocoa', '~> 4.1'# swift 4.0
 pod 'MJRefresh’, '3.1.15'
 pod 'Kingfisher', '~> 4.2'  # swift 4.0
 pod 'Bugly', '~> 2.4'
 pod 'PKHUD', '~> 5.0'
 pod 'PromiseKit/CorePromise', '4.4'
 pod 'Alamofire', '~> 4.6' # swift 4.0
-pod ‘HandyJSON’, ‘4.0.0-beta.1’ # swift 4.0
+pod 'HandyJSON', ‘4.0.0-beta.1’ # swift 4.0
 
 target 'Dayang' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks

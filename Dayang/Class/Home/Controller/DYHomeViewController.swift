@@ -28,25 +28,35 @@ class DYHomeViewController: DYBaseTableViewController {
     private func loadData() {
         DYHomeModel.getHomePageRequest { (error, model) -> (Void) in
             if error.code == errorCode.success.rawValue || error.code == errorCode.cache.rawValue {
-                DYHUDHelper.showHUD(inView: self.view, title: "请求成功")
                 self.homeModel = model
                 let bannerView = self.tableView.tableHeaderView as! DYBannerView
                 bannerView.bannerArray = self.homeModel?.banner
                 self.tableView.reloadData()
+            }else{
+                DYHUDHelper.showHUD(inView: self.view, title: error.localizedDescription)
             }
+            self.tableView.mj_header.endRefreshing()
         }
     }
     
     private func initControllerFirstData() {
         self.title = "首页"
         setLeftButtonItemWithImage(image: UIImage(named: "personalCenter")!)
-        
     }
     //MARK: Action
     override func didClickNavigationBarLeftButton() {
         let personVC = DYPersonalViewController()
         self.navigationController?.pushViewController(personVC, animated: true)
     }
+    
+    @objc private func footerRefresh() {
+        tableView.mj_footer.endRefreshingWithNoMoreData()
+    }
+    
+    @objc private func headerRefresh() {
+        loadData()
+    }
+    
     //MARK: AddNotificatoin
     private func registNotification() {
         
@@ -77,6 +87,8 @@ class DYHomeViewController: DYBaseTableViewController {
             photoPreviewVC.tapSuperView = bannerView.collectionView
             self?.present(photoPreviewVC, animated: true, completion: nil)
         }
+        
+        tableView.dy_addHeaderFooterRefresh(target: self, headerSelector: #selector(headerRefresh), footerSelector: #selector(footerRefresh))
     }
     //MARK: Helper
     

@@ -8,8 +8,8 @@
 
 import Foundation
 import UIKit
-import ReactiveSwift
-import ReactiveCocoa
+import RxSwift
+import RxCocoa
 
 extension UIButton {
     
@@ -47,14 +47,6 @@ extension UIButton {
     class func dyButton(bgImage: UIImage?, heBgImage: UIImage?) -> UIButton {
         
         return dyButton(title: nil, image: nil, heImage: nil, bgImage: bgImage, heBgImage: heBgImage)
-    }
-    
-    func tappedBlock(tapped:((_ button: UIButton)->())?) {
-        self.reactive.controlEvents(.touchUpInside).observeValues { (button) in
-            if tapped != nil {
-                tapped!(button)
-            }
-        }
     }
 }
 

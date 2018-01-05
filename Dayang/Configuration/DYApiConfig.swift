@@ -24,9 +24,9 @@ public enum DYNetworkModuleBaseURL: String{
         case .local:
             switch self {
             case .home:
-                return "http://192.168.0.100:4000"
+                return "http://192.168.0.99:4000"
             case .person:
-                return "http://192.168.0.100:4000"
+                return "http://192.168.0.99:4000"
             }
         case .develop:
             switch self {

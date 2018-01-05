@@ -10,11 +10,5 @@ import UIKit
 
 extension UITextField {
     
-    func textChangeBlock(change: ((_ text: String)->())?) {
-        self.reactive.controlEvents(.allEditingEvents).observeValues { (textField) in
-            if change != nil {
-                change!(textField.text!)
-            }
-        }
-    }
+
 }

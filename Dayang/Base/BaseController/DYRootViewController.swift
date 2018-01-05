@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DYRootViewController: DYBaseViewController {
+class DYRootViewController: UIViewController {
     //MARK: ControllerLifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
