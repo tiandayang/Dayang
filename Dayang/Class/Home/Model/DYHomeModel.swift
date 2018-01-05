@@ -8,19 +8,22 @@
 
 import UIKit
 import HandyJSON
+import RealmSwift
 
 class DYHomeModel: DYBaseModel {
     
     var banner:[DYBannerModel]?
+    var code: String?
+    var msg: String?
     
     public class func getHomePageRequest(complete: ((_ error: NSError,_ homeModel: DYHomeModel?)->(Void))?) {
         
-        DYNetWorkServer.post(path: "/homeList", module: .home, params: nil, isCache: true) { (error, result) -> (Void) in
+        DYNetWorkServer.post(path: "/homeList", module: .home, params: nil, isCache: true) { (error, data ,result) -> (Void) in
             guard complete != nil else{
                 return;
             }
             DispatchQueue.global().async {
-                if (error.code == errorCode.success.rawValue || error.code == errorCode.cache.rawValue)  && result != nil {
+                if (error.code == errorCode.success.rawValue || error.code == errorCode.cache.rawValue)  && data != nil {
                     let model = JSONDeserializer<DYHomeModel>.deserializeFrom(dict: result! as NSDictionary)
                     dy_safeAsync {
                         complete!(error,model)

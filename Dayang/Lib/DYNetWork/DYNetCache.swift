@@ -22,7 +22,7 @@ class DYNetCache {
                 if let dict = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String : Any] {
                     let error = NSError.init(domain: DYNetworkDomain, code: errorCode.cache.rawValue, userInfo: nil)
                     dy_safeAsync {
-                        complete?(error, dict)
+                        complete?(error,data,dict)
                     }
                 }
             } catch {}

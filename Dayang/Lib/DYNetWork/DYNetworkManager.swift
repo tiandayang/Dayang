@@ -61,7 +61,7 @@ public class DYNetworkManager: NSObject {
                         error = NSError.init(domain: DYNetworkDomain, code: errorCode.netError.rawValue, userInfo: nil)
                     }
                     dy_safeAsync {
-                        complete?(error! as NSError, nil)
+                        complete?(error! as NSError, nil, nil)
                     }
                     dy_Print("\n error:\(String(describing: response.error))\n header:\(self.httpHeader)\n params:\(request.params ?? [:])")
                     return
@@ -73,7 +73,7 @@ public class DYNetworkManager: NSObject {
                         // let code = (response.error as NSError?)?.code ?? 200
                         let error = NSError(domain: DYNetworkDomain, code: code, userInfo: nil)
                         dy_safeAsync {
-                            complete?(error, dict)
+                            complete?(error, response.result.value, dict)
                         }
                         if request.isCache {
                             DYNetCache.store(request: request, data: response.data!)
@@ -87,7 +87,7 @@ public class DYNetworkManager: NSObject {
                         error = NSError.init(domain: DYNetworkDomain, code: errorCode.serverError.rawValue, userInfo: nil)
                     }
                     dy_safeAsync {
-                        complete?(error! as NSError, nil)
+                        complete?(error! as NSError, nil, nil)
                     }
                 }
             }
