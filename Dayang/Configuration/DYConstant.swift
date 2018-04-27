@@ -38,7 +38,7 @@ public func dy_Print<T>(_ item: T,
                         file: String = #file,
                         method: String = #function,
                         line: Int = #line){
-    #if DYDEBUG
+    #if DEBUG
         print("\((file as NSString).lastPathComponent).line:[\(line)],method:\(method):\(item)")
     #endif
 }
