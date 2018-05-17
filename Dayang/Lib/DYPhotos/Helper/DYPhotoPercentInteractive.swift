@@ -13,11 +13,17 @@ class DYPhotoPercentInteractive: UIPercentDrivenInteractiveTransition {
     var panGesture: UIPanGestureRecognizer!
     var transitionContext: UIViewControllerContextTransitioning!
     var isFirst: Bool = true
+    var bgView = UIView()
+    var imageView = UIImageView()
+    fileprivate var originCenter: CGPoint!
     
     convenience init(gesture: UIPanGestureRecognizer) {
         self.init()
         self.panGesture = gesture
         self.panGesture.addTarget(self, action: #selector(gestureChanged))
+        bgView.backgroundColor = UIColor.black
+        let size = UIScreen.main.bounds.size
+        originCenter = CGPoint(x: size.width * 0.5, y: size.height * 0.5)
     }
     
     deinit {
@@ -27,20 +33,23 @@ class DYPhotoPercentInteractive: UIPercentDrivenInteractiveTransition {
     func gestureChanged(sender: UIPanGestureRecognizer) {
         
         let scale = getTranslationScale()
-        if isFirst {
+        if isFirst && transitionContext != nil {
             beginInterPercent()
             isFirst = false
         }
+        
         switch sender.state {
         case .began:
             break
         case.possible:
             break
         case.changed:
-            update(getTranslationScale())
-            updateInterPercent(scale: getTranslationScale())
+            update(scale)
+            updateInterPercent(scale: scale)
+             let translation = sender.translation(in: sender.view)
+            imageView.center = CGPoint(x: self.originCenter.x + translation.x * scale, y: self.originCenter.y + translation.y)
             break
-        case.ended:
+        default:
             if scale > 0.8 {
                 cancel()
                 interPercentCancel()
@@ -48,10 +57,6 @@ class DYPhotoPercentInteractive: UIPercentDrivenInteractiveTransition {
                 finish()
                 funcinterPercentFinish(scale: scale)
             }
-
-            break
-        default:
-
             break
         }
     }
@@ -60,19 +65,32 @@ class DYPhotoPercentInteractive: UIPercentDrivenInteractiveTransition {
         if transitionContext == nil {
             return
         }
-        let fromVC = transitionContext.viewController(forKey: .from) as! DYPhotoPreviewController
         let containerView = transitionContext.containerView
-        containerView.addSubview(fromVC.view)
+        containerView.addSubview(bgView)
+        bgView.frame = transitionContext.containerView.bounds;
+        
+        let fromVC = transitionContext.viewController(forKey: .from) as! DYPhotoPreviewController
+        fromVC.view.isHidden = true
+        
+        let cell = fromVC.collectionView.visibleCells.first as! DYPhotoPreviewBaseCell
+        imageView.image = cell.imageView?.image ?? UIImage(named: "photo_PlaceHolder")
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFill
+        imageView.frame = UIImage.scaleImageFrame(image: imageView.image!)
+        containerView.addSubview(imageView)
     }
     
     func interPercentCancel() {
         if transitionContext == nil {
             return
         }
-        let fromVC = transitionContext.viewController(forKey: .from) as! DYPhotoPreviewController
+        let fromVC = transitionContext.viewController(forKey: .from)
         let containerView = transitionContext.containerView
-        fromVC.view.alpha = 1;
-        containerView.addSubview(fromVC.view);
+        fromVC?.view.isHidden = false
+        containerView.addSubview((fromVC?.view)!);
+        self.imageView.removeFromSuperview()
+        self.bgView.removeFromSuperview()
+        isFirst = true
         self.transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
     }
     
@@ -80,8 +98,7 @@ class DYPhotoPercentInteractive: UIPercentDrivenInteractiveTransition {
         if transitionContext == nil {
             return
         }
-        let fromVC = transitionContext.viewController(forKey:.from)
-        fromVC?.view.alpha = scale;
+        self.bgView.alpha = scale
     }
     
     
@@ -89,34 +106,36 @@ class DYPhotoPercentInteractive: UIPercentDrivenInteractiveTransition {
         if transitionContext == nil {
             return
         }
-        let fromVC = transitionContext.viewController(forKey: .from) as! DYPhotoPreviewController
-        let containerView = transitionContext.containerView
-        containerView.addSubview(fromVC.view)
-        let imageView = UIImageView()
-        let cell = fromVC.collectionView.visibleCells.first as! DYPhotoPreviewBaseCell
-        imageView.image = cell.imageView?.image ?? UIImage(named: "photo_PlaceHolder")
-        imageView.clipsToBounds = true
-        imageView.contentMode = .scaleAspectFill
-        imageView.frame = UIImage.scaleImageFrame(image: imageView.image!)
-        containerView.addSubview(imageView)
-        
+//        let endFrame = CGRect.init(x: 0, y: imageView.bounds.size.height + UIScreen.main.bounds.size.height, width: imageView.bounds.size.width, height: imageView.bounds.size.height)
+//        UIView.animate(withDuration: 0.25, animations: {
+//            self.imageView.frame = endFrame
+//            self.bgView.alpha = 0
+//        }) { (finish) in
+//            self.imageView.removeFromSuperview()
+//            self.bgView.removeFromSuperview()
+//            self.isFirst = true
+//            self.transitionContext.completeTransition(!self.transitionContext.transitionWasCancelled)
+//        }
+         let fromVC = transitionContext.viewController(forKey: .from) as! DYPhotoPreviewController
         let endFrame = fromVC.thumbTapView?.superview?.convert((fromVC.thumbTapView?.frame)!, to:((UIApplication.shared.delegate?.window)!)!)
         if endFrame != nil && UIScreen.main.bounds.contains(endFrame!){
             UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.1, options: UIViewAnimationOptions.curveLinear, animations: {
-                imageView.frame = endFrame!;
-                fromVC.view.alpha = 0;
+                self.imageView.frame = endFrame!
+                self.bgView.alpha = 0
             }) { (finish) in
-                imageView.removeFromSuperview()
-                fromVC.view.removeFromSuperview()
+                self.imageView.removeFromSuperview()
+                self.bgView.removeFromSuperview()
+                self.isFirst = true
                 self.transitionContext.completeTransition(!self.transitionContext.transitionWasCancelled)
             }
         }else{
             UIView.animate(withDuration: 0.25, animations: {
-                containerView.alpha = 0
+                self.transitionContext.containerView.alpha = 0
                 self.transitionContext.containerView.transform = CGAffineTransform.init(scaleX: 1.5, y: 1.5)
             }, completion: { (finish) in
-                imageView.removeFromSuperview()
-                fromVC.view.removeFromSuperview()
+                self.imageView.removeFromSuperview()
+                self.bgView.removeFromSuperview()
+                self.isFirst = true
                 self.transitionContext.completeTransition(!self.transitionContext.transitionWasCancelled)
             });
         }

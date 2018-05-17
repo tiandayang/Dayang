@@ -24,7 +24,7 @@ class DYHomeModel: DYBaseModel {
             }
             DispatchQueue.global().async {
                 if (error.code == errorCode.success.rawValue || error.code == errorCode.cache.rawValue)  && data != nil {
-                    let model = JSONDeserializer<DYHomeModel>.deserializeFrom(dict: result! as NSDictionary)
+                    let model = DYHomeModel.deserialize(from: result)
                     dy_safeAsync {
                         complete!(error,model)
                     }

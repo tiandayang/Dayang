@@ -1,7 +1,7 @@
 PODS:
   - Alamofire (4.6.0)
   - Bugly (2.4.8)
-  - HandyJSON (4.0.0-beta.1)
+  - HandyJSON (4.1.1)
   - IQKeyboardManagerSwift (5.0.4)
   - KeychainAccess (3.1.0)
   - Kingfisher (4.2.0)
@@ -21,7 +21,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 4.6)
   - Bugly (~> 2.4)
-  - HandyJSON (= 4.0.0-beta.1)
+  - HandyJSON (~> 4.1.1)
   - IQKeyboardManagerSwift (~> 5.0)
   - KeychainAccess (~> 3.1)
   - Kingfisher (~> 4.2)
@@ -36,7 +36,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
   Bugly: da3c02408c14838d498429320545a8e439392978
-  HandyJSON: 428bb18e2c34c2a77361accebf90cf64e4f74118
+  HandyJSON: 3a3de917c4118767ffe41c29b5acba23409649f4
   IQKeyboardManagerSwift: a0592bb636b10a9a1cf75d2b2c61144226226c84
   KeychainAccess: 94c5540b32eabf7bc32bfb976a268e8ea05fd6da
   Kingfisher: 9ee7e788d8ba07c3f21ce0d43f33cec310a4f781
@@ -49,6 +49,6 @@ SPEC CHECKSUMS:
   RxSwift: 4219941c1244c88002901bd87a69d3aea9ae71f0
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
 
-PODFILE CHECKSUM: da95f8d353ae533c43d8adeb7d21af69caa077d6
+PODFILE CHECKSUM: 35fc8384181d353b8fba0b00da4e6128ef10fdf6
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.4.0

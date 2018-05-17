@@ -13,7 +13,7 @@ pod 'Bugly', '~> 2.4'
 pod 'PKHUD', '~> 5.0'
 pod 'PromiseKit/CorePromise', '4.4'
 pod 'Alamofire', '~> 4.6' # swift 4.0
-pod 'HandyJSON', ‘4.0.0-beta.1’ # swift 4.0
+pod 'HandyJSON', '~> 4.1.1' # swift 4.0
 
 target 'Dayang' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks

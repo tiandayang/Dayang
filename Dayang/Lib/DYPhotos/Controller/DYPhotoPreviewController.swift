@@ -85,10 +85,10 @@ class DYPhotoPreviewController: DYBaseViewController {
     
     
     @objc private func panGestureAction(sender: UIPanGestureRecognizer) {
-        let translation = sender.translation(in: sender.view)
-        var scale = 1 - (translation.y / view.frame.size.height)
-        scale = scale < 0 ? 0 : scale
-        scale = scale > 1 ? 1 : scale
+//        let translation = sender.translation(in: sender.view)
+//        var scale = 1 - (translation.y / view.frame.size.height)
+//        scale = scale < 0 ? 0 : scale
+//        scale = scale > 1 ? 1 : scale
         switch sender.state {
         case .possible:
             break
@@ -96,19 +96,19 @@ class DYPhotoPreviewController: DYBaseViewController {
             dismiss(animated: true, completion: nil)
             break
         case .changed:
-            self.collectionView.center = CGPoint.init(x: self.originCenter.x + translation.x * scale, y: self.originCenter.y + translation.y);
-            self.collectionView.transform = CGAffineTransform.init(scaleX: scale, y: scale);
+//            self.collectionView.center = CGPoint.init(x: self.originCenter.x + translation.x * scale, y: self.originCenter.y + translation.y);
+//            self.collectionView.transform = CGAffineTransform.init(scaleX: scale, y: scale);
             break
         default:
 //        .failed:
 //        .cancelled:
 //        .ended:
-            if scale > 0.8 {
-                UIView.animate(withDuration: 0.25, animations: {
-                    self.collectionView.center = self.originCenter;
-                    self.collectionView.transform = CGAffineTransform.identity
-                })
-            }
+//            if scale > 0.8 {
+//                UIView.animate(withDuration: 0.25, animations: {
+//                    self.collectionView.center = self.originCenter;
+//                    self.collectionView.transform = CGAffineTransform.identity
+//                })
+//            }
             break
         }
     }
