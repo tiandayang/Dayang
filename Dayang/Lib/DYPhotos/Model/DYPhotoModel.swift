@@ -10,9 +10,9 @@ import UIKit
 import Photos
 
 class DYPhotoModel: NSObject {
-
+    
     //MARK: 本地图片
-    var isSelect: Bool = false //标记是否选中
+    var isSelect: Bool = false//标记是否选中
     var thumImage: UIImage? // 缩略图，列表用
     var asset: PHAsset? // 图片的资源
     var selectIndex: Int = 0// 选择的索引
@@ -24,7 +24,7 @@ class DYPhotoModel: NSObject {
     lazy var mediaName: String = {
         return self.asset?.value(forKey: "filename") as! String
     }()
-
+    
     lazy var videoDuration: Int = {
         //视频长度
         if self.isVideo {
@@ -41,7 +41,7 @@ class DYPhotoModel: NSObject {
     /// 获取图片
     ///
     /// - Parameter complete: 图片的回调
-    public func getCachedImage(complete:dyRequestImageComplete?) {
+    public func getCachedImage(complete: dyRequestImageComplete?) {
         
         if complete == nil {
             return
@@ -50,15 +50,37 @@ class DYPhotoModel: NSObject {
         if cacheImage != nil {
             complete!(cacheImage)
         }else{
-            
             if asset == nil {
-                complete!(cacheImage)
-                return
+                complete!(nil)
+            }else{
+                if isVideo && videoURL != nil {
+                    DYPhotosHelper.getVideoDefaultImage(url: videoURL!, duration: 1, complete: { (image) in
+                        self.cacheImage = image
+                        complete!(image)
+                    })
+                }else{
+                    DYPhotosHelper.requestImage(asset: self.asset!, isOrigin: self.isOriginImage, complete: { (image) in
+                        complete!(image)
+                        self.cacheImage = image
+                    })
+                }
             }
-            DYPhotosHelper.requestImage(asset: self.asset!, isOrigin: self.isOriginImage, complete: { (image) in
-                complete!(image)
-                self.cacheImage = image
-            })
+        }
+    }
+    
+    public func getVideoURL(complete: ((_ videoUrl: URL)->(Void))?) {
+        if complete == nil {
+            return
+        }
+        if self.videoURL != nil {
+            complete!(self.videoURL!)
+        }else{
+            if asset != nil {
+                DYPhotosHelper.requestVideoInfo(asset: asset!) { (url) in
+                    complete!(url)
+                    self.videoURL = url
+                }
+            }
         }
     }
     
@@ -66,7 +88,7 @@ class DYPhotoModel: NSObject {
     ///
     /// - Returns: string
     public func videoDurationShow() -> String{
-    
+        
         let second = videoDuration%60
         let minute = videoDuration/60
         return self.formatTime(time: minute) + ":" + self.formatTime(time: second)
