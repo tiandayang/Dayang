@@ -39,9 +39,11 @@ class DYPhotosHelper {
                 
                 let albumModel = DYAlbumModel()
                 albumModel.albumName = "相机胶卷"
-                albumModel.fetchAssets = allPhotos;
                 albumModel.mediaType = mediaType
-                albumListArray.append(albumModel)
+                albumModel.fetchAssets = allPhotos;
+                if albumModel.assetList.count > 0 {
+                    albumListArray.append(albumModel)
+                }
                 
                 if otherPhotos.count > 0{
                     if otherPhotos.count == 1 {
@@ -51,7 +53,9 @@ class DYPhotosHelper {
                         let assetsFetchResult = PHAsset.fetchAssets(in: collection, options: nil)
                         albumModel.mediaType = mediaType
                         albumModel.fetchAssets = assetsFetchResult
-                        albumListArray.append(albumModel)
+                        if albumModel.assetList.count > 0 {
+                            albumListArray.append(albumModel)
+                        }
                     }else{
                         for index  in 0...otherPhotos.count - 1 {
                             let albumModel = DYAlbumModel()
@@ -60,7 +64,9 @@ class DYPhotosHelper {
                             let assetsFetchResult = PHAsset.fetchAssets(in: collection, options: nil)
                             albumModel.mediaType = mediaType
                             albumModel.fetchAssets = assetsFetchResult
-                            albumListArray.append(albumModel)
+                            if albumModel.assetList.count > 0 {
+                                albumListArray.append(albumModel)
+                            }
                         }
                     }
                 }
