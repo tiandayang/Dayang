@@ -18,6 +18,11 @@ class DYAlbumListViewController: DYBaseTableViewController {
         super.viewDidLoad()
         initControllerFirstData()
         loadData()
+        //适配iOS 11
+        if #available(iOS 11, *) {
+            UIScrollView.appearance().contentInsetAdjustmentBehavior = .never
+        }
+        navigationController?.navigationBar.isTranslucent = false
     }
     
     override func viewWillAppear(_ animated: Bool) {

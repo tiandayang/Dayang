@@ -28,9 +28,12 @@ extension UIImage {
             height = width / imageScale
             y = (screenSize.height - height) / 2
         }else{
-            height = screenSize.height
-            width = height * imageScale
-            x = (screenSize.width - width) / 2
+            width = screenSize.width
+            height = width / imageScale
+            y = 0
+            //            height = screenSize.height
+            //            width = height * imageScale
+            //            x = (screenSize.width - width) / 2
         }
         return CGRect(x: x, y: y, width: width, height: height)
     }

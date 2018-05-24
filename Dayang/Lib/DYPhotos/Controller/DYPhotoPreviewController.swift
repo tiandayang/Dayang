@@ -20,6 +20,8 @@ class DYPhotoPreviewController: DYBaseViewController {
     //手势
     fileprivate var panGesture: UIPanGestureRecognizer!
     fileprivate var originCenter: CGPoint!
+    fileprivate var isFirstPan = false
+    
     fileprivate var isTap: Bool = false //是否是点击取消
     weak var delegate: DYPhotoPreviewControllerDelegate?
     
@@ -38,7 +40,7 @@ class DYPhotoPreviewController: DYBaseViewController {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     //MARK: ControllerLifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,7 +58,7 @@ class DYPhotoPreviewController: DYBaseViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         configVideo(isDisAppear: true)
-       
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -85,30 +87,23 @@ class DYPhotoPreviewController: DYBaseViewController {
     
     
     @objc private func panGestureAction(sender: UIPanGestureRecognizer) {
-//        let translation = sender.translation(in: sender.view)
-//        var scale = 1 - (translation.y / view.frame.size.height)
-//        scale = scale < 0 ? 0 : scale
-//        scale = scale > 1 ? 1 : scale
         switch sender.state {
         case .possible:
+            dy_Print("possible")
             break
         case .began:
-            dismiss(animated: true, completion: nil)
+            originCenter = sender.translation(in: sender.view)
             break
         case .changed:
-//            self.collectionView.center = CGPoint.init(x: self.originCenter.x + translation.x * scale, y: self.originCenter.y + translation.y);
-//            self.collectionView.transform = CGAffineTransform.init(scaleX: scale, y: scale);
+            let point = sender.translation(in: sender.view)
+            if point.y - originCenter.y > 0 && !isFirstPan {
+                isFirstPan = true
+                dismiss(animated: true, completion: nil)
+            }
+            
             break
         default:
-//        .failed:
-//        .cancelled:
-//        .ended:
-//            if scale > 0.8 {
-//                UIView.animate(withDuration: 0.25, animations: {
-//                    self.collectionView.center = self.originCenter;
-//                    self.collectionView.transform = CGAffineTransform.identity
-//                })
-//            }
+            isFirstPan = false
             break
         }
     }
@@ -128,7 +123,7 @@ class DYPhotoPreviewController: DYBaseViewController {
         panGesture = UIPanGestureRecognizer.init(target: self, action: #selector(panGestureAction))
         self.view.addGestureRecognizer(panGesture)
     }
- 
+    
     lazy var collectionView: UICollectionView = {
         let layout = DYPhotoPreViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -204,14 +199,14 @@ extension DYPhotoPreviewController: UICollectionViewDelegate, UICollectionViewDa
                     DYPhotosHelper.saveImageToAlbum(image: (photoModel?.image)!, complete: { (finish) in
                         let title = finish ? "保存成功" : "保存失败"
                         dy_Print(title)
-                        DYHUDHelper.showSuccessHUD(inView: self.view, title: title, isSuccess: finish)
+                        DYAlertViewHelper.showAlert(title: title, controller: self, complete: nil)
                     })
                 }else{
                     if photoModel?.videoPath != nil {
                         DYPhotosHelper.saveVideoToAlbum(videoPath:(photoModel?.videoPath)!, complete: { (finish) in
                             let title = finish ? "保存成功" : "保存失败"
                             dy_Print(title)
-                            DYHUDHelper.showSuccessHUD(inView: self.view, title: title, isSuccess: finish)
+                            DYAlertViewHelper.showAlert(title: title, controller: self, complete: nil)
                         })
                     }
                 }
