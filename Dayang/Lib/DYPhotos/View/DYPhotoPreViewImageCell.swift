@@ -101,7 +101,7 @@ class DYPhotoPreViewImageCell: DYPhotoPreviewBaseCell {
     }
     
     //MARK:CreateUI
-    fileprivate lazy var scrollView: DYScrollView = {
+    lazy var scrollView: DYScrollView = {
         let scrollView = DYScrollView(frame: self.bounds)
         scrollView.maximumZoomScale = 2
         scrollView.backgroundColor = .clear

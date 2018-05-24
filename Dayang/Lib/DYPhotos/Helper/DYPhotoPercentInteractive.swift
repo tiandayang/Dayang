@@ -47,7 +47,10 @@ class DYPhotoPercentInteractive: UIPercentDrivenInteractiveTransition {
         case.changed:
             update(scale)
             updateInterPercent(scale: scale)
-            let translation = sender.translation(in: sender.view)
+            var translation = sender.translation(in: sender.view)
+            if translation.y < 0 {
+                translation.y = 0
+            }
             if imageView.frame.size.height > WINDOW_HEIGHT {
                 imageView.center = CGPoint(x: self.originCenter.x + translation.x, y: self.originCenter.y - translation.y )
             }else{
@@ -80,6 +83,10 @@ class DYPhotoPercentInteractive: UIPercentDrivenInteractiveTransition {
         fromVC.view.isHidden = true
         
         let cell = fromVC.collectionView.visibleCells.first as! DYPhotoPreviewBaseCell
+        if cell.isKind(of: DYPhotoPreViewImageCell.classForCoder()) {
+            let imageCell = cell as! DYPhotoPreViewImageCell
+            imageCell.scrollView.isScrollEnabled = false
+        }
         imageView.image = cell.imageView?.image ?? UIImage(named: "photo_PlaceHolder")
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill
@@ -100,6 +107,12 @@ class DYPhotoPercentInteractive: UIPercentDrivenInteractiveTransition {
         self.imageView.removeFromSuperview()
         self.bgView.removeFromSuperview()
         isFirst = true
+        let photoVC = fromVC as! DYPhotoPreviewController
+        let cell = photoVC.collectionView.visibleCells.first as! DYPhotoPreviewBaseCell
+        if cell.isKind(of: DYPhotoPreViewImageCell.classForCoder()) {
+            let imageCell = cell as! DYPhotoPreViewImageCell
+            imageCell.scrollView.isScrollEnabled = true
+        }
         self.transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
     }
     
@@ -126,6 +139,12 @@ class DYPhotoPercentInteractive: UIPercentDrivenInteractiveTransition {
                 self.bgView.removeFromSuperview()
                 self.isFirst = true
                 self.transitionContext.completeTransition(!self.transitionContext.transitionWasCancelled)
+                let fromVC = self.transitionContext.viewController(forKey: .from) as! DYPhotoPreviewController
+                let cell = fromVC.collectionView.visibleCells.first as! DYPhotoPreviewBaseCell
+                if cell.isKind(of: DYPhotoPreViewImageCell.classForCoder()) {
+                    let imageCell = cell as! DYPhotoPreViewImageCell
+                    imageCell.scrollView.isScrollEnabled = false
+                }
             }
         }else{
             //            UIView.animate(withDuration: 0.25, animations: {
@@ -146,6 +165,12 @@ class DYPhotoPercentInteractive: UIPercentDrivenInteractiveTransition {
                 self.bgView.removeFromSuperview()
                 self.isFirst = true
                 self.transitionContext.completeTransition(!self.transitionContext.transitionWasCancelled)
+                let fromVC = self.transitionContext.viewController(forKey: .from) as! DYPhotoPreviewController
+                let cell = fromVC.collectionView.visibleCells.first as! DYPhotoPreviewBaseCell
+                if cell.isKind(of: DYPhotoPreViewImageCell.classForCoder()) {
+                    let imageCell = cell as! DYPhotoPreViewImageCell
+                    imageCell.scrollView.isScrollEnabled = false
+                }
             }
         }
         
